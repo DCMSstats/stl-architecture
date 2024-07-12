@@ -1,10 +1,17 @@
 
-workspace "Short Term Lets Registration" "MISSING" {
+workspace "Short Term Lets Registration" {
     !docs workspace-docs
     !adrs workspace-adrs
 
     model {
         operator = person "Operator" "Owns and runs a short term let" "Person"
+        booker = person "Booker" "Books short term lets" "Person"
+        neighbour = person "Neighbour" "Lives near a short term let" "Person"
+        managementCompanies = person "Management Companies" "" "Person"
+        bookingPlatform = softwaresystem "Booking Platform" "Lists short term lets and facilitates bookings" "External System"
+        localAuthority = softwaresystem "Local Authority" "The local government for an area that contains Short Term Lets" "External System"
+        visitEngland = softwaresystem "Visit England" "" "External System"
+        policyMakers = softwaresystem "Policy Makers" "" "External System"
 
         group "DCMS" {
             shortTermLets = softwaresystem "Short Term Lets Registration" "Platform for registering, and querying short term lets" "Software System" {
@@ -48,7 +55,7 @@ workspace "Short Term Lets Registration" "MISSING" {
                 background #1168bd
                 color #ffffff
             }
-            element "Existing System" {
+            element "External System" {
                 background #999999
                 color #ffffff
             }
