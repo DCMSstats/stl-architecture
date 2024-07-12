@@ -1,6 +1,3 @@
-## Government Body architecture
+## Short Term Lets architecture
 
-This site contains the C4 architecture model for Government Body.
-
-This page is the home page, because it is the first file in the `workspace-docs` directory, when the files are sorted
-alphabetically.
+Documentation of architecture decisions made over the course of the Short Term Lets Registration Alpha project.
