@@ -4,11 +4,13 @@ workspace "Short Term Lets Registration" "MISSING" {
     !adrs workspace-adrs
 
     model {
-        operator = person "Operator" "Owns and runs" "Person"
+        operator = person "Operator" "Owns and runs a short term let" "Person"
 
         group "DCMS" {
-            bankingSystem = softwaresystem "Banking System" "Stores all of the core banking information about citizens, accounts, transactions, etc." "Existing System"
+            shortTermLets = softwaresystem "Short Term Let Registration" "Platform for registering, and querying short term lets" "Software System"
         }
+
+		operator -> shortTermLets "Registers a short term let"
 
         deploymentEnvironment "Development" {
         }
@@ -34,6 +36,7 @@ workspace "Short Term Lets Registration" "MISSING" {
         styles {
             element "Person" {
                 color #ffffff
+				background #999999
                 fontSize 22
                 shape Person
             }
