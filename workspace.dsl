@@ -7,16 +7,15 @@ workspace "Short Term Lets Registration" "MISSING" {
         operator = person "Operator" "Owns and runs a short term let" "Person"
 
         group "DCMS" {
-            shortTermLets = softwaresystem "Short Term Let Registration" "Platform for registering, and querying short term lets" "Software System"
+            shortTermLets = softwaresystem "Short Term Lets Registration" "Platform for registering, and querying short term lets" "Software System" {
+				application = container "Web Application" "Allows people to register short term lets and provides information" "TBD"
+				registry = container "STL Registry" "Register of short term lets" "TBD" "Database"
+			}
         }
 
 		operator -> shortTermLets "Registers a short term let"
-
-        deploymentEnvironment "Development" {
-        }
-
-        deploymentEnvironment "Live" {
-        }
+		operator -> application "Registers a short term let"
+		application -> registry "Store short term let data"
     }
 
     views {
@@ -33,15 +32,17 @@ workspace "Short Term Lets Registration" "MISSING" {
             autoLayout
         }
 
+        container shortTermLets "Containers" {
+            include *
+            autoLayout
+        }
+
         styles {
             element "Person" {
                 color #ffffff
 				background #999999
                 fontSize 22
                 shape Person
-            }
-            element "Citizen" {
-                background #08427b
             }
             element "Software System" {
                 background #1168bd
