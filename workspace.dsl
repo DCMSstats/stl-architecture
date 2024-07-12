@@ -7,7 +7,7 @@ workspace "Short Term Lets Registration" {
         operator = person "Operator" "Owns and runs a short term let" "Person"
         booker = person "Booker" "Books short term lets" "Person"
         neighbour = person "Neighbour" "Lives near a short term let" "Person"
-        managementCompanies = person "Management Companies" "" "Person"
+        managementCompany = person "Management Company" "" "Person"
         bookingPlatform = softwaresystem "Booking Platform" "Lists short term lets and facilitates bookings" "External System"
         localAuthority = softwaresystem "Local Authority" "The local government for an area that contains Short Term Lets" "External System"
         visitEngland = softwaresystem "Visit England" "" "External System"
@@ -21,8 +21,18 @@ workspace "Short Term Lets Registration" {
         }
 
 		operator -> shortTermLets "Registers a short term let"
-		operator -> application "Registers a short term let"
-		application -> registry "Store short term let data"
+		booker -> shortTermLets "Reviews information for a short term let"
+		booker -> bookingPlatform "Books a short term let"
+		neighbour -> shortTermLets "Reviews information for a short term let"
+		operator -> managementCompany "Hire to manage short term let"
+		managementCompany -> shortTermLets "Register short term lets on behalf of operator"
+		bookingPlatform -> shortTermLets "Verify registration of short term let"
+		localAuthority -> shortTermLets "Retrieve data on short term lets"
+		visitEngland -> shortTermLets "Retrieve data on short term lets"
+		policyMakers -> shortTermLets "Retrieve data on short term lets"
+
+		operator -> application "Registers a short term let" "HTTPS"
+		application -> registry "Store short term let data" "TCP/SQL"
     }
 
     views {
