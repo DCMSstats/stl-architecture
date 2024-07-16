@@ -4,7 +4,7 @@ Date: 2024-07-16
 
 ## Status
 
-Draft
+Proposed
 
 ## Context
 
@@ -16,12 +16,15 @@ In an ideal world, we would host this on existing DCMS infrastructure, such as u
 
 ### Supplier Prototyping AWS Account
 
+The supplier uses one of their existing AWS accounts to host the prototype. This muddies the water on ownership of the prototype after the end of the project, but does have the benefit of existing controls on the account. 
+
 ### New Heroku Account
 
-### Hire some server
+We create a new Heroku account and team for the prototype, that exists for the duration of the project. The main drawback is that we create an IT asset owned by DCMS without many controls.
 
 ## Decision
 
+We're going to use Heroku as this leaves the most control in the hands of DCMS and the risk level of this asset is very low. 
 
 ## Consequences
 
