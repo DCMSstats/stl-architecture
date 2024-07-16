@@ -40,8 +40,7 @@ workspace "Short Term Lets Registration" {
             "c4plantuml.elementProperties" "true"
             "structurizr.style.colors.primary" "#485fc7"
             "structurizr.style.colors.secondary" "#ffffff"
-            "structurizr.style.favicon.path" "site/made-tech-logo.png"
-            "structurizr.style.logo.path" "site/made-tech-logo.png"
+            "structurizr.style.logo.path" "site/logo.jpg"
         }
 
         systemlandscape "SystemLandscape" {
