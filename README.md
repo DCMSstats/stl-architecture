@@ -11,8 +11,7 @@ To view the site and edit the site locally you can use [Structurizr Lite](https:
 ```
 git clone git@github.com:DCMSstats/stl-architecture.git
 cd stl-architecture
-docker pull structurizr/lite
-docker run -it --rm -p 8080:8080 -v $PWD:/usr/local/structurizr structurizr/lite
+make start
 ```
 
 Open your browser and go to `localhost:8080`.
