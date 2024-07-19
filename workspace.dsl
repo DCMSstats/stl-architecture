@@ -4,7 +4,7 @@ workspace "Short Term Lets Registration" {
     !adrs workspace-adrs
 
     model {
-        operator = person "Operator" "Owns and runs a short term let"
+        operator = person "Operator" "Owns and runs a short term let" "mvp"
         booker = person "Booker" "Books short term lets"
         neighbour = person "Neighbour" "Lives near a short term let"
         managementCompany = person "Management Company" ""
@@ -15,12 +15,12 @@ workspace "Short Term Lets Registration" {
 
         group "DCMS" {
             shortTermLets = softwaresystem "Short Term Lets Registration" "Platform for registering, and querying short term lets" "Software System" {
-				application = container "Web Application" "Allows people to register short term lets and provides information" "TBD"
-				registry = container "STL Registry" "Register of short term lets" "TBD" "Database"
+				application = container "Web Application" "Allows people to register short term lets and provides information" "TBD" "mvp"
+				registry = container "STL Registry" "Register of short term lets" "TBD" "Database,mvp"
 			}
         }
 
-		operator -> shortTermLets "Registers a short term let"
+		operator -> shortTermLets "Registers a short term let" "mvp"
 		booker -> shortTermLets "Reviews information for a short term let"
 		booker -> bookingPlatform "Books a short term let"
 		neighbour -> shortTermLets "Reviews information for a short term let"
@@ -31,8 +31,8 @@ workspace "Short Term Lets Registration" {
 		visitEngland -> shortTermLets "Retrieve data on short term lets"
 		policyMakers -> shortTermLets "Retrieve data on short term lets"
 
-		operator -> application "Registers a short term let" "HTTPS"
-		application -> registry "Store short term let data" "TCP/SQL"
+		operator -> application "Registers a short term let" "HTTPS" "mvp"
+		application -> registry "Store short term let data" "TCP/SQL" "mvp"
     }
 
     views {
@@ -53,6 +53,11 @@ workspace "Short Term Lets Registration" {
             autoLayout
         }
 
+        container shortTermLets "MVA-Containers" {
+			title "[Container] Short Term Lets Registration - Minimum Viable Architecture"
+            include element.tag==mvp
+            autoLayout
+        }
         styles {
             element "Person" {
                 color #ffffff
