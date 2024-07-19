@@ -4,10 +4,10 @@ workspace "Short Term Lets Registration" {
     !adrs workspace-adrs
 
     model {
-        operator = person "Operator" "Owns and runs a short term let" "Person"
-        booker = person "Booker" "Books short term lets" "Person"
-        neighbour = person "Neighbour" "Lives near a short term let" "Person"
-        managementCompany = person "Management Company" "" "Person"
+        operator = person "Operator" "Owns and runs a short term let"
+        booker = person "Booker" "Books short term lets"
+        neighbour = person "Neighbour" "Lives near a short term let"
+        managementCompany = person "Management Company" ""
         bookingPlatform = softwaresystem "Booking Platform" "Lists short term lets and facilitates bookings" "External System"
         localAuthority = softwaresystem "Local Authority" "The local government for an area that contains Short Term Lets" "External System"
         visitEngland = softwaresystem "Visit England" "" "External System"
