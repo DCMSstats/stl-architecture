@@ -55,6 +55,7 @@ workspace "Short Term Lets Registration" {
         }
 
         container shortTermLets "Containers" {
+			title "[Container] Short Term Lets Registration - Target Architecture"
             include *
 			exclude element.tag==only-mva relationship.tag==only-mva
             autoLayout
