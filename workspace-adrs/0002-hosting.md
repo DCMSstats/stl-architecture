@@ -4,7 +4,7 @@ Date: 2024-07-16
 
 ## Status
 
-Proposed
+Accepted
 
 ## Context
 
@@ -28,3 +28,4 @@ We're going to use Heroku as this leaves the most control in the hands of DCMS a
 
 ## Consequences
 
+At the end of the alpha stage, DCMS will need to find a new hosting solution if they still with the prototype to be hosted.
