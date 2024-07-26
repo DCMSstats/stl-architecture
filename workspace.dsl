@@ -8,12 +8,13 @@ workspace "Short Term Lets Registration" {
         booker = person "Booker" "Books short term lets"
         neighbour = person "Neighbour" "Lives near a short term let"
         managementCompany = person "Management Company" ""
+        localAuthorityPlanner = person "Local Authority Planner" "Plans housing schemes in Local Authority area"
+        localAuthorityEnforcement = person "Local Authority Enforcement" "Enforces STL scheme in Local Authority area"
         bookingPlatform = softwaresystem "Booking Platform" "Lists short term lets and facilitates bookings" "External System"
-        localAuthority = softwaresystem "Local Authority" "The local government for an area that contains Short Term Lets" "External System"
         visitEngland = softwaresystem "Visit England" "" "External System"
         policyMakers = softwaresystem "Policy Makers" "" "External System"
 
-        group "DCMS" {
+        group "Short Term Lets Service" {
             shortTermLets = softwaresystem "Short Term Lets Registration" "Platform for registering, and querying short term lets" "Software System" {
 				application = container "Web Application" "Allows people to register short term lets and provides information" "TBD" "mva"
 				registerAdapter = container "Resgister Adapter" "Controls management and access of the register" "TBD"
@@ -21,14 +22,17 @@ workspace "Short Term Lets Registration" {
 			}
         }
 
-		operator -> shortTermLets "Registers a short term let" "mva"
+		operator -> shortTermLets "Registers a short term let" "" "mva"
 		booker -> shortTermLets "Reviews information for a short term let"
 		booker -> bookingPlatform "Books a short term let"
 		neighbour -> shortTermLets "Reviews information for a short term let"
 		operator -> managementCompany "Hire to manage short term let"
+		operator -> bookingPlatform "Lists STL on platform"
 		managementCompany -> shortTermLets "Register short term lets on behalf of operator"
+		managementCompany -> bookingPlatform "Lists STL on platform"
 		bookingPlatform -> shortTermLets "Verify registration of short term let"
-		localAuthority -> shortTermLets "Retrieve data on short term lets"
+		localAuthorityEnforcement -> shortTermLets "Reviews register"
+		localAuthorityPlanner -> shortTermLets "Retrieve data on short term lets"
 		visitEngland -> shortTermLets "Retrieve data on short term lets"
 		policyMakers -> shortTermLets "Retrieve data on short term lets"
 
@@ -49,7 +53,7 @@ workspace "Short Term Lets Registration" {
             "structurizr.style.logo.path" "site/logo.jpg"
         }
 
-        systemlandscape "SystemLandscape" {
+        systemContext shortTermLets {
             include *
             autoLayout
         }
@@ -64,6 +68,12 @@ workspace "Short Term Lets Registration" {
         container shortTermLets "MVA-Containers" {
 			title "[Container] Short Term Lets Registration - Minimum Viable Architecture"
 			include element.tag==mva relationship.tag==mva
+			autoLayout
+		}
+
+		systemlandscape "wholeProblem" {
+			title "Solving a whole problem for users"
+			include operator bookingPlatform localAuthorityEnforcement localAuthorityPlanner shortTermLets
 			autoLayout
 		}
 
