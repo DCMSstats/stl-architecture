@@ -11,7 +11,6 @@ workspace "Short Term Lets Registration" {
         localAuthorityPlanner = person "Local Authority Planner" "Plans housing schemes in Local Authority area"
         localAuthorityEnforcement = person "Local Authority Enforcement" "Enforces STL scheme in Local Authority area"
         bookingPlatform = softwaresystem "Booking Platform" "Lists short term lets and facilitates bookings" "External System"
-        visitEngland = softwaresystem "Visit England" "" "External System"
         policyMakers = softwaresystem "Policy Makers" "" "External System"
 
         group "Short Term Lets Service" {
@@ -21,6 +20,11 @@ workspace "Short Term Lets Registration" {
 				register = container "STL Register" "Register of short term lets" "TBD" "Database,mva"
 			}
         }
+
+		group "VisitEngland" {
+			veDataLake = softwaresystem "Visit England Data Lake" "" "External System"
+			visitorReady = softwaresystem "Visitor Ready" "Entry level quality scheme" "External System"
+		}
 
 		operator -> shortTermLets "Registers a short term let" "" "mva"
 		booker -> shortTermLets "Reviews information for a short term let"
@@ -33,7 +37,8 @@ workspace "Short Term Lets Registration" {
 		bookingPlatform -> shortTermLets "Verify registration of short term let"
 		localAuthorityEnforcement -> shortTermLets "Reviews register"
 		localAuthorityPlanner -> shortTermLets "Retrieve data on short term lets"
-		visitEngland -> shortTermLets "Retrieve data on short term lets"
+		shortTermLets -> visitorReady "Optionally enrol operators"
+		shortTermLets -> veDataLake "Supply data on registration"
 		policyMakers -> shortTermLets "Retrieve data on short term lets"
 
 		# MVA
@@ -43,6 +48,8 @@ workspace "Short Term Lets Registration" {
 		# Final architecture
 		application -> registerAdapter "Request updates to the register" "HTTPS"
 		registerAdapter -> register "Store and request short term let data" "TCP/SQL"
+		application -> visitorReady "Optionally enrol operators" "HTTPS"
+		application -> veDataLake "Supply data on registration" "HTTPS"
     }
 
     views {
