@@ -33,7 +33,7 @@ workspace "Short Term Lets Registration" {
 		operator -> managementCompany "Hire to manage short term let"
 		operator -> bookingPlatform "Lists STL on platform"
 		managementCompany -> shortTermLets "Register short term lets on behalf of operator"
-		managementCompany -> bookingPlatform "Lists STL on platform"
+		managementCompany -> bookingPlatform "Lists short term let on platform"
 		bookingPlatform -> shortTermLets "Verify registration of short term let"
 		localAuthorityEnforcement -> shortTermLets "Reviews register"
 		localAuthorityPlanner -> shortTermLets "Retrieve data on short term lets"
@@ -83,6 +83,8 @@ workspace "Short Term Lets Registration" {
 			include operator bookingPlatform localAuthorityEnforcement localAuthorityPlanner shortTermLets
 			autoLayout
 		}
+
+		!include validation_view.dsl
 
         styles {
             element "Person" {
