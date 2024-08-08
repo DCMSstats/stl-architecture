@@ -13,6 +13,9 @@ workspace "Short Term Lets Registration" {
         bookingPlatform = softwaresystem "Booking Platform" "Lists short term lets and facilitates bookings" "External System"
         policyMakers = softwaresystem "Policy Makers" "" "External System"
 
+        govpay = softwaresystem "GOV.UK Pay" "Allows users to make payments" "External System,mva"
+        oneLogin = softwaresystem "One Login" "Let's users sign in" "External System,mva"
+
         group "Short Term Lets Service" {
             shortTermLets = softwaresystem "Short Term Lets Registration" "Platform for registering, and querying short term lets" "Software System" {
 				application = container "Web Application" "Allows people to register short term lets and provides information" "TBD" "mva"
@@ -41,9 +44,14 @@ workspace "Short Term Lets Registration" {
 		shortTermLets -> veDataLake "Supply data on registration"
 		policyMakers -> shortTermLets "Retrieve data on short term lets"
 
+		shortTermLets -> govpay "User makes a payment"
+		shortTermLets -> oneLogin "User signs into service"
+
 		# MVA
 		operator -> application "Registers a short term let" "HTTPS" "mva"
 		application -> register "Store short term let data" "TCP/SQL" "mva,only-mva"
+		application -> govpay "User makes a payment" "HTTPS" "mva"
+		application -> oneLogin "User signs into service" "HTTPS" "mva"
 
 		# Final architecture
 		application -> registerAdapter "Request updates to the register" "HTTPS"
@@ -80,7 +88,7 @@ workspace "Short Term Lets Registration" {
 
 		systemlandscape "wholeProblem" {
 			title "Solving a whole problem for users"
-			include operator bookingPlatform localAuthorityEnforcement localAuthorityPlanner shortTermLets
+			include operator bookingPlatform localAuthorityEnforcement localAuthorityPlanner shortTermLets govpay oneLogin
 			autoLayout
 		}
 
