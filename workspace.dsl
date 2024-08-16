@@ -6,7 +6,6 @@ workspace "Short Term Lets Registration" {
     model {
         operator = person "Operator" "Owns and runs a short term let" "mva"
         booker = person "Booker" "Books short term lets"
-        neighbour = person "Neighbour" "Lives near a short term let"
         managementCompany = person "Management Company" ""
         localAuthorityPlanner = person "Local Authority Planner" "Plans housing schemes in Local Authority area"
         localAuthorityEnforcement = person "Local Authority Enforcement" "Enforces STL scheme in Local Authority area"
@@ -32,7 +31,6 @@ workspace "Short Term Lets Registration" {
 		operator -> shortTermLets "Registers a short term let" "" "mva"
 		booker -> shortTermLets "Reviews information for a short term let"
 		booker -> bookingPlatform "Books a short term let"
-		neighbour -> shortTermLets "Reviews information for a short term let"
 		operator -> managementCompany "Hire to manage short term let"
 		operator -> bookingPlatform "Lists STL on platform"
 		managementCompany -> shortTermLets "Register short term lets on behalf of operator"
