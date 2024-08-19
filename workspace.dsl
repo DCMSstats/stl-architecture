@@ -4,6 +4,7 @@ workspace "Short Term Lets Registration" {
     !adrs workspace-adrs
 
     model {
+        admin = person "Administrator" "Manages registrations" "mva"
         operator = person "Operator" "Owns and runs a short term let" "mva"
         managementCompany = person "Management Company" ""
 
@@ -17,12 +18,15 @@ workspace "Short Term Lets Registration" {
 
         govpay = softwaresystem "GOV.UK Pay" "Allows users to make payments" "External System,mva"
         oneLogin = softwaresystem "One Login" "Let's users sign in" "External System,mva"
+        govNotify = softwaresystem "GOV.UK Notify" "Sends users notifications" "External System,mva"
+        authProvider = softwaresystem "Authentication Provider" "Sign in for administrator's users" "External System,mva"
 
         group "Short Term Lets Service" {
             shortTermLets = softwaresystem "Short Term Lets Registration" "Platform for registering, and querying short term lets" "Software System" {
 				application = container "Web Application" "Allows people to register short term lets and provides information" "TBD" "mva"
 				registerAdapter = container "Resgister Adapter" "Controls management and access of the register" "TBD"
 				register = container "STL Register" "Register of short term lets" "TBD" "Database,mva"
+				sessionStore = container "Session Store" "Session store for web application" "TBD" "Database,mva"
 			}
         }
 
@@ -45,12 +49,17 @@ workspace "Short Term Lets Registration" {
 
 		shortTermLets -> govpay "User makes a payment"
 		shortTermLets -> oneLogin "User signs into service"
+		shortTermLets -> govNotify "Notify user of completed application"
 
 		# MVA
 		operator -> application "Registers a short term let" "HTTPS" "mva"
+		admin -> application "Resolve queries about registrations" "HTTPS" "mva"
 		application -> register "Store short term let data" "TCP/SQL" "mva,only-mva"
 		application -> govpay "User makes a payment" "HTTPS" "mva"
 		application -> oneLogin "User signs into service" "HTTPS" "mva"
+		application -> authProvider "Admin users sign into service" "HTTPS" "mva"
+		application -> govNotify "Notify user of completed application" "HTTPS" "mva"
+		application -> sessionStore "Store progress of user's registration" "" "mva"
 
 		# Final architecture
 		application -> registerAdapter "Request updates to the register" "HTTPS"
