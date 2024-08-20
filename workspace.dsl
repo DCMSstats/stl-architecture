@@ -24,9 +24,10 @@ workspace "Short Term Lets Registration" {
         group "Short Term Lets Service" {
             shortTermLets = softwaresystem "Short Term Lets Registration" "Platform for registering, and querying short term lets" "Software System" {
 				application = container "Web Application" "Allows people to register short term lets and provides information" "TBD" "mva"
-				registerAdapter = container "Resgister Adapter" "Controls management and access of the register" "TBD"
+				registerAdapter = container "Register Adapter" "Controls management and access of the register" "TBD"
 				register = container "STL Register" "Register of short term lets" "TBD" "Database,mva"
 				sessionStore = container "Session Store" "Session store for web application" "TBD" "Database,mva"
+				fileStore = container "File Store" "Storage for compliance documents" "TBD" "Database,mva"
 			}
         }
 
@@ -60,6 +61,7 @@ workspace "Short Term Lets Registration" {
 		application -> authProvider "Admin users sign into service" "HTTPS" "mva"
 		application -> govNotify "Notify user of completed application" "HTTPS" "mva"
 		application -> sessionStore "Store progress of user's registration" "" "mva"
+		application -> fileStore "Upload/review compliance documents" "HTTPS" "mva"
 
 		# Final architecture
 		application -> registerAdapter "Request updates to the register" "HTTPS"
