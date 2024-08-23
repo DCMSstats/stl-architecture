@@ -20,6 +20,7 @@ workspace "Short Term Lets Registration" {
         oneLogin = softwaresystem "One Login" "Let's users sign in" "External System,mva"
         govNotify = softwaresystem "GOV.UK Notify" "Sends users notifications" "External System,mva"
         authProvider = softwaresystem "Authentication Provider" "Sign in for administrator's users" "External System,mva"
+        osPlacesApi = softwaresystem "OS Places API" "Identifies UK Addresses" "External System,mva"
 
         group "Short Term Lets Service" {
             shortTermLets = softwaresystem "Short Term Lets Registration" "Platform for registering, and querying short term lets" "Software System" {
@@ -61,13 +62,15 @@ workspace "Short Term Lets Registration" {
 		application -> authProvider "Admin users sign into service" "HTTPS" "mva"
 		application -> govNotify "Notify user of completed application" "HTTPS" "mva"
 		application -> sessionStore "Store progress of user's registration" "" "mva"
-		application -> fileStore "Upload/review compliance documents" "HTTPS" "mva"
+		application -> fileStore "Upload/review compliance documents" "HTTPS" "mva,only-mva"
+		application -> osPlacesApi "Request addresses at postcode" "HTTPS" "mva"
 
 		# Final architecture
 		application -> registerAdapter "Request updates to the register" "HTTPS"
 		registerAdapter -> register "Store and request short term let data" "TCP/SQL"
 		application -> visitorReady "Optionally enrol operators" "HTTPS"
 		application -> veDataLake "Supply data on registration" "HTTPS"
+		registerAdapter -> fileStore "Upload/review compliance documents" "HTTPS"
     }
 
     views {
