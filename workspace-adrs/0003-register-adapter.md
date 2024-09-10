@@ -26,4 +26,4 @@ Effectively just a lightweight version of the separate deployable, offering less
 
 ## Recommendation
 
-It is an established pattern to take a module and extract it into a separate deployable. In this case, in order to get the service live as quickly as possible, the register adapter     should probably start as a module (maybe following the [ports and adapters pattern](https://8thlight.com/insights/a-color-coded-guide-to-ports-and-adapters)) to benefit from the spe    ed and simplicity while the service is new, and extract the component when it is necessary.
+It is an established pattern to take a module and extract it into a separate deployable. In this case, in order to get the service live as quickly as possible, the register adapter should probably start as a module (maybe following the [ports and adapters pattern](https://8thlight.com/insights/a-color-coded-guide-to-ports-and-adapters)) to benefit from the speed and simplicity while the service is new, and extract the component when it is necessary.
