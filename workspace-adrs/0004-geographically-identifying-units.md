@@ -18,21 +18,39 @@ Unlike other types of rental property in England, short-term lets do not match u
 
 It is also important that whatever method we choose can be used with an offline journey, and without JavaScript in the online journey.
 
+Short-term lets that occupy all of an address would not be required to supply more detail. Short-term lets that do not occupy all of an address but are the only short-term let on site would probably not be required to supply more detail. 
+
 ## Options
 
-Options to be evaluated on how easy it is to:
-1. use the data to de-duplicate registrations?
-2. use the data to find a short-term let?
-3. use the data to determine if a registration matches a particular short-term let at an address?
-4. for the operator to provide?
-5. for the operator to provide without JavaScript?
-6. for the operator to provide offline?
-7. for the operator to provide for multiple properties?
+Options to be evaluated on:
+1. How easy it is to use the data to de-duplicate registrations?
+2. How easy it is to use the data to find a short-term let?
+3. How easy it is to use the data to determine if a registration matches a particular short-term let at an address?
+4. How easy it is to for the operator to provide?
+5. How easy it is to for the operator to provide without JavaScript?
+6. How easy it is to for the operator to provide offline?
+7. How easy it is to for the operator to provide for multiple properties?
 
 
 ### Text description
 
 Operators provide a text description of whatever section of an address is part of the short-term let.
+
+1. How easy it is to use the data to de-duplicate registrations?
+   - Difficult. Depending on the guidance, the description provided might be vague, or change over time (the marketing name of a yurt) 
+2. How easy it is to use the data to find a short-term let?
+   - Difficult. Depending on the guidance, the description provided might be vague, or change over time (the marketing name of a yurt) 
+3. How easy it is to use the data to determine if a registration matches a particular short-term let at an address?
+   - Difficult. Depending on the guidance, the description provided might be vague, or change over time (the marketing name of a yurt) 
+4. How easy it is to for the operator to provide?
+   - Easy. 
+5. How easy it is to for the operator to provide without JavaScript?
+   - Easy. 
+6. How easy it is to for the operator to provide offline?
+   - Easy. 
+7. How easy it is to for the operator to provide for multiple properties?
+   - Easy. 
+
 
 ### GPS coordinates
 
