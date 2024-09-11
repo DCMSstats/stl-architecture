@@ -56,6 +56,21 @@ Operators provide a text description of whatever section of an address is part o
 
 Operators coordinates of the location of the short-term let. Could be Ordnance Survey Eastings and Northings.
 
+1. How easy it is to use the data to de-duplicate registrations?
+   - Not easy, it would be hard to balance what GPS coordinates are the close enough to be called the same without also de-deduplicating legitimately different lets. 
+2. How easy it is to use the data to find a short-term let?
+   - Easy for working across large areas like a field, but difficult/impossible across smaller areas like rooms in a house, particularly where one short-term let is directly above another.
+3. How easy it is to use the data to determine if a registration matches a particular short-term let at an address?
+   - Easy for working across large areas like a field, but difficult/impossible across smaller areas like rooms in a house, particularly where one short-term let is directly above another.
+4. How easy it is to for the operator to provide?
+   - Easy. An operator can pick a location on a map.
+5. How easy it is to for the operator to provide without JavaScript?
+   - Difficult, operator needs to find coordinates to input directly.
+6. How easy it is to for the operator to provide offline?
+   - Difficult, operator needs to find coordinates to input directly.
+7. How easy it is to for the operator to provide for multiple properties?
+   - Not too difficult, but does require knowledge of the individual let.
+
 ### Drawn Sections
 
 Operators draw the boundaries of the short-term let on a map.
