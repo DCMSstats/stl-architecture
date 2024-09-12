@@ -73,9 +73,22 @@ Operators coordinates of the location of the short-term let. Could be Ordnance S
 
 ### Drawn Sections
 
-Operators draw the boundaries of the short-term let on a map.
+Operators draw the boundaries of the short-term let on a map. This could be provided digitally online with javascript. Offline or without Javascript, the user would probably have to mark the area on a physical map to be digitised by an administrator. 
 
-### 
+1. How easy it is to use the data to de-duplicate registrations?
+   - Not easy, it would be hard to balance what boundaries lines are close enough to be called the same without also de-deduplicating legitimately different lets. 
+2. How easy it is to use the data to find a short-term let?
+   - Easy for working across large areas like a field, simple-ish across smaller areas like rooms in a house, doesn't solve where one short-term let is directly above another.
+3. How easy it is to use the data to determine if a registration matches a particular short-term let at an address?
+   - Easy for working across large areas like a field, simple-ish across smaller areas like rooms in a house, doesn't solve where one short-term let is directly above another.
+4. How easy it is to for the operator to provide?
+   - Easy. An operator can mark a location on a map.
+5. How easy it is to for the operator to provide without JavaScript?
+   - Difficult, operator needs print and mark on a map on paper and then scan in. This would then need digitising by an administrator.
+6. How easy it is to for the operator to provide offline?
+   - Difficult, operator needs print and mark on a map on paper. This would then need digitising by an administrator.
+7. How easy it is to for the operator to provide for multiple properties?
+   - Difficult, would require fairly substantial knowledge of the individual let.
 
 ## Recommendation
 
