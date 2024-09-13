@@ -1,6 +1,6 @@
 @startuml
 set separator none
-title [Container] Short Term Lets Registration - Target Architecture
+title Short Term Lets Registration - Containers
 
 top to bottom direction
 

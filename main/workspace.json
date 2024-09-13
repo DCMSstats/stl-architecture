@@ -49,6 +49,12 @@
       "format" : "Markdown",
       "order" : 3,
       "title" : ""
+    }, {
+      "content" : "## Proposed Architecture\n\n### Container level\n\n![Container level diagram](embed:Containers)\n\n### Component level\n\n![Container level diagram](embed:Components)\n",
+      "filename" : "04-proposed-architecture.md",
+      "format" : "Markdown",
+      "order" : 4,
+      "title" : ""
     } ]
   },
   "id" : 0,
@@ -63,19 +69,26 @@
       },
       "relationships" : [ {
         "description" : "Resolve queries about registrations",
-        "destinationId" : "14",
-        "id" : "34",
+        "destinationId" : "17",
+        "id" : "37",
         "properties" : {
-          "structurizr.dsl.identifier" : "7a9dfe52-f4a7-49d0-89fc-568d9471be9b"
+          "structurizr.dsl.identifier" : "c0639be9-9ed7-4846-ba32-d20b0c8f4ab2"
         },
         "sourceId" : "1",
         "tags" : "Relationship",
         "technology" : "HTTPS"
       }, {
         "description" : "Resolve queries about registrations",
+        "destinationId" : "14",
+        "id" : "38",
+        "linkedRelationshipId" : "37",
+        "sourceId" : "1",
+        "technology" : "HTTPS"
+      }, {
+        "description" : "Resolve queries about registrations",
         "destinationId" : "13",
-        "id" : "35",
-        "linkedRelationshipId" : "34",
+        "id" : "39",
+        "linkedRelationshipId" : "37",
         "sourceId" : "1",
         "technology" : "HTTPS"
       } ],
@@ -89,41 +102,46 @@
         "structurizr.dsl.identifier" : "operator"
       },
       "relationships" : [ {
-        "description" : "Registers a short term let",
-        "destinationId" : "13",
-        "id" : "20",
-        "properties" : {
-          "structurizr.dsl.identifier" : "5f1e29d9-7091-4c1e-8110-cc93795a5499"
-        },
-        "sourceId" : "2",
-        "tags" : "Relationship"
-      }, {
         "description" : "Hire to manage short term let",
         "destinationId" : "3",
-        "id" : "21",
+        "id" : "25",
         "properties" : {
-          "structurizr.dsl.identifier" : "3771dbb6-fa73-4ff7-ac27-6719d1a74c5f"
+          "structurizr.dsl.identifier" : "bedcc70e-08d8-4152-8de9-14298196af22"
         },
         "sourceId" : "2",
         "tags" : "Relationship"
       }, {
         "description" : "Lists STL on platform",
         "destinationId" : "6",
-        "id" : "22",
+        "id" : "26",
         "properties" : {
-          "structurizr.dsl.identifier" : "95dc5170-f169-4b33-a17f-6138998f16fa"
+          "structurizr.dsl.identifier" : "ddf3c68d-a107-4747-b3c5-43fb266b967b"
         },
         "sourceId" : "2",
         "tags" : "Relationship"
       }, {
         "description" : "Registers a short term let",
-        "destinationId" : "14",
-        "id" : "33",
+        "destinationId" : "15",
+        "id" : "34",
         "properties" : {
-          "structurizr.dsl.identifier" : "36aaca38-f583-4354-8835-af777a9411eb"
+          "structurizr.dsl.identifier" : "b6df0026-5e13-40fe-a132-896511f4d1d0"
         },
         "sourceId" : "2",
         "tags" : "Relationship",
+        "technology" : "HTTPS"
+      }, {
+        "description" : "Registers a short term let",
+        "destinationId" : "14",
+        "id" : "35",
+        "linkedRelationshipId" : "34",
+        "sourceId" : "2",
+        "technology" : "HTTPS"
+      }, {
+        "description" : "Registers a short term let",
+        "destinationId" : "13",
+        "id" : "36",
+        "linkedRelationshipId" : "34",
+        "sourceId" : "2",
         "technology" : "HTTPS"
       } ],
       "tags" : "Element,Person"
@@ -137,18 +155,18 @@
       "relationships" : [ {
         "description" : "Register short term lets on behalf of operator",
         "destinationId" : "13",
-        "id" : "23",
+        "id" : "27",
         "properties" : {
-          "structurizr.dsl.identifier" : "8be5d0e4-952a-48e2-89b7-eecb841c5b15"
+          "structurizr.dsl.identifier" : "edc27084-6610-41f0-a374-6c4eeaca5d67"
         },
         "sourceId" : "3",
         "tags" : "Relationship"
       }, {
         "description" : "Lists short term let on platform",
         "destinationId" : "6",
-        "id" : "24",
+        "id" : "28",
         "properties" : {
-          "structurizr.dsl.identifier" : "abfb42cf-59f8-4cd9-be4f-0cb3e102c344"
+          "structurizr.dsl.identifier" : "83d9f622-df0f-4b21-90b2-b37ad6620b2b"
         },
         "sourceId" : "3",
         "tags" : "Relationship"
@@ -166,9 +184,9 @@
       "relationships" : [ {
         "description" : "Retrieve data on short term lets",
         "destinationId" : "13",
-        "id" : "26",
+        "id" : "30",
         "properties" : {
-          "structurizr.dsl.identifier" : "3c753a21-c359-4dd2-a67d-054f998e9212"
+          "structurizr.dsl.identifier" : "56cb04c0-1178-436b-8edb-6c0e320d3caf"
         },
         "sourceId" : "4",
         "tags" : "Relationship"
@@ -185,19 +203,26 @@
       },
       "relationships" : [ {
         "description" : "Finds contact details from register",
-        "destinationId" : "14",
-        "id" : "36",
+        "destinationId" : "16",
+        "id" : "40",
         "properties" : {
-          "structurizr.dsl.identifier" : "284132e5-6a6c-4d0b-bd11-d109a98629c4"
+          "structurizr.dsl.identifier" : "c837bde0-e4a3-4dd3-b5fe-f9bedfbd3ce2"
         },
         "sourceId" : "5",
         "tags" : "Relationship",
         "technology" : "HTTPS"
       }, {
         "description" : "Finds contact details from register",
+        "destinationId" : "14",
+        "id" : "41",
+        "linkedRelationshipId" : "40",
+        "sourceId" : "5",
+        "technology" : "HTTPS"
+      }, {
+        "description" : "Finds contact details from register",
         "destinationId" : "13",
-        "id" : "37",
-        "linkedRelationshipId" : "36",
+        "id" : "42",
+        "linkedRelationshipId" : "40",
         "sourceId" : "5",
         "technology" : "HTTPS"
       } ],
@@ -215,9 +240,9 @@
       "relationships" : [ {
         "description" : "Verify registration of short term let",
         "destinationId" : "13",
-        "id" : "25",
+        "id" : "29",
         "properties" : {
-          "structurizr.dsl.identifier" : "5889800d-c192-4b79-a18e-79278d700638"
+          "structurizr.dsl.identifier" : "5d0ff220-f697-4183-9311-45359f1a00a4"
         },
         "sourceId" : "6",
         "tags" : "Relationship"
@@ -234,9 +259,9 @@
       "relationships" : [ {
         "description" : "Retrieve data on short term lets",
         "destinationId" : "13",
-        "id" : "29",
+        "id" : "33",
         "properties" : {
-          "structurizr.dsl.identifier" : "f984054b-fb44-4987-a217-73c8651c4ec6"
+          "structurizr.dsl.identifier" : "9399a34f-3c44-4335-8a77-4cde57b9fe06"
         },
         "sourceId" : "7",
         "tags" : "Relationship"
@@ -294,6 +319,182 @@
       "tags" : "Element,Software System,External System"
     }, {
       "containers" : [ {
+        "components" : [ {
+          "description" : "Flow for registering and renewing registration of short-term let",
+          "documentation" : { },
+          "id" : "15",
+          "name" : "Operator Registration",
+          "properties" : {
+            "structurizr.dsl.identifier" : "registrationflow"
+          },
+          "relationships" : [ {
+            "description" : "User makes a payment",
+            "destinationId" : "8",
+            "id" : "45",
+            "properties" : {
+              "structurizr.dsl.identifier" : "cd6782bd-3e36-4329-b9fc-603cd10d83a6"
+            },
+            "sourceId" : "15",
+            "tags" : "Relationship",
+            "technology" : "HTTPS"
+          }, {
+            "description" : "User signs into service",
+            "destinationId" : "9",
+            "id" : "48",
+            "properties" : {
+              "structurizr.dsl.identifier" : "2415c6ad-a840-4563-bbd1-53be76392f07"
+            },
+            "sourceId" : "15",
+            "tags" : "Relationship",
+            "technology" : "HTTPS"
+          }, {
+            "description" : "Notify user of completed application",
+            "destinationId" : "10",
+            "id" : "55",
+            "properties" : {
+              "structurizr.dsl.identifier" : "7ba0f257-d0a7-4583-b640-c28fb9b00058"
+            },
+            "sourceId" : "15",
+            "tags" : "Relationship",
+            "technology" : "HTTPS"
+          }, {
+            "description" : "Store progress of user's registration",
+            "destinationId" : "21",
+            "id" : "58",
+            "properties" : {
+              "structurizr.dsl.identifier" : "e193e099-ea7b-4f1a-8192-ae86819f2d05"
+            },
+            "sourceId" : "15",
+            "tags" : "Relationship"
+          }, {
+            "description" : "Request addresses at postcode",
+            "destinationId" : "12",
+            "id" : "62",
+            "properties" : {
+              "structurizr.dsl.identifier" : "ebc03873-0c35-4cd2-8e51-3da430070ba8"
+            },
+            "sourceId" : "15",
+            "tags" : "Relationship",
+            "technology" : "HTTPS"
+          }, {
+            "description" : "Add or update registration",
+            "destinationId" : "19",
+            "id" : "65",
+            "properties" : {
+              "structurizr.dsl.identifier" : "fc074e38-778a-445e-8dbe-fe24f46116bd"
+            },
+            "sourceId" : "15",
+            "tags" : "Relationship"
+          } ],
+          "tags" : "Element,Component"
+        }, {
+          "description" : "View of register for approved groups",
+          "documentation" : { },
+          "id" : "16",
+          "name" : "Register View",
+          "properties" : {
+            "structurizr.dsl.identifier" : "registerview"
+          },
+          "relationships" : [ {
+            "description" : "User signs into service",
+            "destinationId" : "9",
+            "id" : "51",
+            "properties" : {
+              "structurizr.dsl.identifier" : "75fa06a5-1726-443d-8df2-025dc7fda7cd"
+            },
+            "sourceId" : "16",
+            "tags" : "Relationship",
+            "technology" : "HTTPS"
+          }, {
+            "description" : "Retrieve information about registration",
+            "destinationId" : "19",
+            "id" : "66",
+            "properties" : {
+              "structurizr.dsl.identifier" : "b16efd8a-47c9-41c0-8d59-efff45287c1e"
+            },
+            "sourceId" : "16",
+            "tags" : "Relationship"
+          } ],
+          "tags" : "Element,Component"
+        }, {
+          "description" : "Service to provide administrator access to complete registration tasks.",
+          "documentation" : { },
+          "id" : "17",
+          "name" : "Internal Service",
+          "properties" : {
+            "structurizr.dsl.identifier" : "internalservice"
+          },
+          "relationships" : [ {
+            "description" : "Admin users sign into service",
+            "destinationId" : "11",
+            "id" : "52",
+            "properties" : {
+              "structurizr.dsl.identifier" : "1c237c13-f467-4272-b5a2-6a59ecd1e801"
+            },
+            "sourceId" : "17",
+            "tags" : "Relationship",
+            "technology" : "HTTPS"
+          }, {
+            "description" : "Manage registration",
+            "destinationId" : "19",
+            "id" : "67",
+            "properties" : {
+              "structurizr.dsl.identifier" : "9d32e6f3-0a7e-4cdc-bdef-8f00c59aaa50"
+            },
+            "sourceId" : "17",
+            "tags" : "Relationship"
+          } ],
+          "tags" : "Element,Component"
+        }, {
+          "description" : "Aggregated data from register",
+          "documentation" : { },
+          "id" : "18",
+          "name" : "Data view",
+          "properties" : {
+            "structurizr.dsl.identifier" : "aggregateddata"
+          },
+          "relationships" : [ {
+            "description" : "Retrieve data about registrations",
+            "destinationId" : "19",
+            "id" : "68",
+            "properties" : {
+              "structurizr.dsl.identifier" : "459d8174-6b6b-4e18-9e76-f555045e7aa1"
+            },
+            "sourceId" : "18",
+            "tags" : "Relationship"
+          } ],
+          "tags" : "Element,Component"
+        }, {
+          "description" : "Wrapper around register database",
+          "documentation" : { },
+          "id" : "19",
+          "name" : "Register Adapter",
+          "properties" : {
+            "structurizr.dsl.identifier" : "registeradapter"
+          },
+          "relationships" : [ {
+            "description" : "Store short term let data",
+            "destinationId" : "20",
+            "id" : "43",
+            "properties" : {
+              "structurizr.dsl.identifier" : "1e1c73ed-31e4-4d23-a9df-8f24d448ac28"
+            },
+            "sourceId" : "19",
+            "tags" : "Relationship",
+            "technology" : "TCP/SQL"
+          }, {
+            "description" : "Upload/review compliance documents",
+            "destinationId" : "22",
+            "id" : "60",
+            "properties" : {
+              "structurizr.dsl.identifier" : "7e42d144-2b17-45d4-a6f4-37ced34e89e3"
+            },
+            "sourceId" : "19",
+            "tags" : "Relationship",
+            "technology" : "HTTPS"
+          } ],
+          "tags" : "Element,Component"
+        } ],
         "description" : "Allows people to register short term lets and provides information",
         "documentation" : { },
         "id" : "14",
@@ -303,82 +504,58 @@
         },
         "relationships" : [ {
           "description" : "Store short term let data",
-          "destinationId" : "15",
-          "id" : "38",
-          "properties" : {
-            "structurizr.dsl.identifier" : "6c168b94-ce16-4406-bba6-a0421439c8e6"
-          },
+          "destinationId" : "20",
+          "id" : "44",
+          "linkedRelationshipId" : "43",
           "sourceId" : "14",
-          "tags" : "Relationship",
           "technology" : "TCP/SQL"
         }, {
           "description" : "User makes a payment",
           "destinationId" : "8",
-          "id" : "39",
-          "properties" : {
-            "structurizr.dsl.identifier" : "f376f341-a783-4b24-b70a-f8c84d24464b"
-          },
+          "id" : "46",
+          "linkedRelationshipId" : "45",
           "sourceId" : "14",
-          "tags" : "Relationship",
           "technology" : "HTTPS"
         }, {
           "description" : "User signs into service",
           "destinationId" : "9",
-          "id" : "40",
-          "properties" : {
-            "structurizr.dsl.identifier" : "cbc139a3-5a9a-4cf2-956f-0557ad103915"
-          },
+          "id" : "49",
+          "linkedRelationshipId" : "48",
           "sourceId" : "14",
-          "tags" : "Relationship",
           "technology" : "HTTPS"
         }, {
           "description" : "Admin users sign into service",
           "destinationId" : "11",
-          "id" : "41",
-          "properties" : {
-            "structurizr.dsl.identifier" : "7f9c524d-0172-4445-a4c5-353d67c6f556"
-          },
+          "id" : "53",
+          "linkedRelationshipId" : "52",
           "sourceId" : "14",
-          "tags" : "Relationship",
           "technology" : "HTTPS"
         }, {
           "description" : "Notify user of completed application",
           "destinationId" : "10",
-          "id" : "43",
-          "properties" : {
-            "structurizr.dsl.identifier" : "4b86f033-b3cc-46cc-af8b-0e3c12749d8e"
-          },
+          "id" : "56",
+          "linkedRelationshipId" : "55",
           "sourceId" : "14",
-          "tags" : "Relationship",
           "technology" : "HTTPS"
         }, {
           "description" : "Store progress of user's registration",
-          "destinationId" : "16",
-          "id" : "44",
-          "properties" : {
-            "structurizr.dsl.identifier" : "3f1cd928-1e95-4ed7-b424-1441cfcbed6a"
-          },
-          "sourceId" : "14",
-          "tags" : "Relationship"
+          "destinationId" : "21",
+          "id" : "59",
+          "linkedRelationshipId" : "58",
+          "sourceId" : "14"
         }, {
           "description" : "Upload/review compliance documents",
-          "destinationId" : "17",
-          "id" : "45",
-          "properties" : {
-            "structurizr.dsl.identifier" : "7dc1599c-e8ec-4e1b-8634-b0681e46a1e5"
-          },
+          "destinationId" : "22",
+          "id" : "61",
+          "linkedRelationshipId" : "60",
           "sourceId" : "14",
-          "tags" : "Relationship",
           "technology" : "HTTPS"
         }, {
           "description" : "Request addresses at postcode",
           "destinationId" : "12",
-          "id" : "46",
-          "properties" : {
-            "structurizr.dsl.identifier" : "835c2569-fe6f-42fb-bb1e-e10ffabbef5b"
-          },
+          "id" : "63",
+          "linkedRelationshipId" : "62",
           "sourceId" : "14",
-          "tags" : "Relationship",
           "technology" : "HTTPS"
         } ],
         "tags" : "Element,Container",
@@ -386,7 +563,7 @@
       }, {
         "description" : "Register of short term lets",
         "documentation" : { },
-        "id" : "15",
+        "id" : "20",
         "name" : "STL Register",
         "properties" : {
           "structurizr.dsl.identifier" : "register"
@@ -396,7 +573,7 @@
       }, {
         "description" : "Session store for web application",
         "documentation" : { },
-        "id" : "16",
+        "id" : "21",
         "name" : "Session Store",
         "properties" : {
           "structurizr.dsl.identifier" : "sessionstore"
@@ -406,7 +583,7 @@
       }, {
         "description" : "Storage for compliance documents",
         "documentation" : { },
-        "id" : "17",
+        "id" : "22",
         "name" : "File Store",
         "properties" : {
           "structurizr.dsl.identifier" : "filestore"
@@ -425,61 +602,55 @@
       },
       "relationships" : [ {
         "description" : "Optionally enrol operators",
-        "destinationId" : "19",
-        "id" : "27",
+        "destinationId" : "24",
+        "id" : "31",
         "properties" : {
-          "structurizr.dsl.identifier" : "12a824d2-3115-4020-b784-8fec5dd71f49"
+          "structurizr.dsl.identifier" : "e5173382-3f43-42a3-b756-a03cc2787e53"
         },
         "sourceId" : "13",
         "tags" : "Relationship"
       }, {
         "description" : "Supply data on registration",
-        "destinationId" : "18",
-        "id" : "28",
+        "destinationId" : "23",
+        "id" : "32",
         "properties" : {
-          "structurizr.dsl.identifier" : "cb924d52-1796-41b0-a7ef-1c6fb92f16bb"
+          "structurizr.dsl.identifier" : "b411c169-a688-4b40-9013-1b8baa89472e"
         },
         "sourceId" : "13",
         "tags" : "Relationship"
       }, {
         "description" : "User makes a payment",
         "destinationId" : "8",
-        "id" : "30",
-        "properties" : {
-          "structurizr.dsl.identifier" : "c6ae1fb3-4787-49e3-80c7-9f513afef1b4"
-        },
+        "id" : "47",
+        "linkedRelationshipId" : "45",
         "sourceId" : "13",
-        "tags" : "Relationship"
+        "technology" : "HTTPS"
       }, {
         "description" : "User signs into service",
         "destinationId" : "9",
-        "id" : "31",
-        "properties" : {
-          "structurizr.dsl.identifier" : "d535a3e5-886d-4025-a024-11eb7bbbf8b9"
-        },
+        "id" : "50",
+        "linkedRelationshipId" : "48",
         "sourceId" : "13",
-        "tags" : "Relationship"
-      }, {
-        "description" : "Notify user of completed application",
-        "destinationId" : "10",
-        "id" : "32",
-        "properties" : {
-          "structurizr.dsl.identifier" : "c20d37de-8779-4a19-a7f9-3cd631a36c4e"
-        },
-        "sourceId" : "13",
-        "tags" : "Relationship"
+        "technology" : "HTTPS"
       }, {
         "description" : "Admin users sign into service",
         "destinationId" : "11",
-        "id" : "42",
-        "linkedRelationshipId" : "41",
+        "id" : "54",
+        "linkedRelationshipId" : "52",
+        "sourceId" : "13",
+        "technology" : "HTTPS"
+      }, {
+        "description" : "Notify user of completed application",
+        "destinationId" : "10",
+        "id" : "57",
+        "linkedRelationshipId" : "55",
         "sourceId" : "13",
         "technology" : "HTTPS"
       }, {
         "description" : "Request addresses at postcode",
         "destinationId" : "12",
-        "id" : "47",
-        "linkedRelationshipId" : "46",
+        "id" : "64",
+        "linkedRelationshipId" : "62",
         "sourceId" : "13",
         "technology" : "HTTPS"
       } ],
@@ -487,7 +658,7 @@
     }, {
       "documentation" : { },
       "group" : "VisitEngland",
-      "id" : "18",
+      "id" : "23",
       "location" : "Unspecified",
       "name" : "Visit England Data Lake",
       "properties" : {
@@ -498,7 +669,7 @@
       "description" : "Entry level quality scheme",
       "documentation" : { },
       "group" : "VisitEngland",
-      "id" : "19",
+      "id" : "24",
       "location" : "Unspecified",
       "name" : "Visitor Ready",
       "properties" : {
@@ -509,9 +680,122 @@
   },
   "name" : "Short Term Lets Registration",
   "properties" : {
-    "structurizr.dsl" : "CndvcmtzcGFjZSAiU2hvcnQgVGVybSBMZXRzIFJlZ2lzdHJhdGlvbiIgewogICAgIWRvY3Mgd29ya3NwYWNlLWRvY3MKICAgICFhZHJzIHdvcmtzcGFjZS1hZHJzCgogICAgbW9kZWwgewogICAgICAgIGFkbWluID0gcGVyc29uICJBZG1pbmlzdHJhdG9yIiAiTWFuYWdlcyByZWdpc3RyYXRpb25zIgogICAgICAgIG9wZXJhdG9yID0gcGVyc29uICJPcGVyYXRvciIgIk93bnMgYW5kIHJ1bnMgYSBzaG9ydCB0ZXJtIGxldCIKICAgICAgICBtYW5hZ2VtZW50Q29tcGFueSA9IHBlcnNvbiAiTWFuYWdlbWVudCBDb21wYW55IiAiIgoKCQlncm91cCAiTG9jYWwgQXV0aG9yaXR5IiB7CgkJCWxvY2FsQXV0aG9yaXR5UGxhbm5lciA9IHBlcnNvbiAiUGxhbm5lciIgIlBsYW5zIGhvdXNpbmcgc2NoZW1lcyBpbiBMb2NhbCBBdXRob3JpdHkgYXJlYSIKCQkJbG9jYWxBdXRob3JpdHlPZmZpY2VyID0gcGVyc29uICJPZmZpY2VyIiAiVXNlcyByZWdpc3RlciB0byBzb2x2ZSBwcm9ibGVtcyBpbiBsb2NhbCBhcmVhIgoJCX0KCgkJYm9va2luZ1BsYXRmb3JtID0gc29mdHdhcmVzeXN0ZW0gIkJvb2tpbmcgUGxhdGZvcm0iICJMaXN0cyBzaG9ydCB0ZXJtIGxldHMgYW5kIGZhY2lsaXRhdGVzIGJvb2tpbmdzIiAiRXh0ZXJuYWwgU3lzdGVtIgogICAgICAgIHBvbGljeU1ha2VycyA9IHNvZnR3YXJlc3lzdGVtICJQb2xpY3kgTWFrZXJzIiAiIiAiRXh0ZXJuYWwgU3lzdGVtIgoKICAgICAgICBnb3ZwYXkgPSBzb2Z0d2FyZXN5c3RlbSAiR09WLlVLIFBheSIgIkFsbG93cyB1c2VycyB0byBtYWtlIHBheW1lbnRzIiAiRXh0ZXJuYWwgU3lzdGVtIgogICAgICAgIG9uZUxvZ2luID0gc29mdHdhcmVzeXN0ZW0gIk9uZSBMb2dpbiIgIkxldCdzIHVzZXJzIHNpZ24gaW4iICJFeHRlcm5hbCBTeXN0ZW0iCiAgICAgICAgZ292Tm90aWZ5ID0gc29mdHdhcmVzeXN0ZW0gIkdPVi5VSyBOb3RpZnkiICJTZW5kcyB1c2VycyBub3RpZmljYXRpb25zIiAiRXh0ZXJuYWwgU3lzdGVtIgogICAgICAgIGF1dGhQcm92aWRlciA9IHNvZnR3YXJlc3lzdGVtICJBdXRoZW50aWNhdGlvbiBQcm92aWRlciIgIlNpZ24gaW4gZm9yIGFkbWluaXN0cmF0b3IncyB1c2VycyIgIkV4dGVybmFsIFN5c3RlbSIKICAgICAgICBvc1BsYWNlc0FwaSA9IHNvZnR3YXJlc3lzdGVtICJPUyBQbGFjZXMgQVBJIiAiSWRlbnRpZmllcyBVSyBBZGRyZXNzZXMiICJFeHRlcm5hbCBTeXN0ZW0iCgogICAgICAgIGdyb3VwICJTaG9ydCBUZXJtIExldHMgU2VydmljZSIgewogICAgICAgICAgICBzaG9ydFRlcm1MZXRzID0gc29mdHdhcmVzeXN0ZW0gIlNob3J0IFRlcm0gTGV0cyBSZWdpc3RyYXRpb24iICJQbGF0Zm9ybSBmb3IgcmVnaXN0ZXJpbmcsIGFuZCBxdWVyeWluZyBzaG9ydCB0ZXJtIGxldHMiICJTb2Z0d2FyZSBTeXN0ZW0iIHsKCQkJCWFwcGxpY2F0aW9uID0gY29udGFpbmVyICJXZWIgQXBwbGljYXRpb24iICJBbGxvd3MgcGVvcGxlIHRvIHJlZ2lzdGVyIHNob3J0IHRlcm0gbGV0cyBhbmQgcHJvdmlkZXMgaW5mb3JtYXRpb24iICJUQkQiCgkJCQlyZWdpc3RlciA9IGNvbnRhaW5lciAiU1RMIFJlZ2lzdGVyIiAiUmVnaXN0ZXIgb2Ygc2hvcnQgdGVybSBsZXRzIiAiVEJEIiAiRGF0YWJhc2UiCgkJCQlzZXNzaW9uU3RvcmUgPSBjb250YWluZXIgIlNlc3Npb24gU3RvcmUiICJTZXNzaW9uIHN0b3JlIGZvciB3ZWIgYXBwbGljYXRpb24iICJUQkQiICJEYXRhYmFzZSIKCQkJCWZpbGVTdG9yZSA9IGNvbnRhaW5lciAiRmlsZSBTdG9yZSIgIlN0b3JhZ2UgZm9yIGNvbXBsaWFuY2UgZG9jdW1lbnRzIiAiVEJEIiAiRGF0YWJhc2UiCgkJCX0KICAgICAgICB9CgoJCWdyb3VwICJWaXNpdEVuZ2xhbmQiIHsKCQkJdmVEYXRhTGFrZSA9IHNvZnR3YXJlc3lzdGVtICJWaXNpdCBFbmdsYW5kIERhdGEgTGFrZSIgIiIgIkV4dGVybmFsIFN5c3RlbSIKCQkJdmlzaXRvclJlYWR5ID0gc29mdHdhcmVzeXN0ZW0gIlZpc2l0b3IgUmVhZHkiICJFbnRyeSBsZXZlbCBxdWFsaXR5IHNjaGVtZSIgIkV4dGVybmFsIFN5c3RlbSIKCQl9CgoJCW9wZXJhdG9yIC0+IHNob3J0VGVybUxldHMgIlJlZ2lzdGVycyBhIHNob3J0IHRlcm0gbGV0IiAiIgoJCW9wZXJhdG9yIC0+IG1hbmFnZW1lbnRDb21wYW55ICJIaXJlIHRvIG1hbmFnZSBzaG9ydCB0ZXJtIGxldCIKCQlvcGVyYXRvciAtPiBib29raW5nUGxhdGZvcm0gIkxpc3RzIFNUTCBvbiBwbGF0Zm9ybSIKCQltYW5hZ2VtZW50Q29tcGFueSAtPiBzaG9ydFRlcm1MZXRzICJSZWdpc3RlciBzaG9ydCB0ZXJtIGxldHMgb24gYmVoYWxmIG9mIG9wZXJhdG9yIgoJCW1hbmFnZW1lbnRDb21wYW55IC0+IGJvb2tpbmdQbGF0Zm9ybSAiTGlzdHMgc2hvcnQgdGVybSBsZXQgb24gcGxhdGZvcm0iCgkJYm9va2luZ1BsYXRmb3JtIC0+IHNob3J0VGVybUxldHMgIlZlcmlmeSByZWdpc3RyYXRpb24gb2Ygc2hvcnQgdGVybSBsZXQiCgkJbG9jYWxBdXRob3JpdHlQbGFubmVyIC0+IHNob3J0VGVybUxldHMgIlJldHJpZXZlIGRhdGEgb24gc2hvcnQgdGVybSBsZXRzIgoJCXNob3J0VGVybUxldHMgLT4gdmlzaXRvclJlYWR5ICJPcHRpb25hbGx5IGVucm9sIG9wZXJhdG9ycyIKCQlzaG9ydFRlcm1MZXRzIC0+IHZlRGF0YUxha2UgIlN1cHBseSBkYXRhIG9uIHJlZ2lzdHJhdGlvbiIKCQlwb2xpY3lNYWtlcnMgLT4gc2hvcnRUZXJtTGV0cyAiUmV0cmlldmUgZGF0YSBvbiBzaG9ydCB0ZXJtIGxldHMiCgoJCXNob3J0VGVybUxldHMgLT4gZ292cGF5ICJVc2VyIG1ha2VzIGEgcGF5bWVudCIKCQlzaG9ydFRlcm1MZXRzIC0+IG9uZUxvZ2luICJVc2VyIHNpZ25zIGludG8gc2VydmljZSIKCQlzaG9ydFRlcm1MZXRzIC0+IGdvdk5vdGlmeSAiTm90aWZ5IHVzZXIgb2YgY29tcGxldGVkIGFwcGxpY2F0aW9uIgoKCQlvcGVyYXRvciAtPiBhcHBsaWNhdGlvbiAiUmVnaXN0ZXJzIGEgc2hvcnQgdGVybSBsZXQiICJIVFRQUyIKCQlhZG1pbiAtPiBhcHBsaWNhdGlvbiAiUmVzb2x2ZSBxdWVyaWVzIGFib3V0IHJlZ2lzdHJhdGlvbnMiICJIVFRQUyIKCQlsb2NhbEF1dGhvcml0eU9mZmljZXIgLT4gYXBwbGljYXRpb24gIkZpbmRzIGNvbnRhY3QgZGV0YWlscyBmcm9tIHJlZ2lzdGVyIiAiSFRUUFMiCgkJYXBwbGljYXRpb24gLT4gcmVnaXN0ZXIgIlN0b3JlIHNob3J0IHRlcm0gbGV0IGRhdGEiICJUQ1AvU1FMIgoJCWFwcGxpY2F0aW9uIC0+IGdvdnBheSAiVXNlciBtYWtlcyBhIHBheW1lbnQiICJIVFRQUyIKCQlhcHBsaWNhdGlvbiAtPiBvbmVMb2dpbiAiVXNlciBzaWducyBpbnRvIHNlcnZpY2UiICJIVFRQUyIKCQlhcHBsaWNhdGlvbiAtPiBhdXRoUHJvdmlkZXIgIkFkbWluIHVzZXJzIHNpZ24gaW50byBzZXJ2aWNlIiAiSFRUUFMiCgkJYXBwbGljYXRpb24gLT4gZ292Tm90aWZ5ICJOb3RpZnkgdXNlciBvZiBjb21wbGV0ZWQgYXBwbGljYXRpb24iICJIVFRQUyIKCQlhcHBsaWNhdGlvbiAtPiBzZXNzaW9uU3RvcmUgIlN0b3JlIHByb2dyZXNzIG9mIHVzZXIncyByZWdpc3RyYXRpb24iCgkJYXBwbGljYXRpb24gLT4gZmlsZVN0b3JlICJVcGxvYWQvcmV2aWV3IGNvbXBsaWFuY2UgZG9jdW1lbnRzIiAiSFRUUFMiCgkJYXBwbGljYXRpb24gLT4gb3NQbGFjZXNBcGkgIlJlcXVlc3QgYWRkcmVzc2VzIGF0IHBvc3Rjb2RlIiAiSFRUUFMiCiAgICB9CgogICAgdmlld3MgewogICAgICAgIHByb3BlcnRpZXMgewogICAgICAgICAgICAiYzRwbGFudHVtbC5lbGVtZW50UHJvcGVydGllcyIgInRydWUiCiAgICAgICAgICAgICJzdHJ1Y3R1cml6ci5zdHlsZS5jb2xvcnMucHJpbWFyeSIgIiM0ODVmYzciCiAgICAgICAgICAgICJzdHJ1Y3R1cml6ci5zdHlsZS5jb2xvcnMuc2Vjb25kYXJ5IiAiI2ZmZmZmZiIKICAgICAgICAgICAgInN0cnVjdHVyaXpyLnN0eWxlLmxvZ28ucGF0aCIgInNpdGUvbG9nby5qcGciCiAgICAgICAgfQoKICAgICAgICBzeXN0ZW1Db250ZXh0IHNob3J0VGVybUxldHMgewogICAgICAgICAgICBpbmNsdWRlICoKICAgICAgICAgICAgYXV0b0xheW91dAogICAgICAgIH0KCiAgICAgICAgY29udGFpbmVyIHNob3J0VGVybUxldHMgIkNvbnRhaW5lcnMiIHsKCQkJdGl0bGUgIltDb250YWluZXJdIFNob3J0IFRlcm0gTGV0cyBSZWdpc3RyYXRpb24gLSBUYXJnZXQgQXJjaGl0ZWN0dXJlIgogICAgICAgICAgICBpbmNsdWRlICoKICAgICAgICAgICAgYXV0b0xheW91dAogICAgICAgIH0KCgkJc3lzdGVtbGFuZHNjYXBlICJ3aG9sZVByb2JsZW0iIHsKCQkJdGl0bGUgIlNvbHZpbmcgYSB3aG9sZSBwcm9ibGVtIGZvciB1c2VycyIKCQkJaW5jbHVkZSBvcGVyYXRvciBib29raW5nUGxhdGZvcm0gbG9jYWxBdXRob3JpdHlPZmZpY2VyIGxvY2FsQXV0aG9yaXR5UGxhbm5lciBzaG9ydFRlcm1MZXRzIGdvdnBheSBvbmVMb2dpbgoJCQlhdXRvTGF5b3V0CgkJfQoKCQlkeW5hbWljICogIkJvb2tpbmdQbGF0Zm9ybVZhbGlkYXRpbmdSZWdpc3RyYXRpb24iIHsKCQkJdGl0bGUgIlBvc3NpYmxlIHBhdHRlcm4gZm9yIEJvb2tpbmcgUGxhdGZvcm0gdmFsaWRhdGluZyByZWdpc3RyYXRpb24iCgkJCgkJCW9wZXJhdG9yIC0+IHNob3J0VGVybUxldHMgIlJlZ2lzdGVycyBwcm9wZXJ0eSBhcyBhIHNob3J0IHRlcm0gbGV0IgoJCQlvcGVyYXRvciAtPiBib29raW5nUGxhdGZvcm0gIkxpc3RzIHByb3BlcnR5IG9uIHBsYXRmb3JtIgoJCQlib29raW5nUGxhdGZvcm0gLT4gc2hvcnRUZXJtTGV0cyAiU2VuZHMgcmVnaXN0cmF0aW9uIG51bWJlciBhbmQgcHJvcGVydHkgYWRkcmVzcyIKCQkJc2hvcnRUZXJtTGV0cyAtPiBib29raW5nUGxhdGZvcm0gIkNvbmZpcm1zIHRoZSByZWdpc3RyYXRpb24gbnVtYmVyIGlzIHZhbGlkIgoJCX0KCiAgICAgICAgc3R5bGVzIHsKICAgICAgICAgICAgZWxlbWVudCAiUGVyc29uIiB7CiAgICAgICAgICAgICAgICBjb2xvciAjZmZmZmZmCgkJCQliYWNrZ3JvdW5kICM5OTk5OTkKICAgICAgICAgICAgICAgIGZvbnRTaXplIDIyCiAgICAgICAgICAgICAgICBzaGFwZSBQZXJzb24KICAgICAgICAgICAgfQogICAgICAgICAgICBlbGVtZW50ICJTb2Z0d2FyZSBTeXN0ZW0iIHsKICAgICAgICAgICAgICAgIGJhY2tncm91bmQgIzExNjhiZAogICAgICAgICAgICAgICAgY29sb3IgI2ZmZmZmZgogICAgICAgICAgICB9CiAgICAgICAgICAgIGVsZW1lbnQgIkV4dGVybmFsIFN5c3RlbSIgewogICAgICAgICAgICAgICAgYmFja2dyb3VuZCAjOTk5OTk5CiAgICAgICAgICAgICAgICBjb2xvciAjZmZmZmZmCiAgICAgICAgICAgIH0KICAgICAgICAgICAgZWxlbWVudCAiQ29udGFpbmVyIiB7CiAgICAgICAgICAgICAgICBiYWNrZ3JvdW5kICM0MzhkZDUKICAgICAgICAgICAgICAgIGNvbG9yICNmZmZmZmYKICAgICAgICAgICAgfQogICAgICAgICAgICBlbGVtZW50ICJXZWIgQnJvd3NlciIgewogICAgICAgICAgICAgICAgc2hhcGUgV2ViQnJvd3NlcgogICAgICAgICAgICB9CiAgICAgICAgICAgIGVsZW1lbnQgIk1vYmlsZSBBcHAiIHsKICAgICAgICAgICAgICAgIHNoYXBlIE1vYmlsZURldmljZUxhbmRzY2FwZQogICAgICAgICAgICB9CiAgICAgICAgICAgIGVsZW1lbnQgIkRhdGFiYXNlIiB7CiAgICAgICAgICAgICAgICBzaGFwZSBDeWxpbmRlcgogICAgICAgICAgICB9CiAgICAgICAgICAgIGVsZW1lbnQgIkNvbXBvbmVudCIgewogICAgICAgICAgICAgICAgYmFja2dyb3VuZCAjODViYmYwCiAgICAgICAgICAgICAgICBjb2xvciAjMDAwMDAwCiAgICAgICAgICAgIH0KICAgICAgICAgICAgZWxlbWVudCAiRmFpbG92ZXIiIHsKICAgICAgICAgICAgICAgIG9wYWNpdHkgMjUKICAgICAgICAgICAgfQogICAgICAgIH0KICAgIH0KfQo="
+    "structurizr.dsl" : "CndvcmtzcGFjZSAiU2hvcnQgVGVybSBMZXRzIFJlZ2lzdHJhdGlvbiIgewogICAgIWRvY3Mgd29ya3NwYWNlLWRvY3MKICAgICFhZHJzIHdvcmtzcGFjZS1hZHJzCgogICAgbW9kZWwgewogICAgICAgIGFkbWluID0gcGVyc29uICJBZG1pbmlzdHJhdG9yIiAiTWFuYWdlcyByZWdpc3RyYXRpb25zIgogICAgICAgIG9wZXJhdG9yID0gcGVyc29uICJPcGVyYXRvciIgIk93bnMgYW5kIHJ1bnMgYSBzaG9ydCB0ZXJtIGxldCIKICAgICAgICBtYW5hZ2VtZW50Q29tcGFueSA9IHBlcnNvbiAiTWFuYWdlbWVudCBDb21wYW55IiAiIgoKCQlncm91cCAiTG9jYWwgQXV0aG9yaXR5IiB7CgkJCWxvY2FsQXV0aG9yaXR5UGxhbm5lciA9IHBlcnNvbiAiUGxhbm5lciIgIlBsYW5zIGhvdXNpbmcgc2NoZW1lcyBpbiBMb2NhbCBBdXRob3JpdHkgYXJlYSIKCQkJbG9jYWxBdXRob3JpdHlPZmZpY2VyID0gcGVyc29uICJPZmZpY2VyIiAiVXNlcyByZWdpc3RlciB0byBzb2x2ZSBwcm9ibGVtcyBpbiBsb2NhbCBhcmVhIgoJCX0KCgkJYm9va2luZ1BsYXRmb3JtID0gc29mdHdhcmVzeXN0ZW0gIkJvb2tpbmcgUGxhdGZvcm0iICJMaXN0cyBzaG9ydCB0ZXJtIGxldHMgYW5kIGZhY2lsaXRhdGVzIGJvb2tpbmdzIiAiRXh0ZXJuYWwgU3lzdGVtIgogICAgICAgIHBvbGljeU1ha2VycyA9IHNvZnR3YXJlc3lzdGVtICJQb2xpY3kgTWFrZXJzIiAiIiAiRXh0ZXJuYWwgU3lzdGVtIgoKICAgICAgICBnb3ZwYXkgPSBzb2Z0d2FyZXN5c3RlbSAiR09WLlVLIFBheSIgIkFsbG93cyB1c2VycyB0byBtYWtlIHBheW1lbnRzIiAiRXh0ZXJuYWwgU3lzdGVtIgogICAgICAgIG9uZUxvZ2luID0gc29mdHdhcmVzeXN0ZW0gIk9uZSBMb2dpbiIgIkxldCdzIHVzZXJzIHNpZ24gaW4iICJFeHRlcm5hbCBTeXN0ZW0iCiAgICAgICAgZ292Tm90aWZ5ID0gc29mdHdhcmVzeXN0ZW0gIkdPVi5VSyBOb3RpZnkiICJTZW5kcyB1c2VycyBub3RpZmljYXRpb25zIiAiRXh0ZXJuYWwgU3lzdGVtIgogICAgICAgIGF1dGhQcm92aWRlciA9IHNvZnR3YXJlc3lzdGVtICJBdXRoZW50aWNhdGlvbiBQcm92aWRlciIgIlNpZ24gaW4gZm9yIGFkbWluaXN0cmF0b3IncyB1c2VycyIgIkV4dGVybmFsIFN5c3RlbSIKICAgICAgICBvc1BsYWNlc0FwaSA9IHNvZnR3YXJlc3lzdGVtICJPUyBQbGFjZXMgQVBJIiAiSWRlbnRpZmllcyBVSyBBZGRyZXNzZXMiICJFeHRlcm5hbCBTeXN0ZW0iCgogICAgICAgIGdyb3VwICJTaG9ydCBUZXJtIExldHMgU2VydmljZSIgewogICAgICAgICAgICBzaG9ydFRlcm1MZXRzID0gc29mdHdhcmVzeXN0ZW0gIlNob3J0IFRlcm0gTGV0cyBSZWdpc3RyYXRpb24iICJQbGF0Zm9ybSBmb3IgcmVnaXN0ZXJpbmcsIGFuZCBxdWVyeWluZyBzaG9ydCB0ZXJtIGxldHMiICJTb2Z0d2FyZSBTeXN0ZW0iIHsKCQkJCWFwcGxpY2F0aW9uID0gY29udGFpbmVyICJXZWIgQXBwbGljYXRpb24iICJBbGxvd3MgcGVvcGxlIHRvIHJlZ2lzdGVyIHNob3J0IHRlcm0gbGV0cyBhbmQgcHJvdmlkZXMgaW5mb3JtYXRpb24iICJUQkQiIHsKCQkJCQlyZWdpc3RyYXRpb25GbG93ID0gY29tcG9uZW50ICJPcGVyYXRvciBSZWdpc3RyYXRpb24iICJGbG93IGZvciByZWdpc3RlcmluZyBhbmQgcmVuZXdpbmcgcmVnaXN0cmF0aW9uIG9mIHNob3J0LXRlcm0gbGV0IgoJCQkJCXJlZ2lzdGVyVmlldyA9IGNvbXBvbmVudCAiUmVnaXN0ZXIgVmlldyIgIlZpZXcgb2YgcmVnaXN0ZXIgZm9yIGFwcHJvdmVkIGdyb3VwcyIKCQkJCQlpbnRlcm5hbFNlcnZpY2UgPSBjb21wb25lbnQgIkludGVybmFsIFNlcnZpY2UiICJTZXJ2aWNlIHRvIHByb3ZpZGUgYWRtaW5pc3RyYXRvciBhY2Nlc3MgdG8gY29tcGxldGUgcmVnaXN0cmF0aW9uIHRhc2tzLiIKCQkJCQlhZ2dyZWdhdGVkRGF0YSA9IGNvbXBvbmVudCAiRGF0YSB2aWV3IiAiQWdncmVnYXRlZCBkYXRhIGZyb20gcmVnaXN0ZXIiCgkJCQkJcmVnaXN0ZXJBZGFwdGVyID0gY29tcG9uZW50ICJSZWdpc3RlciBBZGFwdGVyIiAiV3JhcHBlciBhcm91bmQgcmVnaXN0ZXIgZGF0YWJhc2UiCgkJCQl9CgkJCQlyZWdpc3RlciA9IGNvbnRhaW5lciAiU1RMIFJlZ2lzdGVyIiAiUmVnaXN0ZXIgb2Ygc2hvcnQgdGVybSBsZXRzIiAiVEJEIiAiRGF0YWJhc2UiCgkJCQlzZXNzaW9uU3RvcmUgPSBjb250YWluZXIgIlNlc3Npb24gU3RvcmUiICJTZXNzaW9uIHN0b3JlIGZvciB3ZWIgYXBwbGljYXRpb24iICJUQkQiICJEYXRhYmFzZSIKCQkJCWZpbGVTdG9yZSA9IGNvbnRhaW5lciAiRmlsZSBTdG9yZSIgIlN0b3JhZ2UgZm9yIGNvbXBsaWFuY2UgZG9jdW1lbnRzIiAiVEJEIiAiRGF0YWJhc2UiCgkJCX0KICAgICAgICB9CgoJCWdyb3VwICJWaXNpdEVuZ2xhbmQiIHsKCQkJdmVEYXRhTGFrZSA9IHNvZnR3YXJlc3lzdGVtICJWaXNpdCBFbmdsYW5kIERhdGEgTGFrZSIgIiIgIkV4dGVybmFsIFN5c3RlbSIKCQkJdmlzaXRvclJlYWR5ID0gc29mdHdhcmVzeXN0ZW0gIlZpc2l0b3IgUmVhZHkiICJFbnRyeSBsZXZlbCBxdWFsaXR5IHNjaGVtZSIgIkV4dGVybmFsIFN5c3RlbSIKCQl9CgoJCW9wZXJhdG9yIC0+IG1hbmFnZW1lbnRDb21wYW55ICJIaXJlIHRvIG1hbmFnZSBzaG9ydCB0ZXJtIGxldCIKCQlvcGVyYXRvciAtPiBib29raW5nUGxhdGZvcm0gIkxpc3RzIFNUTCBvbiBwbGF0Zm9ybSIKCQltYW5hZ2VtZW50Q29tcGFueSAtPiBzaG9ydFRlcm1MZXRzICJSZWdpc3RlciBzaG9ydCB0ZXJtIGxldHMgb24gYmVoYWxmIG9mIG9wZXJhdG9yIgoJCW1hbmFnZW1lbnRDb21wYW55IC0+IGJvb2tpbmdQbGF0Zm9ybSAiTGlzdHMgc2hvcnQgdGVybSBsZXQgb24gcGxhdGZvcm0iCgkJYm9va2luZ1BsYXRmb3JtIC0+IHNob3J0VGVybUxldHMgIlZlcmlmeSByZWdpc3RyYXRpb24gb2Ygc2hvcnQgdGVybSBsZXQiCgkJbG9jYWxBdXRob3JpdHlQbGFubmVyIC0+IHNob3J0VGVybUxldHMgIlJldHJpZXZlIGRhdGEgb24gc2hvcnQgdGVybSBsZXRzIgoJCXNob3J0VGVybUxldHMgLT4gdmlzaXRvclJlYWR5ICJPcHRpb25hbGx5IGVucm9sIG9wZXJhdG9ycyIKCQlzaG9ydFRlcm1MZXRzIC0+IHZlRGF0YUxha2UgIlN1cHBseSBkYXRhIG9uIHJlZ2lzdHJhdGlvbiIKCQlwb2xpY3lNYWtlcnMgLT4gc2hvcnRUZXJtTGV0cyAiUmV0cmlldmUgZGF0YSBvbiBzaG9ydCB0ZXJtIGxldHMiCgoJCW9wZXJhdG9yIC0+IHJlZ2lzdHJhdGlvbkZsb3cgIlJlZ2lzdGVycyBhIHNob3J0IHRlcm0gbGV0IiAiSFRUUFMiCgkJYWRtaW4gLT4gaW50ZXJuYWxTZXJ2aWNlICJSZXNvbHZlIHF1ZXJpZXMgYWJvdXQgcmVnaXN0cmF0aW9ucyIgIkhUVFBTIgoJCWxvY2FsQXV0aG9yaXR5T2ZmaWNlciAtPiByZWdpc3RlclZpZXcgIkZpbmRzIGNvbnRhY3QgZGV0YWlscyBmcm9tIHJlZ2lzdGVyIiAiSFRUUFMiCgkJcmVnaXN0ZXJBZGFwdGVyIC0+IHJlZ2lzdGVyICJTdG9yZSBzaG9ydCB0ZXJtIGxldCBkYXRhIiAiVENQL1NRTCIKCQlyZWdpc3RyYXRpb25GbG93IC0+IGdvdnBheSAiVXNlciBtYWtlcyBhIHBheW1lbnQiICJIVFRQUyIKCQlyZWdpc3RyYXRpb25GbG93IC0+IG9uZUxvZ2luICJVc2VyIHNpZ25zIGludG8gc2VydmljZSIgIkhUVFBTIgoJCXJlZ2lzdGVyVmlldyAtPiBvbmVMb2dpbiAiVXNlciBzaWducyBpbnRvIHNlcnZpY2UiICJIVFRQUyIKCQlpbnRlcm5hbFNlcnZpY2UgLT4gYXV0aFByb3ZpZGVyICJBZG1pbiB1c2VycyBzaWduIGludG8gc2VydmljZSIgIkhUVFBTIgoJCXJlZ2lzdHJhdGlvbkZsb3cgLT4gZ292Tm90aWZ5ICJOb3RpZnkgdXNlciBvZiBjb21wbGV0ZWQgYXBwbGljYXRpb24iICJIVFRQUyIKCQlyZWdpc3RyYXRpb25GbG93IC0+IHNlc3Npb25TdG9yZSAiU3RvcmUgcHJvZ3Jlc3Mgb2YgdXNlcidzIHJlZ2lzdHJhdGlvbiIKCQlyZWdpc3RlckFkYXB0ZXIgLT4gZmlsZVN0b3JlICJVcGxvYWQvcmV2aWV3IGNvbXBsaWFuY2UgZG9jdW1lbnRzIiAiSFRUUFMiCgkJcmVnaXN0cmF0aW9uRmxvdyAtPiBvc1BsYWNlc0FwaSAiUmVxdWVzdCBhZGRyZXNzZXMgYXQgcG9zdGNvZGUiICJIVFRQUyIKCgkJcmVnaXN0cmF0aW9uRmxvdyAtPiByZWdpc3RlckFkYXB0ZXIgIkFkZCBvciB1cGRhdGUgcmVnaXN0cmF0aW9uIgoJCXJlZ2lzdGVyVmlldyAtPiByZWdpc3RlckFkYXB0ZXIgIlJldHJpZXZlIGluZm9ybWF0aW9uIGFib3V0IHJlZ2lzdHJhdGlvbiIKCQlpbnRlcm5hbFNlcnZpY2UgLT4gcmVnaXN0ZXJBZGFwdGVyICJNYW5hZ2UgcmVnaXN0cmF0aW9uIgoJCWFnZ3JlZ2F0ZWREYXRhIC0+IHJlZ2lzdGVyQWRhcHRlciAiUmV0cmlldmUgZGF0YSBhYm91dCByZWdpc3RyYXRpb25zIgoKICAgIH0KCiAgICB2aWV3cyB7CiAgICAgICAgcHJvcGVydGllcyB7CiAgICAgICAgICAgICJjNHBsYW50dW1sLmVsZW1lbnRQcm9wZXJ0aWVzIiAidHJ1ZSIKICAgICAgICAgICAgInN0cnVjdHVyaXpyLnN0eWxlLmNvbG9ycy5wcmltYXJ5IiAiIzQ4NWZjNyIKICAgICAgICAgICAgInN0cnVjdHVyaXpyLnN0eWxlLmNvbG9ycy5zZWNvbmRhcnkiICIjZmZmZmZmIgogICAgICAgICAgICAic3RydWN0dXJpenIuc3R5bGUubG9nby5wYXRoIiAic2l0ZS9sb2dvLmpwZyIKICAgICAgICB9CgogICAgICAgIHN5c3RlbUNvbnRleHQgc2hvcnRUZXJtTGV0cyB7CiAgICAgICAgICAgIGluY2x1ZGUgKgogICAgICAgICAgICBhdXRvTGF5b3V0CiAgICAgICAgfQoKICAgICAgICBjb250YWluZXIgc2hvcnRUZXJtTGV0cyAiQ29udGFpbmVycyIgewogICAgICAgICAgICBpbmNsdWRlICoKICAgICAgICAgICAgYXV0b0xheW91dAogICAgICAgIH0KCgkJY29tcG9uZW50IGFwcGxpY2F0aW9uICJDb21wb25lbnRzIiB7CiAgICAgICAgICAgIGluY2x1ZGUgKgogICAgICAgICAgICBhdXRvTGF5b3V0CiAgICAgICAgfQoKCQlzeXN0ZW1sYW5kc2NhcGUgIndob2xlUHJvYmxlbSIgewoJCQl0aXRsZSAiU29sdmluZyBhIHdob2xlIHByb2JsZW0gZm9yIHVzZXJzIgoJCQlpbmNsdWRlIG9wZXJhdG9yIGJvb2tpbmdQbGF0Zm9ybSBsb2NhbEF1dGhvcml0eU9mZmljZXIgbG9jYWxBdXRob3JpdHlQbGFubmVyIHNob3J0VGVybUxldHMgZ292cGF5IG9uZUxvZ2luCgkJCWF1dG9MYXlvdXQKCQl9CgoJCWR5bmFtaWMgKiAiQm9va2luZ1BsYXRmb3JtVmFsaWRhdGluZ1JlZ2lzdHJhdGlvbiIgewoJCQl0aXRsZSAiUG9zc2libGUgcGF0dGVybiBmb3IgQm9va2luZyBQbGF0Zm9ybSB2YWxpZGF0aW5nIHJlZ2lzdHJhdGlvbiIKCQkKCQkJb3BlcmF0b3IgLT4gc2hvcnRUZXJtTGV0cyAiUmVnaXN0ZXJzIHByb3BlcnR5IGFzIGEgc2hvcnQgdGVybSBsZXQiCgkJCW9wZXJhdG9yIC0+IGJvb2tpbmdQbGF0Zm9ybSAiTGlzdHMgcHJvcGVydHkgb24gcGxhdGZvcm0iCgkJCWJvb2tpbmdQbGF0Zm9ybSAtPiBzaG9ydFRlcm1MZXRzICJTZW5kcyByZWdpc3RyYXRpb24gbnVtYmVyIGFuZCBwcm9wZXJ0eSBhZGRyZXNzIgoJCQlzaG9ydFRlcm1MZXRzIC0+IGJvb2tpbmdQbGF0Zm9ybSAiQ29uZmlybXMgdGhlIHJlZ2lzdHJhdGlvbiBudW1iZXIgaXMgdmFsaWQiCgkJfQoKICAgICAgICBzdHlsZXMgewogICAgICAgICAgICBlbGVtZW50ICJQZXJzb24iIHsKICAgICAgICAgICAgICAgIGNvbG9yICNmZmZmZmYKCQkJCWJhY2tncm91bmQgIzk5OTk5OQogICAgICAgICAgICAgICAgZm9udFNpemUgMjIKICAgICAgICAgICAgICAgIHNoYXBlIFBlcnNvbgogICAgICAgICAgICB9CiAgICAgICAgICAgIGVsZW1lbnQgIlNvZnR3YXJlIFN5c3RlbSIgewogICAgICAgICAgICAgICAgYmFja2dyb3VuZCAjMTE2OGJkCiAgICAgICAgICAgICAgICBjb2xvciAjZmZmZmZmCiAgICAgICAgICAgIH0KICAgICAgICAgICAgZWxlbWVudCAiRXh0ZXJuYWwgU3lzdGVtIiB7CiAgICAgICAgICAgICAgICBiYWNrZ3JvdW5kICM5OTk5OTkKICAgICAgICAgICAgICAgIGNvbG9yICNmZmZmZmYKICAgICAgICAgICAgfQogICAgICAgICAgICBlbGVtZW50ICJDb250YWluZXIiIHsKICAgICAgICAgICAgICAgIGJhY2tncm91bmQgIzQzOGRkNQogICAgICAgICAgICAgICAgY29sb3IgI2ZmZmZmZgogICAgICAgICAgICB9CiAgICAgICAgICAgIGVsZW1lbnQgIldlYiBCcm93c2VyIiB7CiAgICAgICAgICAgICAgICBzaGFwZSBXZWJCcm93c2VyCiAgICAgICAgICAgIH0KICAgICAgICAgICAgZWxlbWVudCAiTW9iaWxlIEFwcCIgewogICAgICAgICAgICAgICAgc2hhcGUgTW9iaWxlRGV2aWNlTGFuZHNjYXBlCiAgICAgICAgICAgIH0KICAgICAgICAgICAgZWxlbWVudCAiRGF0YWJhc2UiIHsKICAgICAgICAgICAgICAgIHNoYXBlIEN5bGluZGVyCiAgICAgICAgICAgIH0KICAgICAgICAgICAgZWxlbWVudCAiQ29tcG9uZW50IiB7CiAgICAgICAgICAgICAgICBiYWNrZ3JvdW5kICM4NWJiZjAKICAgICAgICAgICAgICAgIGNvbG9yICMwMDAwMDAKICAgICAgICAgICAgfQogICAgICAgICAgICBlbGVtZW50ICJGYWlsb3ZlciIgewogICAgICAgICAgICAgICAgb3BhY2l0eSAyNQogICAgICAgICAgICB9CiAgICAgICAgfQogICAgfQp9Cg=="
   },
   "views" : {
+    "componentViews" : [ {
+      "automaticLayout" : {
+        "applied" : false,
+        "edgeSeparation" : 0,
+        "implementation" : "Graphviz",
+        "nodeSeparation" : 300,
+        "rankDirection" : "TopBottom",
+        "rankSeparation" : 300,
+        "vertices" : false
+      },
+      "containerId" : "14",
+      "elements" : [ {
+        "id" : "1",
+        "x" : 0,
+        "y" : 0
+      }, {
+        "id" : "2",
+        "x" : 0,
+        "y" : 0
+      }, {
+        "id" : "5",
+        "x" : 0,
+        "y" : 0
+      }, {
+        "id" : "8",
+        "x" : 0,
+        "y" : 0
+      }, {
+        "id" : "9",
+        "x" : 0,
+        "y" : 0
+      }, {
+        "id" : "10",
+        "x" : 0,
+        "y" : 0
+      }, {
+        "id" : "11",
+        "x" : 0,
+        "y" : 0
+      }, {
+        "id" : "12",
+        "x" : 0,
+        "y" : 0
+      }, {
+        "id" : "15",
+        "x" : 0,
+        "y" : 0
+      }, {
+        "id" : "16",
+        "x" : 0,
+        "y" : 0
+      }, {
+        "id" : "17",
+        "x" : 0,
+        "y" : 0
+      }, {
+        "id" : "18",
+        "x" : 0,
+        "y" : 0
+      }, {
+        "id" : "19",
+        "x" : 0,
+        "y" : 0
+      }, {
+        "id" : "20",
+        "x" : 0,
+        "y" : 0
+      }, {
+        "id" : "21",
+        "x" : 0,
+        "y" : 0
+      }, {
+        "id" : "22",
+        "x" : 0,
+        "y" : 0
+      } ],
+      "externalContainerBoundariesVisible" : false,
+      "key" : "Components",
+      "order" : 3,
+      "relationships" : [ {
+        "id" : "34"
+      }, {
+        "id" : "37"
+      }, {
+        "id" : "40"
+      }, {
+        "id" : "43"
+      }, {
+        "id" : "45"
+      }, {
+        "id" : "48"
+      }, {
+        "id" : "51"
+      }, {
+        "id" : "52"
+      }, {
+        "id" : "55"
+      }, {
+        "id" : "58"
+      }, {
+        "id" : "60"
+      }, {
+        "id" : "62"
+      }, {
+        "id" : "65"
+      }, {
+        "id" : "66"
+      }, {
+        "id" : "67"
+      }, {
+        "id" : "68"
+      } ]
+    } ],
     "configuration" : {
       "branding" : { },
       "properties" : {
@@ -606,15 +890,15 @@
         "x" : 0,
         "y" : 0
       }, {
-        "id" : "15",
+        "id" : "20",
         "x" : 0,
         "y" : 0
       }, {
-        "id" : "16",
+        "id" : "21",
         "x" : 0,
         "y" : 0
       }, {
-        "id" : "17",
+        "id" : "22",
         "x" : 0,
         "y" : 0
       } ],
@@ -622,30 +906,29 @@
       "key" : "Containers",
       "order" : 2,
       "relationships" : [ {
-        "id" : "33"
-      }, {
-        "id" : "34"
-      }, {
-        "id" : "36"
+        "id" : "35"
       }, {
         "id" : "38"
       }, {
-        "id" : "39"
-      }, {
-        "id" : "40"
-      }, {
         "id" : "41"
-      }, {
-        "id" : "43"
       }, {
         "id" : "44"
       }, {
-        "id" : "45"
-      }, {
         "id" : "46"
+      }, {
+        "id" : "49"
+      }, {
+        "id" : "53"
+      }, {
+        "id" : "56"
+      }, {
+        "id" : "59"
+      }, {
+        "id" : "61"
+      }, {
+        "id" : "63"
       } ],
-      "softwareSystemId" : "13",
-      "title" : "[Container] Short Term Lets Registration - Target Architecture"
+      "softwareSystemId" : "13"
     } ],
     "dynamicViews" : [ {
       "elements" : [ {
@@ -663,25 +946,25 @@
       } ],
       "externalBoundariesVisible" : false,
       "key" : "BookingPlatformValidatingRegistration",
-      "order" : 4,
+      "order" : 5,
       "relationships" : [ {
         "description" : "Registers property as a short term let",
-        "id" : "20",
+        "id" : "36",
         "order" : "1",
         "response" : false
       }, {
         "description" : "Lists property on platform",
-        "id" : "22",
+        "id" : "26",
         "order" : "2",
         "response" : false
       }, {
         "description" : "Sends registration number and property address",
-        "id" : "25",
+        "id" : "29",
         "order" : "3",
         "response" : false
       }, {
         "description" : "Confirms the registration number is valid",
-        "id" : "25",
+        "id" : "29",
         "order" : "4",
         "response" : true
       } ],
@@ -750,11 +1033,11 @@
         "x" : 0,
         "y" : 0
       }, {
-        "id" : "18",
+        "id" : "23",
         "x" : 0,
         "y" : 0
       }, {
-        "id" : "19",
+        "id" : "24",
         "x" : 0,
         "y" : 0
       } ],
@@ -763,16 +1046,6 @@
       "key" : "SystemContext-001",
       "order" : 1,
       "relationships" : [ {
-        "id" : "20"
-      }, {
-        "id" : "21"
-      }, {
-        "id" : "22"
-      }, {
-        "id" : "23"
-      }, {
-        "id" : "24"
-      }, {
         "id" : "25"
       }, {
         "id" : "26"
@@ -789,13 +1062,23 @@
       }, {
         "id" : "32"
       }, {
-        "id" : "35"
+        "id" : "33"
       }, {
-        "id" : "37"
+        "id" : "36"
+      }, {
+        "id" : "39"
       }, {
         "id" : "42"
       }, {
         "id" : "47"
+      }, {
+        "id" : "50"
+      }, {
+        "id" : "54"
+      }, {
+        "id" : "57"
+      }, {
+        "id" : "64"
       } ],
       "softwareSystemId" : "13"
     } ],
@@ -840,21 +1123,21 @@
       } ],
       "enterpriseBoundaryVisible" : true,
       "key" : "wholeProblem",
-      "order" : 3,
+      "order" : 4,
       "relationships" : [ {
-        "id" : "20"
-      }, {
-        "id" : "22"
-      }, {
-        "id" : "25"
-      }, {
         "id" : "26"
+      }, {
+        "id" : "29"
       }, {
         "id" : "30"
       }, {
-        "id" : "31"
+        "id" : "36"
       }, {
-        "id" : "37"
+        "id" : "42"
+      }, {
+        "id" : "47"
+      }, {
+        "id" : "50"
       } ],
       "title" : "Solving a whole problem for users"
     } ]

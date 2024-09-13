@@ -23,13 +23,13 @@ System(BookingPlatform, "Booking Platform", $descr="Lists short term lets and fa
 System(GOVUKPay, "GOV.UK Pay", $descr="Allows users to make payments", $tags="", $link="")
 System(OneLogin, "One Login", $descr="Let's users sign in", $tags="", $link="")
 
-Rel(Operator, ShortTermLetsRegistration, "Registers a short term let", $techn="", $tags="", $link="")
 Rel(Operator, BookingPlatform, "Lists STL on platform", $techn="", $tags="", $link="")
 Rel(BookingPlatform, ShortTermLetsRegistration, "Verify registration of short term let", $techn="", $tags="", $link="")
 Rel(Planner, ShortTermLetsRegistration, "Retrieve data on short term lets", $techn="", $tags="", $link="")
-Rel(ShortTermLetsRegistration, GOVUKPay, "User makes a payment", $techn="", $tags="", $link="")
-Rel(ShortTermLetsRegistration, OneLogin, "User signs into service", $techn="", $tags="", $link="")
+Rel(Operator, ShortTermLetsRegistration, "Registers a short term let", $techn="HTTPS", $tags="", $link="")
 Rel(Officer, ShortTermLetsRegistration, "Finds contact details from register", $techn="HTTPS", $tags="", $link="")
+Rel(ShortTermLetsRegistration, GOVUKPay, "User makes a payment", $techn="HTTPS", $tags="", $link="")
+Rel(ShortTermLetsRegistration, OneLogin, "User signs into service", $techn="HTTPS", $tags="", $link="")
 
 SHOW_LEGEND(true)
 @enduml
