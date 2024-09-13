@@ -10,7 +10,7 @@ workspace "Short Term Lets Registration" {
 
 		group "Local Authority" {
 			localAuthorityPlanner = person "Planner" "Plans housing schemes in Local Authority area"
-    	    localAuthorityEnforcement = person "Enforcement" "Enforces STL scheme in Local Authority area"
+			localAuthorityOfficer = person "Officer" "Uses register to solve problems in local area"
 		}
 
 		bookingPlatform = softwaresystem "Booking Platform" "Lists short term lets and facilitates bookings" "External System"
@@ -42,7 +42,6 @@ workspace "Short Term Lets Registration" {
 		managementCompany -> shortTermLets "Register short term lets on behalf of operator"
 		managementCompany -> bookingPlatform "Lists short term let on platform"
 		bookingPlatform -> shortTermLets "Verify registration of short term let"
-		localAuthorityEnforcement -> shortTermLets "Reviews register"
 		localAuthorityPlanner -> shortTermLets "Retrieve data on short term lets"
 		shortTermLets -> visitorReady "Optionally enrol operators"
 		shortTermLets -> veDataLake "Supply data on registration"
@@ -54,6 +53,7 @@ workspace "Short Term Lets Registration" {
 
 		operator -> application "Registers a short term let" "HTTPS"
 		admin -> application "Resolve queries about registrations" "HTTPS"
+		localAuthorityOfficer -> application "Finds contact details from register" "HTTPS"
 		application -> register "Store short term let data" "TCP/SQL"
 		application -> govpay "User makes a payment" "HTTPS"
 		application -> oneLogin "User signs into service" "HTTPS"
@@ -85,7 +85,7 @@ workspace "Short Term Lets Registration" {
 
 		systemlandscape "wholeProblem" {
 			title "Solving a whole problem for users"
-			include operator bookingPlatform localAuthorityEnforcement localAuthorityPlanner shortTermLets govpay oneLogin
+			include operator bookingPlatform localAuthorityOfficer localAuthorityPlanner shortTermLets govpay oneLogin
 			autoLayout
 		}
 
