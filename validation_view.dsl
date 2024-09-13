@@ -1,5 +1,5 @@
 dynamic * "BookingPlatformValidatingRegistration" {
-	title "Booking Platform validating registration"
+	title "Possible pattern for Booking Platform validating registration"
 
 	operator -> shortTermLets "Registers property as a short term let"
 	operator -> bookingPlatform "Lists property on platform"
