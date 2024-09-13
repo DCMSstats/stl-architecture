@@ -6,4 +6,4 @@
 
 ### Component level
 
-![Container level diagram](embed:Components)
+![Component level diagram](embed:Components)
