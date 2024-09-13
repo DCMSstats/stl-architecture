@@ -4,8 +4,8 @@ workspace "Short Term Lets Registration" {
     !adrs workspace-adrs
 
     model {
-        admin = person "Administrator" "Manages registrations" "mva"
-        operator = person "Operator" "Owns and runs a short term let" "mva"
+        admin = person "Administrator" "Manages registrations"
+        operator = person "Operator" "Owns and runs a short term let"
         managementCompany = person "Management Company" ""
 
 		group "Local Authority" {
@@ -16,19 +16,18 @@ workspace "Short Term Lets Registration" {
 		bookingPlatform = softwaresystem "Booking Platform" "Lists short term lets and facilitates bookings" "External System"
         policyMakers = softwaresystem "Policy Makers" "" "External System"
 
-        govpay = softwaresystem "GOV.UK Pay" "Allows users to make payments" "External System,mva"
-        oneLogin = softwaresystem "One Login" "Let's users sign in" "External System,mva"
-        govNotify = softwaresystem "GOV.UK Notify" "Sends users notifications" "External System,mva"
-        authProvider = softwaresystem "Authentication Provider" "Sign in for administrator's users" "External System,mva"
-        osPlacesApi = softwaresystem "OS Places API" "Identifies UK Addresses" "External System,mva"
+        govpay = softwaresystem "GOV.UK Pay" "Allows users to make payments" "External System"
+        oneLogin = softwaresystem "One Login" "Let's users sign in" "External System"
+        govNotify = softwaresystem "GOV.UK Notify" "Sends users notifications" "External System"
+        authProvider = softwaresystem "Authentication Provider" "Sign in for administrator's users" "External System"
+        osPlacesApi = softwaresystem "OS Places API" "Identifies UK Addresses" "External System"
 
         group "Short Term Lets Service" {
             shortTermLets = softwaresystem "Short Term Lets Registration" "Platform for registering, and querying short term lets" "Software System" {
-				application = container "Web Application" "Allows people to register short term lets and provides information" "TBD" "mva"
-				registerAdapter = container "Register Adapter" "Controls management and access of the register" "TBD"
-				register = container "STL Register" "Register of short term lets" "TBD" "Database,mva"
-				sessionStore = container "Session Store" "Session store for web application" "TBD" "Database,mva"
-				fileStore = container "File Store" "Storage for compliance documents" "TBD" "Database,mva"
+				application = container "Web Application" "Allows people to register short term lets and provides information" "TBD"
+				register = container "STL Register" "Register of short term lets" "TBD" "Database"
+				sessionStore = container "Session Store" "Session store for web application" "TBD" "Database"
+				fileStore = container "File Store" "Storage for compliance documents" "TBD" "Database"
 			}
         }
 
@@ -37,7 +36,7 @@ workspace "Short Term Lets Registration" {
 			visitorReady = softwaresystem "Visitor Ready" "Entry level quality scheme" "External System"
 		}
 
-		operator -> shortTermLets "Registers a short term let" "" "mva"
+		operator -> shortTermLets "Registers a short term let" ""
 		operator -> managementCompany "Hire to manage short term let"
 		operator -> bookingPlatform "Lists STL on platform"
 		managementCompany -> shortTermLets "Register short term lets on behalf of operator"
@@ -53,24 +52,16 @@ workspace "Short Term Lets Registration" {
 		shortTermLets -> oneLogin "User signs into service"
 		shortTermLets -> govNotify "Notify user of completed application"
 
-		# MVA
-		operator -> application "Registers a short term let" "HTTPS" "mva"
-		admin -> application "Resolve queries about registrations" "HTTPS" "mva"
-		application -> register "Store short term let data" "TCP/SQL" "mva,only-mva"
-		application -> govpay "User makes a payment" "HTTPS" "mva"
-		application -> oneLogin "User signs into service" "HTTPS" "mva"
-		application -> authProvider "Admin users sign into service" "HTTPS" "mva"
-		application -> govNotify "Notify user of completed application" "HTTPS" "mva"
-		application -> sessionStore "Store progress of user's registration" "" "mva"
-		application -> fileStore "Upload/review compliance documents" "HTTPS" "mva,only-mva"
-		application -> osPlacesApi "Request addresses at postcode" "HTTPS" "mva"
-
-		# Final architecture
-		application -> registerAdapter "Request updates to the register" "HTTPS"
-		registerAdapter -> register "Store and request short term let data" "TCP/SQL"
-		application -> visitorReady "Optionally enrol operators" "HTTPS"
-		application -> veDataLake "Supply data on registration" "HTTPS"
-		registerAdapter -> fileStore "Upload/review compliance documents" "HTTPS"
+		operator -> application "Registers a short term let" "HTTPS"
+		admin -> application "Resolve queries about registrations" "HTTPS"
+		application -> register "Store short term let data" "TCP/SQL"
+		application -> govpay "User makes a payment" "HTTPS"
+		application -> oneLogin "User signs into service" "HTTPS"
+		application -> authProvider "Admin users sign into service" "HTTPS"
+		application -> govNotify "Notify user of completed application" "HTTPS"
+		application -> sessionStore "Store progress of user's registration"
+		application -> fileStore "Upload/review compliance documents" "HTTPS"
+		application -> osPlacesApi "Request addresses at postcode" "HTTPS"
     }
 
     views {
@@ -89,15 +80,8 @@ workspace "Short Term Lets Registration" {
         container shortTermLets "Containers" {
 			title "[Container] Short Term Lets Registration - Target Architecture"
             include *
-			exclude element.tag==only-mva relationship.tag==only-mva
             autoLayout
         }
-
-        container shortTermLets "MVA-Containers" {
-			title "[Container] Short Term Lets Registration - Minimum Viable Architecture"
-			include element.tag==mva relationship.tag==mva
-			autoLayout
-		}
 
 		systemlandscape "wholeProblem" {
 			title "Solving a whole problem for users"
