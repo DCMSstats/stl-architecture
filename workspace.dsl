@@ -24,7 +24,13 @@ workspace "Short Term Lets Registration" {
 
         group "Short Term Lets Service" {
             shortTermLets = softwaresystem "Short Term Lets Registration" "Platform for registering, and querying short term lets" "Software System" {
-				application = container "Web Application" "Allows people to register short term lets and provides information" "TBD"
+				application = container "Web Application" "Allows people to register short term lets and provides information" "TBD" {
+					registrationFlow = component "Operator Registration" "Flow for registering and renewing registration of short-term let"
+					registerView = component "Register View" "View of register for approved groups"
+					internalService = component "Internal Service" "Service to provide administrator access to complete registration tasks."
+					aggregatedData = component "Data view" "Aggregated data from register"
+					registerAdapter = component "Register Adapter" "Wrapper around register database"
+				}
 				register = container "STL Register" "Register of short term lets" "TBD" "Database"
 				sessionStore = container "Session Store" "Session store for web application" "TBD" "Database"
 				fileStore = container "File Store" "Storage for compliance documents" "TBD" "Database"
@@ -36,7 +42,6 @@ workspace "Short Term Lets Registration" {
 			visitorReady = softwaresystem "Visitor Ready" "Entry level quality scheme" "External System"
 		}
 
-		operator -> shortTermLets "Registers a short term let" ""
 		operator -> managementCompany "Hire to manage short term let"
 		operator -> bookingPlatform "Lists STL on platform"
 		managementCompany -> shortTermLets "Register short term lets on behalf of operator"
@@ -47,21 +52,24 @@ workspace "Short Term Lets Registration" {
 		shortTermLets -> veDataLake "Supply data on registration"
 		policyMakers -> shortTermLets "Retrieve data on short term lets"
 
-		shortTermLets -> govpay "User makes a payment"
-		shortTermLets -> oneLogin "User signs into service"
-		shortTermLets -> govNotify "Notify user of completed application"
+		operator -> registrationFlow "Registers a short term let" "HTTPS"
+		admin -> internalService "Resolve queries about registrations" "HTTPS"
+		localAuthorityOfficer -> registerView "Finds contact details from register" "HTTPS"
+		registerAdapter -> register "Store short term let data" "TCP/SQL"
+		registrationFlow -> govpay "User makes a payment" "HTTPS"
+		registrationFlow -> oneLogin "User signs into service" "HTTPS"
+		registerView -> oneLogin "User signs into service" "HTTPS"
+		internalService -> authProvider "Admin users sign into service" "HTTPS"
+		registrationFlow -> govNotify "Notify user of completed application" "HTTPS"
+		registrationFlow -> sessionStore "Store progress of user's registration"
+		registerAdapter -> fileStore "Upload/review compliance documents" "HTTPS"
+		registrationFlow -> osPlacesApi "Request addresses at postcode" "HTTPS"
 
-		operator -> application "Registers a short term let" "HTTPS"
-		admin -> application "Resolve queries about registrations" "HTTPS"
-		localAuthorityOfficer -> application "Finds contact details from register" "HTTPS"
-		application -> register "Store short term let data" "TCP/SQL"
-		application -> govpay "User makes a payment" "HTTPS"
-		application -> oneLogin "User signs into service" "HTTPS"
-		application -> authProvider "Admin users sign into service" "HTTPS"
-		application -> govNotify "Notify user of completed application" "HTTPS"
-		application -> sessionStore "Store progress of user's registration"
-		application -> fileStore "Upload/review compliance documents" "HTTPS"
-		application -> osPlacesApi "Request addresses at postcode" "HTTPS"
+		registrationFlow -> registerAdapter "Add or update registration"
+		registerView -> registerAdapter "Retrieve information about registration"
+		internalService -> registerAdapter "Manage registration"
+		aggregatedData -> registerAdapter "Retrieve data about registrations"
+
     }
 
     views {
@@ -78,7 +86,11 @@ workspace "Short Term Lets Registration" {
         }
 
         container shortTermLets "Containers" {
-			title "[Container] Short Term Lets Registration - Target Architecture"
+            include *
+            autoLayout
+        }
+
+		component application "Components" {
             include *
             autoLayout
         }
