@@ -24,16 +24,15 @@ workspace "Short Term Lets Registration" {
 
         group "Short Term Lets Service" {
             shortTermLets = softwaresystem "Short Term Lets Registration" "Platform for registering, and querying short term lets" "Software System" {
-				application = container "Web Application" "Allows people to register short term lets and provides information" "TBD" {
+				application = container "Web Application" "Allows people to register short term lets and provides information" "Cloud Run Python/Flask" {
 					registrationFlow = component "Operator Registration" "Flow for registering and renewing registration of short-term let"
 					registerView = component "Register View" "View of register for approved groups"
 					internalService = component "Internal Service" "Service to provide administrator access to complete registration tasks."
 					aggregatedData = component "Data view" "Aggregated data from register"
 					registerAdapter = component "Register Adapter" "Wrapper around register database"
 				}
-				register = container "STL Register" "Register of short term lets" "TBD" "Database"
-				sessionStore = container "Session Store" "Session store for web application" "TBD" "Database"
-				fileStore = container "File Store" "Storage for compliance documents" "TBD" "Database"
+				register = container "STL Register" "Register of short term lets" "Postgres" "Database"
+				fileStore = container "File Store" "Storage for compliance documents" "Cloud Storage" "Database"
 			}
         }
 
@@ -61,7 +60,6 @@ workspace "Short Term Lets Registration" {
 		registerView -> oneLogin "User signs into service" "HTTPS"
 		internalService -> authProvider "Admin users sign into service" "HTTPS"
 		registrationFlow -> govNotify "Notify user of completed application" "HTTPS"
-		registrationFlow -> sessionStore "Store progress of user's registration"
 		registerAdapter -> fileStore "Upload/review compliance documents" "HTTPS"
 		registrationFlow -> osPlacesApi "Request addresses at postcode" "HTTPS"
 
