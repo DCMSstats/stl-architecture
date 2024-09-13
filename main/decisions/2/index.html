@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="en" data-theme="light" class="has-background-light">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Hosting Alpha Prototype | Short Term Lets Registration</title>
+    <link href="https://cdn.jsdelivr.net/npm/bulma@1.0.2/css/bulma.min.css" rel="stylesheet">
+    <link href="../../../style.css" rel="stylesheet">
+    <link href="./../../style-branding.css" rel="stylesheet">
+    <script type="text/javascript" src="../../../modal.js"></script>
+    <script type="text/javascript" src="../../../svg-modal.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/svg-pan-zoom@3.6.1/dist/svg-pan-zoom.min.js"></script>
+  </head>
+  <body>
+    <script type="text/javascript" src="../../../header.js"></script>
+    <nav class="navbar" role="navigation" aria-label="main navigation">
+      <div class="navbar-brand has-site-branding"><a href="../../" class="navbar-item"><span class="has-text-weight-semibold has-site-branding">Short Term Lets Registration</span></a></div>
+      <div class="navbar-menu has-site-branding">
+        <div class="navbar-end">
+          <div class="navbar-item"><input class="input is-small is-rounded has-site-branding" id="search" type="search" size="30" maxlength="50" placeholder="Search..." onkeyup="redirect(event, value, '../../search/')"></div>
+          <div class="navbar-item has-dropdown is-hoverable"><a class="navbar-link has-site-branding">main</a>
+            <div class="navbar-dropdown is-right"><a href="../../../main/" class="navbar-item">main</a>
+              <hr class="navbar-divider">
+              <div class="navbar-item has-text-grey-light"><span>v</span><span>0.0.0</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </nav>
+    <div class="site-layout" id="site">
+      <aside class="menu p-3">
+        <p class="menu-label">General</p>
+        <ul class="menu-list has-site-branding">
+          <li><a href="../../" class="">Home</a><a href="../" class="is-active">Decisions</a><a href="../../software-systems/" class="">Software Systems</a><a href="../../data-modelling-of-let-ownership-and-management/" class="">Data modelling of let ownership and management</a><a href="../../solving-a-whole-problem/" class="">Solving a whole problem</a></li>
+        </ul>
+        <p class="menu-label">Software systems</p>
+        <ul class="menu-list has-site-branding">
+          <li><a href="../../authentication-provider/" class="">Authentication Provider</a><a href="../../booking-platform/" class="">Booking Platform</a><a href="../../gov.uk-notify/" class="">GOV.UK Notify</a><a href="../../gov.uk-pay/" class="">GOV.UK Pay</a><a href="../../one-login/" class="">One Login</a><a href="../../os-places-api/" class="">OS Places API</a><a href="../../policy-makers/" class="">Policy Makers</a><a href="../../short-term-lets-registration/" class="">Short Term Lets Registration</a><a href="../../visit-england-data-lake/" class="">Visit England Data Lake</a><a href="../../visitor-ready/" class="">Visitor Ready</a></li>
+        </ul>
+      </aside>
+      <div class="container is-fluid has-background-white">
+        <div class="content p-3">
+          <div><h1>2. Hosting Alpha Prototype</h1>
+<p>Date: 2024-07-16</p>
+<h2>Status</h2>
+<p>Accepted</p>
+<h2>Context</h2>
+<p>Over the course of this project, we will require a prototype for user research. Participants will need to access the prototype over the internet. The prototype requires some backend compute so cannot be hosted as a static site.</p>
+<p>In an ideal world, we would host this on existing DCMS infrastructure, such as using Cloud Run in GCP. This is not an option.</p>
+<h2>Options</h2>
+<h3>Supplier Prototyping AWS Account</h3>
+<p>The supplier uses one of their existing AWS accounts to host the prototype. This muddies the water on ownership of the prototype after the end of the project, but does have the benefit of existing controls on the account.</p>
+<h3>New Heroku Account</h3>
+<p>We create a new Heroku account and team for the prototype, that exists for the duration of the project. The main drawback is that we create an IT asset owned by DCMS without many controls.</p>
+<h2>Decision</h2>
+<p>We're going to use Heroku as this leaves the most control in the hands of DCMS and the risk level of this asset is very low.</p>
+<h2>Consequences</h2>
+<p>At the end of the alpha stage, DCMS will need to find a new hosting solution if they still with the prototype to be hosted.</p></div>
+        </div>
+      </div>
+    </div>
+    <script type="text/javascript" src="../../../reformat-mermaid.js"></script>
+    <script type="module">import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11.2.0/dist/mermaid.esm.min.mjs';</script>
+  </body>
+</html>

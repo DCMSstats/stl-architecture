@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="en" data-theme="light" class="has-background-light">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title> Register Adapter | Short Term Lets Registration</title>
+    <link href="https://cdn.jsdelivr.net/npm/bulma@1.0.2/css/bulma.min.css" rel="stylesheet">
+    <link href="../../../style.css" rel="stylesheet">
+    <link href="./../../style-branding.css" rel="stylesheet">
+    <script type="text/javascript" src="../../../modal.js"></script>
+    <script type="text/javascript" src="../../../svg-modal.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/svg-pan-zoom@3.6.1/dist/svg-pan-zoom.min.js"></script>
+  </head>
+  <body>
+    <script type="text/javascript" src="../../../header.js"></script>
+    <nav class="navbar" role="navigation" aria-label="main navigation">
+      <div class="navbar-brand has-site-branding"><a href="../../" class="navbar-item"><span class="has-text-weight-semibold has-site-branding">Short Term Lets Registration</span></a></div>
+      <div class="navbar-menu has-site-branding">
+        <div class="navbar-end">
+          <div class="navbar-item"><input class="input is-small is-rounded has-site-branding" id="search" type="search" size="30" maxlength="50" placeholder="Search..." onkeyup="redirect(event, value, '../../search/')"></div>
+          <div class="navbar-item has-dropdown is-hoverable"><a class="navbar-link has-site-branding">main</a>
+            <div class="navbar-dropdown is-right"><a href="../../../main/" class="navbar-item">main</a>
+              <hr class="navbar-divider">
+              <div class="navbar-item has-text-grey-light"><span>v</span><span>0.0.0</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </nav>
+    <div class="site-layout" id="site">
+      <aside class="menu p-3">
+        <p class="menu-label">General</p>
+        <ul class="menu-list has-site-branding">
+          <li><a href="../../" class="">Home</a><a href="../" class="is-active">Decisions</a><a href="../../software-systems/" class="">Software Systems</a><a href="../../data-modelling-of-let-ownership-and-management/" class="">Data modelling of let ownership and management</a><a href="../../solving-a-whole-problem/" class="">Solving a whole problem</a></li>
+        </ul>
+        <p class="menu-label">Software systems</p>
+        <ul class="menu-list has-site-branding">
+          <li><a href="../../authentication-provider/" class="">Authentication Provider</a><a href="../../booking-platform/" class="">Booking Platform</a><a href="../../gov.uk-notify/" class="">GOV.UK Notify</a><a href="../../gov.uk-pay/" class="">GOV.UK Pay</a><a href="../../one-login/" class="">One Login</a><a href="../../os-places-api/" class="">OS Places API</a><a href="../../policy-makers/" class="">Policy Makers</a><a href="../../short-term-lets-registration/" class="">Short Term Lets Registration</a><a href="../../visit-england-data-lake/" class="">Visit England Data Lake</a><a href="../../visitor-ready/" class="">Visitor Ready</a></li>
+        </ul>
+      </aside>
+      <div class="container is-fluid has-background-white">
+        <div class="content p-3">
+          <div><h1>Register Adapter</h1>
+<p>Date: 2024-09-10</p>
+<h2>Status</h2>
+<p>Proposed</p>
+<h2>Context</h2>
+<p>It feels very likely at some point that this component will be required, when more applications are trying to access the register. This ADR is only about whether this component is required immediately, when there is only a single monolithic application accessing it.</p>
+<h2>Options</h2>
+<h3>Register Adapter Component (separate deployable)</h3>
+<p>Pros:</p>
+<ul>
+ <li>Future proofing for when multiple deployables want to access the register</li>
+ <li>Able to deploy register adapter in private network, provides another layer of safety for attacks to navigate</li>
+ <li>Provides an extra level of control around the register Cons:</li>
+ <li>Leads to lockstep development/deployments which can lead to substantial increases in development time</li>
+ <li>Adds an extra network hop which can increase the complexity of running the service</li>
+</ul>
+<h3>Register Adapter Module (module as part of monlith)</h3>
+<p>Effectively just a lightweight version of the separate deployable, offering less of the benefits and less of the disadvantages. It requires a fair amount of discipline to complete this perfectly.</p>
+<h2>Recommendation</h2>
+<p>It is an established pattern to take a module and extract it into a separate deployable. In this case, in order to get the service live as quickly as possible, the register adapter should probably start as a module (maybe following the <a href="https://8thlight.com/insights/a-color-coded-guide-to-ports-and-adapters">ports and adapters pattern</a>) to benefit from the speed and simplicity while the service is new, and extract the component when it is necessary.</p></div>
+        </div>
+      </div>
+    </div>
+    <script type="text/javascript" src="../../../reformat-mermaid.js"></script>
+    <script type="module">import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11.2.0/dist/mermaid.esm.min.mjs';</script>
+  </body>
+</html>

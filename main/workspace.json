@@ -1,0 +1,862 @@
+{
+  "configuration" : { },
+  "description" : "Description",
+  "documentation" : {
+    "decisions" : [ {
+      "content" : "# 1. Record architecture decisions\n\nDate: 2024-07-08\n\n## Status\n\nAccepted\n\n## Context\n\nWe need to record the architectural decisions made on this project.\n\n## Decision\n\nWe will use Architecture Decision Records, as [described by Michael Nygard](http://thinkrelevance.com/blog/2011/11/15/documenting-architecture-decisions).\n\nAnd we recommend them via our [Architecture Principles](https://madetech.github.io/architecture-handbook/principles/communicate_into_the_future.html)\n\n## Consequences\n\nSee Michael Nygard's article, linked above. For a lightweight ADR toolset, see Nat Pryce's [adr-tools](https://github.com/npryce/adr-tools).\n",
+      "date" : "2024-07-08T00:00:00Z",
+      "format" : "Markdown",
+      "id" : "1",
+      "status" : "Accepted",
+      "title" : "Record architecture decisions"
+    }, {
+      "content" : "# 2. Hosting Alpha Prototype\n\nDate: 2024-07-16\n\n## Status\n\nAccepted\n\n## Context\n\nOver the course of this project, we will require a prototype for user research. Participants will need to access the prototype over the internet. The prototype requires some backend compute so cannot be hosted as a static site. \n\nIn an ideal world, we would host this on existing DCMS infrastructure, such as using Cloud Run in GCP. This is not an option.\n\n## Options\n\n### Supplier Prototyping AWS Account\n\nThe supplier uses one of their existing AWS accounts to host the prototype. This muddies the water on ownership of the prototype after the end of the project, but does have the benefit of existing controls on the account. \n\n### New Heroku Account\n\nWe create a new Heroku account and team for the prototype, that exists for the duration of the project. The main drawback is that we create an IT asset owned by DCMS without many controls.\n\n## Decision\n\nWe're going to use Heroku as this leaves the most control in the hands of DCMS and the risk level of this asset is very low. \n\n## Consequences\n\nAt the end of the alpha stage, DCMS will need to find a new hosting solution if they still with the prototype to be hosted.\n",
+      "date" : "2024-07-16T00:00:00Z",
+      "format" : "Markdown",
+      "id" : "2",
+      "status" : "Accepted",
+      "title" : "Hosting Alpha Prototype"
+    }, {
+      "content" : "# Register Adapter\nDate: 2024-09-10\n\n## Status\n\nProposed\n\n## Context\n\nIt feels very likely at some point that this component will be required, when more applications are trying to access the register. This ADR is only about whether this component is required immediately, when there is only a single monolithic application accessing it.\n\n## Options\n\n### Register Adapter Component (separate deployable)\n\nPros:\n- Future proofing for when multiple deployables want to access the register\n- Able to deploy register adapter in private network, provides another layer of safety for attacks to navigate\n- Provides an extra level of control around the register\nCons:\n- Leads to lockstep development/deployments which can lead to substantial increases in development time\n- Adds an extra network hop which can increase the complexity of running the service\n\n### Register Adapter Module (module as part of monlith)\nEffectively just a lightweight version of the separate deployable, offering less of the benefits and less of the disadvantages. It requires a fair amount of discipline to complete this perfectly.\n\n## Recommendation\n\nIt is an established pattern to take a module and extract it into a separate deployable. In this case, in order to get the service live as quickly as possible, the register adapter should probably start as a module (maybe following the [ports and adapters pattern](https://8thlight.com/insights/a-color-coded-guide-to-ports-and-adapters)) to benefit from the speed and simplicity while the service is new, and extract the component when it is necessary.\n",
+      "date" : "2024-09-10T00:00:00Z",
+      "format" : "Markdown",
+      "id" : "3",
+      "status" : "Proposed",
+      "title" : " Register Adapter"
+    }, {
+      "content" : "# Geographically identifying units\nDate: 2024-09-11\n\n## Status\n\nIn Progress\n\n## Context\n\nOne of our riskiest assumptions in this alpha is \"We assume that we will be able to technically capture all types of STL (e.g. using unique geographic location)\". It is important for us to capture geographic location of short-term lets:\n1. To be able to determine the number of short-term lets in an area (all of these options will be combined with an address, so we won't consider this too heavily in this ADR)\n2. To help us ensure that short term lets are not double counted and improve data quality (although the registration fee would likely discourage double registration)\n3. To determine if a registration number matches a particular short-term let\n\nUnlike other types of rental property in England, short-term lets do not match uniquely to UPRNs or addresses:\n- Parts of a property let separately (e.g. individual rooms or a basement and an outhouse)\n- Yurts let separately in a single field at one address\n\nIt is also important that whatever method we choose can be used with an offline journey, and without JavaScript in the online journey.\n\nShort-term lets that occupy all of an address would not be required to supply more detail. Short-term lets that do not occupy all of an address but are the only short-term let on site would probably not be required to supply more detail. \n\n## Options\n\nOptions to be evaluated on:\n1. How easy it is to use the data to de-duplicate registrations?\n2. How easy it is to use the data to find a short-term let?\n3. How easy it is to use the data to determine if a registration matches a particular short-term let at an address?\n4. How easy it is to for the operator to provide?\n5. How easy it is to for the operator to provide without JavaScript?\n6. How easy it is to for the operator to provide offline?\n7. How easy it is to for the operator to provide for multiple properties?\n\n\n### Text description\n\nOperators provide a text description of whatever section of an address is part of the short-term let.\n\n1. How easy it is to use the data to de-duplicate registrations?\n   - Difficult. Depending on the guidance, the description provided might be vague, or change over time (the marketing name of a yurt) \n2. How easy it is to use the data to find a short-term let?\n   - Difficult. Depending on the guidance, the description provided might be vague, or change over time (the marketing name of a yurt) \n3. How easy it is to use the data to determine if a registration matches a particular short-term let at an address?\n   - Difficult. Depending on the guidance, the description provided might be vague, or change over time (the marketing name of a yurt) \n4. How easy it is to for the operator to provide?\n   - Easy. \n5. How easy it is to for the operator to provide without JavaScript?\n   - Easy. \n6. How easy it is to for the operator to provide offline?\n   - Easy. \n7. How easy it is to for the operator to provide for multiple properties?\n   - Easy. \n\n\n### GPS coordinates\n\nOperators coordinates of the location of the short-term let. Could be Ordnance Survey Eastings and Northings.\n\n1. How easy it is to use the data to de-duplicate registrations?\n   - Not easy, it would be hard to balance what GPS coordinates are the close enough to be called the same without also de-deduplicating legitimately different lets. \n2. How easy it is to use the data to find a short-term let?\n   - Easy for working across large areas like a field, but difficult/impossible across smaller areas like rooms in a house, particularly where one short-term let is directly above another.\n3. How easy it is to use the data to determine if a registration matches a particular short-term let at an address?\n   - Easy for working across large areas like a field, but difficult/impossible across smaller areas like rooms in a house, particularly where one short-term let is directly above another.\n4. How easy it is to for the operator to provide?\n   - Easy. An operator can pick a location on a map.\n5. How easy it is to for the operator to provide without JavaScript?\n   - Difficult, operator needs to find coordinates to input directly.\n6. How easy it is to for the operator to provide offline?\n   - Difficult, operator needs to find coordinates to input directly.\n7. How easy it is to for the operator to provide for multiple properties?\n   - Not too difficult, but does require knowledge of the individual let.\n\n### Drawn Sections\n\nOperators draw the boundaries of the short-term let on a map. This could be provided digitally online with javascript. Offline or without Javascript, the user would probably have to mark the area on a physical map to be digitised by an administrator. \n\n1. How easy it is to use the data to de-duplicate registrations?\n   - Not easy, it would be hard to balance what boundaries lines are close enough to be called the same without also de-deduplicating legitimately different lets. \n2. How easy it is to use the data to find a short-term let?\n   - Easy for working across large areas like a field, simple-ish across smaller areas like rooms in a house, doesn't solve where one short-term let is directly above another.\n3. How easy it is to use the data to determine if a registration matches a particular short-term let at an address?\n   - Easy for working across large areas like a field, simple-ish across smaller areas like rooms in a house, doesn't solve where one short-term let is directly above another.\n4. How easy it is to for the operator to provide?\n   - Easy. An operator can mark a location on a map.\n5. How easy it is to for the operator to provide without JavaScript?\n   - Difficult, operator needs print and mark on a map on paper and then scan in. This would then need digitising by an administrator.\n6. How easy it is to for the operator to provide offline?\n   - Difficult, operator needs print and mark on a map on paper. This would then need digitising by an administrator.\n7. How easy it is to for the operator to provide for multiple properties?\n   - Difficult, would require fairly substantial knowledge of the individual let.\n\n## Recommendation\n\n",
+      "date" : "2024-09-11T00:00:00Z",
+      "format" : "Markdown",
+      "id" : "4",
+      "status" : "In",
+      "title" : " Geographically identifying units"
+    } ],
+    "sections" : [ {
+      "content" : "## Short Term Lets architecture\n\nDocumentation of architecture decisions made over the course of the Short Term Lets Registration Alpha project. \n\nThe project is currently in an alpha stage so decisions here may change before the service is lives, and some of the documents are speculative to discuss with user groups.\n",
+      "filename" : "01-index.md",
+      "format" : "Markdown",
+      "order" : 1,
+      "title" : ""
+    }, {
+      "content" : "## Data modelling of let ownership and management\n\nThe ownership and management of Short Term Lets can be a little complicated. It feels like there are three separate roles:\n- The owner of the property (which may be some number of individuals or a company)\n- The manager of the property (which may be some number of individuals or a company)\n- The person registering the short term let (which may be a private individual or a staff member)\n\nIn the simplest case of an individual owner-operator, all three of these groups would be the same one person. This is likely where a beta would start, however:\n- A person or company may own multiple properties (possibly up to hundreds)\n- A person or company may manage multiple properties (possibly up to hundreds)\n- Multiple people or staff members in a company may want to do administration of the same property\n\nIt feels likely that a \"finished\" service would need to handle the following use cases:\n- Adding and removing accounts from a property/group of properties\n- Adding and removing accounts from a company\n- Transferring a property from one account/company to another account/company\n",
+      "filename" : "02-data-modelling.md",
+      "format" : "Markdown",
+      "order" : 2,
+      "title" : ""
+    }, {
+      "content" : "## Solving a whole problem\n\n[Service standard point 2 is \"Solve a whole problem for users\"](https://www.gov.uk/service-manual/service-standard/point-2-solve-a-whole-problem). A whole problem could be:\n\n1. Capture the attention existing and new operators.\n2. Operators register their short term lets. At this point they would verify H&S compliance.\n3. Platforms display the registration number on a listing. Ideally they would also verify the registration.\n4. Officers at Local Authority use register contact details to solve problems in their local area, such as noise complaints.\n5. Planners at Local Authority use data from the register to inform decisions.\n\n![Solving a whole problem for users diagram](embed:wholeProblem)\n\nWithin this problem the technical questions seem to be:\n- At step 3: What mechanism could we offer to verify a Short Term Let registration by the Booking Platforms? What do they already do for existing schemes? What else is available?\n- At step 4: What access to the data would be required? What format should that be in? What are the security considerations?\n- At step 5: What data points are useful? What format should that be in?\n",
+      "filename" : "03-a-whole-problem.md",
+      "format" : "Markdown",
+      "order" : 3,
+      "title" : ""
+    } ]
+  },
+  "id" : 0,
+  "model" : {
+    "people" : [ {
+      "description" : "Manages registrations",
+      "id" : "1",
+      "location" : "Unspecified",
+      "name" : "Administrator",
+      "properties" : {
+        "structurizr.dsl.identifier" : "admin"
+      },
+      "relationships" : [ {
+        "description" : "Resolve queries about registrations",
+        "destinationId" : "14",
+        "id" : "34",
+        "properties" : {
+          "structurizr.dsl.identifier" : "6b54c5ff-046a-4c60-8a17-1f9645528bb0"
+        },
+        "sourceId" : "1",
+        "tags" : "Relationship",
+        "technology" : "HTTPS"
+      }, {
+        "description" : "Resolve queries about registrations",
+        "destinationId" : "13",
+        "id" : "35",
+        "linkedRelationshipId" : "34",
+        "sourceId" : "1",
+        "technology" : "HTTPS"
+      } ],
+      "tags" : "Element,Person"
+    }, {
+      "description" : "Owns and runs a short term let",
+      "id" : "2",
+      "location" : "Unspecified",
+      "name" : "Operator",
+      "properties" : {
+        "structurizr.dsl.identifier" : "operator"
+      },
+      "relationships" : [ {
+        "description" : "Registers a short term let",
+        "destinationId" : "13",
+        "id" : "20",
+        "properties" : {
+          "structurizr.dsl.identifier" : "428f9928-72e6-4551-a563-22ee29aeb5c5"
+        },
+        "sourceId" : "2",
+        "tags" : "Relationship"
+      }, {
+        "description" : "Hire to manage short term let",
+        "destinationId" : "3",
+        "id" : "21",
+        "properties" : {
+          "structurizr.dsl.identifier" : "462a1bf5-127d-4c67-b4fd-2113c4fbf330"
+        },
+        "sourceId" : "2",
+        "tags" : "Relationship"
+      }, {
+        "description" : "Lists STL on platform",
+        "destinationId" : "6",
+        "id" : "22",
+        "properties" : {
+          "structurizr.dsl.identifier" : "4c89edad-e203-4e96-995b-78d806ec03d1"
+        },
+        "sourceId" : "2",
+        "tags" : "Relationship"
+      }, {
+        "description" : "Registers a short term let",
+        "destinationId" : "14",
+        "id" : "33",
+        "properties" : {
+          "structurizr.dsl.identifier" : "bea2bb65-6669-4702-b0b9-28cd86d2fce1"
+        },
+        "sourceId" : "2",
+        "tags" : "Relationship",
+        "technology" : "HTTPS"
+      } ],
+      "tags" : "Element,Person"
+    }, {
+      "id" : "3",
+      "location" : "Unspecified",
+      "name" : "Management Company",
+      "properties" : {
+        "structurizr.dsl.identifier" : "managementcompany"
+      },
+      "relationships" : [ {
+        "description" : "Register short term lets on behalf of operator",
+        "destinationId" : "13",
+        "id" : "23",
+        "properties" : {
+          "structurizr.dsl.identifier" : "6b4872ac-b758-4ff7-b628-ef497d0a11dd"
+        },
+        "sourceId" : "3",
+        "tags" : "Relationship"
+      }, {
+        "description" : "Lists short term let on platform",
+        "destinationId" : "6",
+        "id" : "24",
+        "properties" : {
+          "structurizr.dsl.identifier" : "902095b1-4445-4203-a350-dceb1375848b"
+        },
+        "sourceId" : "3",
+        "tags" : "Relationship"
+      } ],
+      "tags" : "Element,Person"
+    }, {
+      "description" : "Plans housing schemes in Local Authority area",
+      "group" : "Local Authority",
+      "id" : "4",
+      "location" : "Unspecified",
+      "name" : "Planner",
+      "properties" : {
+        "structurizr.dsl.identifier" : "localauthorityplanner"
+      },
+      "relationships" : [ {
+        "description" : "Retrieve data on short term lets",
+        "destinationId" : "13",
+        "id" : "26",
+        "properties" : {
+          "structurizr.dsl.identifier" : "31b29d2d-1e08-4c9d-8add-ce2ff87bed6e"
+        },
+        "sourceId" : "4",
+        "tags" : "Relationship"
+      } ],
+      "tags" : "Element,Person"
+    }, {
+      "description" : "Uses register to solve problems in local area",
+      "group" : "Local Authority",
+      "id" : "5",
+      "location" : "Unspecified",
+      "name" : "Officer",
+      "properties" : {
+        "structurizr.dsl.identifier" : "localauthorityofficer"
+      },
+      "relationships" : [ {
+        "description" : "Finds contact details from register",
+        "destinationId" : "14",
+        "id" : "36",
+        "properties" : {
+          "structurizr.dsl.identifier" : "e649be1a-d041-402d-bd1e-81df0071d962"
+        },
+        "sourceId" : "5",
+        "tags" : "Relationship",
+        "technology" : "HTTPS"
+      }, {
+        "description" : "Finds contact details from register",
+        "destinationId" : "13",
+        "id" : "37",
+        "linkedRelationshipId" : "36",
+        "sourceId" : "5",
+        "technology" : "HTTPS"
+      } ],
+      "tags" : "Element,Person"
+    } ],
+    "softwareSystems" : [ {
+      "description" : "Lists short term lets and facilitates bookings",
+      "documentation" : { },
+      "id" : "6",
+      "location" : "Unspecified",
+      "name" : "Booking Platform",
+      "properties" : {
+        "structurizr.dsl.identifier" : "bookingplatform"
+      },
+      "relationships" : [ {
+        "description" : "Verify registration of short term let",
+        "destinationId" : "13",
+        "id" : "25",
+        "properties" : {
+          "structurizr.dsl.identifier" : "c4890b1c-d73d-4518-98f9-c8455f31e8ec"
+        },
+        "sourceId" : "6",
+        "tags" : "Relationship"
+      } ],
+      "tags" : "Element,Software System,External System"
+    }, {
+      "documentation" : { },
+      "id" : "7",
+      "location" : "Unspecified",
+      "name" : "Policy Makers",
+      "properties" : {
+        "structurizr.dsl.identifier" : "policymakers"
+      },
+      "relationships" : [ {
+        "description" : "Retrieve data on short term lets",
+        "destinationId" : "13",
+        "id" : "29",
+        "properties" : {
+          "structurizr.dsl.identifier" : "cf001df6-5121-4a17-add6-f9c22b1dc037"
+        },
+        "sourceId" : "7",
+        "tags" : "Relationship"
+      } ],
+      "tags" : "Element,Software System,External System"
+    }, {
+      "description" : "Allows users to make payments",
+      "documentation" : { },
+      "id" : "8",
+      "location" : "Unspecified",
+      "name" : "GOV.UK Pay",
+      "properties" : {
+        "structurizr.dsl.identifier" : "govpay"
+      },
+      "tags" : "Element,Software System,External System"
+    }, {
+      "description" : "Let's users sign in",
+      "documentation" : { },
+      "id" : "9",
+      "location" : "Unspecified",
+      "name" : "One Login",
+      "properties" : {
+        "structurizr.dsl.identifier" : "onelogin"
+      },
+      "tags" : "Element,Software System,External System"
+    }, {
+      "description" : "Sends users notifications",
+      "documentation" : { },
+      "id" : "10",
+      "location" : "Unspecified",
+      "name" : "GOV.UK Notify",
+      "properties" : {
+        "structurizr.dsl.identifier" : "govnotify"
+      },
+      "tags" : "Element,Software System,External System"
+    }, {
+      "description" : "Sign in for administrator's users",
+      "documentation" : { },
+      "id" : "11",
+      "location" : "Unspecified",
+      "name" : "Authentication Provider",
+      "properties" : {
+        "structurizr.dsl.identifier" : "authprovider"
+      },
+      "tags" : "Element,Software System,External System"
+    }, {
+      "description" : "Identifies UK Addresses",
+      "documentation" : { },
+      "id" : "12",
+      "location" : "Unspecified",
+      "name" : "OS Places API",
+      "properties" : {
+        "structurizr.dsl.identifier" : "osplacesapi"
+      },
+      "tags" : "Element,Software System,External System"
+    }, {
+      "containers" : [ {
+        "description" : "Allows people to register short term lets and provides information",
+        "documentation" : { },
+        "id" : "14",
+        "name" : "Web Application",
+        "properties" : {
+          "structurizr.dsl.identifier" : "application"
+        },
+        "relationships" : [ {
+          "description" : "Store short term let data",
+          "destinationId" : "15",
+          "id" : "38",
+          "properties" : {
+            "structurizr.dsl.identifier" : "7492bfbc-154e-4e91-a028-bb23e42ca422"
+          },
+          "sourceId" : "14",
+          "tags" : "Relationship",
+          "technology" : "TCP/SQL"
+        }, {
+          "description" : "User makes a payment",
+          "destinationId" : "8",
+          "id" : "39",
+          "properties" : {
+            "structurizr.dsl.identifier" : "c13f3dbd-235d-48a1-996e-5a2aa710e6dd"
+          },
+          "sourceId" : "14",
+          "tags" : "Relationship",
+          "technology" : "HTTPS"
+        }, {
+          "description" : "User signs into service",
+          "destinationId" : "9",
+          "id" : "40",
+          "properties" : {
+            "structurizr.dsl.identifier" : "fa03a56d-b589-4fdd-9584-459764c830b3"
+          },
+          "sourceId" : "14",
+          "tags" : "Relationship",
+          "technology" : "HTTPS"
+        }, {
+          "description" : "Admin users sign into service",
+          "destinationId" : "11",
+          "id" : "41",
+          "properties" : {
+            "structurizr.dsl.identifier" : "0b5d2dd8-4ee4-4b4c-9e7f-f15c8e9ccada"
+          },
+          "sourceId" : "14",
+          "tags" : "Relationship",
+          "technology" : "HTTPS"
+        }, {
+          "description" : "Notify user of completed application",
+          "destinationId" : "10",
+          "id" : "43",
+          "properties" : {
+            "structurizr.dsl.identifier" : "8f63d7a2-7134-4094-b399-bdca6337c973"
+          },
+          "sourceId" : "14",
+          "tags" : "Relationship",
+          "technology" : "HTTPS"
+        }, {
+          "description" : "Store progress of user's registration",
+          "destinationId" : "16",
+          "id" : "44",
+          "properties" : {
+            "structurizr.dsl.identifier" : "e1e9a2fc-0988-47f5-ae8a-283bb4b8abce"
+          },
+          "sourceId" : "14",
+          "tags" : "Relationship"
+        }, {
+          "description" : "Upload/review compliance documents",
+          "destinationId" : "17",
+          "id" : "45",
+          "properties" : {
+            "structurizr.dsl.identifier" : "ec1a66e2-9eb8-4a75-8707-707e0f5c1809"
+          },
+          "sourceId" : "14",
+          "tags" : "Relationship",
+          "technology" : "HTTPS"
+        }, {
+          "description" : "Request addresses at postcode",
+          "destinationId" : "12",
+          "id" : "46",
+          "properties" : {
+            "structurizr.dsl.identifier" : "66bf9740-6327-4965-9575-08f7ca2aac9d"
+          },
+          "sourceId" : "14",
+          "tags" : "Relationship",
+          "technology" : "HTTPS"
+        } ],
+        "tags" : "Element,Container",
+        "technology" : "TBD"
+      }, {
+        "description" : "Register of short term lets",
+        "documentation" : { },
+        "id" : "15",
+        "name" : "STL Register",
+        "properties" : {
+          "structurizr.dsl.identifier" : "register"
+        },
+        "tags" : "Element,Container,Database",
+        "technology" : "TBD"
+      }, {
+        "description" : "Session store for web application",
+        "documentation" : { },
+        "id" : "16",
+        "name" : "Session Store",
+        "properties" : {
+          "structurizr.dsl.identifier" : "sessionstore"
+        },
+        "tags" : "Element,Container,Database",
+        "technology" : "TBD"
+      }, {
+        "description" : "Storage for compliance documents",
+        "documentation" : { },
+        "id" : "17",
+        "name" : "File Store",
+        "properties" : {
+          "structurizr.dsl.identifier" : "filestore"
+        },
+        "tags" : "Element,Container,Database",
+        "technology" : "TBD"
+      } ],
+      "description" : "Platform for registering, and querying short term lets",
+      "documentation" : { },
+      "group" : "Short Term Lets Service",
+      "id" : "13",
+      "location" : "Unspecified",
+      "name" : "Short Term Lets Registration",
+      "properties" : {
+        "structurizr.dsl.identifier" : "shorttermlets"
+      },
+      "relationships" : [ {
+        "description" : "Optionally enrol operators",
+        "destinationId" : "19",
+        "id" : "27",
+        "properties" : {
+          "structurizr.dsl.identifier" : "7297870f-59ac-42f7-b4ac-b7438a4354de"
+        },
+        "sourceId" : "13",
+        "tags" : "Relationship"
+      }, {
+        "description" : "Supply data on registration",
+        "destinationId" : "18",
+        "id" : "28",
+        "properties" : {
+          "structurizr.dsl.identifier" : "14f2b983-e25f-4b83-8e4b-fcfa41184576"
+        },
+        "sourceId" : "13",
+        "tags" : "Relationship"
+      }, {
+        "description" : "User makes a payment",
+        "destinationId" : "8",
+        "id" : "30",
+        "properties" : {
+          "structurizr.dsl.identifier" : "5da0b7ca-e34e-4362-8963-6c56fd10d039"
+        },
+        "sourceId" : "13",
+        "tags" : "Relationship"
+      }, {
+        "description" : "User signs into service",
+        "destinationId" : "9",
+        "id" : "31",
+        "properties" : {
+          "structurizr.dsl.identifier" : "1080e6b6-b07d-401e-9035-3f9564f82be9"
+        },
+        "sourceId" : "13",
+        "tags" : "Relationship"
+      }, {
+        "description" : "Notify user of completed application",
+        "destinationId" : "10",
+        "id" : "32",
+        "properties" : {
+          "structurizr.dsl.identifier" : "6ce04fd2-b807-4eb9-b83f-f6e20f6dda64"
+        },
+        "sourceId" : "13",
+        "tags" : "Relationship"
+      }, {
+        "description" : "Admin users sign into service",
+        "destinationId" : "11",
+        "id" : "42",
+        "linkedRelationshipId" : "41",
+        "sourceId" : "13",
+        "technology" : "HTTPS"
+      }, {
+        "description" : "Request addresses at postcode",
+        "destinationId" : "12",
+        "id" : "47",
+        "linkedRelationshipId" : "46",
+        "sourceId" : "13",
+        "technology" : "HTTPS"
+      } ],
+      "tags" : "Element,Software System"
+    }, {
+      "documentation" : { },
+      "group" : "VisitEngland",
+      "id" : "18",
+      "location" : "Unspecified",
+      "name" : "Visit England Data Lake",
+      "properties" : {
+        "structurizr.dsl.identifier" : "vedatalake"
+      },
+      "tags" : "Element,Software System,External System"
+    }, {
+      "description" : "Entry level quality scheme",
+      "documentation" : { },
+      "group" : "VisitEngland",
+      "id" : "19",
+      "location" : "Unspecified",
+      "name" : "Visitor Ready",
+      "properties" : {
+        "structurizr.dsl.identifier" : "visitorready"
+      },
+      "tags" : "Element,Software System,External System"
+    } ]
+  },
+  "name" : "Short Term Lets Registration",
+  "properties" : {
+    "structurizr.dsl" : "CndvcmtzcGFjZSAiU2hvcnQgVGVybSBMZXRzIFJlZ2lzdHJhdGlvbiIgewogICAgIWRvY3Mgd29ya3NwYWNlLWRvY3MKICAgICFhZHJzIHdvcmtzcGFjZS1hZHJzCgogICAgbW9kZWwgewogICAgICAgIGFkbWluID0gcGVyc29uICJBZG1pbmlzdHJhdG9yIiAiTWFuYWdlcyByZWdpc3RyYXRpb25zIgogICAgICAgIG9wZXJhdG9yID0gcGVyc29uICJPcGVyYXRvciIgIk93bnMgYW5kIHJ1bnMgYSBzaG9ydCB0ZXJtIGxldCIKICAgICAgICBtYW5hZ2VtZW50Q29tcGFueSA9IHBlcnNvbiAiTWFuYWdlbWVudCBDb21wYW55IiAiIgoKCQlncm91cCAiTG9jYWwgQXV0aG9yaXR5IiB7CgkJCWxvY2FsQXV0aG9yaXR5UGxhbm5lciA9IHBlcnNvbiAiUGxhbm5lciIgIlBsYW5zIGhvdXNpbmcgc2NoZW1lcyBpbiBMb2NhbCBBdXRob3JpdHkgYXJlYSIKCQkJbG9jYWxBdXRob3JpdHlPZmZpY2VyID0gcGVyc29uICJPZmZpY2VyIiAiVXNlcyByZWdpc3RlciB0byBzb2x2ZSBwcm9ibGVtcyBpbiBsb2NhbCBhcmVhIgoJCX0KCgkJYm9va2luZ1BsYXRmb3JtID0gc29mdHdhcmVzeXN0ZW0gIkJvb2tpbmcgUGxhdGZvcm0iICJMaXN0cyBzaG9ydCB0ZXJtIGxldHMgYW5kIGZhY2lsaXRhdGVzIGJvb2tpbmdzIiAiRXh0ZXJuYWwgU3lzdGVtIgogICAgICAgIHBvbGljeU1ha2VycyA9IHNvZnR3YXJlc3lzdGVtICJQb2xpY3kgTWFrZXJzIiAiIiAiRXh0ZXJuYWwgU3lzdGVtIgoKICAgICAgICBnb3ZwYXkgPSBzb2Z0d2FyZXN5c3RlbSAiR09WLlVLIFBheSIgIkFsbG93cyB1c2VycyB0byBtYWtlIHBheW1lbnRzIiAiRXh0ZXJuYWwgU3lzdGVtIgogICAgICAgIG9uZUxvZ2luID0gc29mdHdhcmVzeXN0ZW0gIk9uZSBMb2dpbiIgIkxldCdzIHVzZXJzIHNpZ24gaW4iICJFeHRlcm5hbCBTeXN0ZW0iCiAgICAgICAgZ292Tm90aWZ5ID0gc29mdHdhcmVzeXN0ZW0gIkdPVi5VSyBOb3RpZnkiICJTZW5kcyB1c2VycyBub3RpZmljYXRpb25zIiAiRXh0ZXJuYWwgU3lzdGVtIgogICAgICAgIGF1dGhQcm92aWRlciA9IHNvZnR3YXJlc3lzdGVtICJBdXRoZW50aWNhdGlvbiBQcm92aWRlciIgIlNpZ24gaW4gZm9yIGFkbWluaXN0cmF0b3IncyB1c2VycyIgIkV4dGVybmFsIFN5c3RlbSIKICAgICAgICBvc1BsYWNlc0FwaSA9IHNvZnR3YXJlc3lzdGVtICJPUyBQbGFjZXMgQVBJIiAiSWRlbnRpZmllcyBVSyBBZGRyZXNzZXMiICJFeHRlcm5hbCBTeXN0ZW0iCgogICAgICAgIGdyb3VwICJTaG9ydCBUZXJtIExldHMgU2VydmljZSIgewogICAgICAgICAgICBzaG9ydFRlcm1MZXRzID0gc29mdHdhcmVzeXN0ZW0gIlNob3J0IFRlcm0gTGV0cyBSZWdpc3RyYXRpb24iICJQbGF0Zm9ybSBmb3IgcmVnaXN0ZXJpbmcsIGFuZCBxdWVyeWluZyBzaG9ydCB0ZXJtIGxldHMiICJTb2Z0d2FyZSBTeXN0ZW0iIHsKCQkJCWFwcGxpY2F0aW9uID0gY29udGFpbmVyICJXZWIgQXBwbGljYXRpb24iICJBbGxvd3MgcGVvcGxlIHRvIHJlZ2lzdGVyIHNob3J0IHRlcm0gbGV0cyBhbmQgcHJvdmlkZXMgaW5mb3JtYXRpb24iICJUQkQiCgkJCQlyZWdpc3RlciA9IGNvbnRhaW5lciAiU1RMIFJlZ2lzdGVyIiAiUmVnaXN0ZXIgb2Ygc2hvcnQgdGVybSBsZXRzIiAiVEJEIiAiRGF0YWJhc2UiCgkJCQlzZXNzaW9uU3RvcmUgPSBjb250YWluZXIgIlNlc3Npb24gU3RvcmUiICJTZXNzaW9uIHN0b3JlIGZvciB3ZWIgYXBwbGljYXRpb24iICJUQkQiICJEYXRhYmFzZSIKCQkJCWZpbGVTdG9yZSA9IGNvbnRhaW5lciAiRmlsZSBTdG9yZSIgIlN0b3JhZ2UgZm9yIGNvbXBsaWFuY2UgZG9jdW1lbnRzIiAiVEJEIiAiRGF0YWJhc2UiCgkJCX0KICAgICAgICB9CgoJCWdyb3VwICJWaXNpdEVuZ2xhbmQiIHsKCQkJdmVEYXRhTGFrZSA9IHNvZnR3YXJlc3lzdGVtICJWaXNpdCBFbmdsYW5kIERhdGEgTGFrZSIgIiIgIkV4dGVybmFsIFN5c3RlbSIKCQkJdmlzaXRvclJlYWR5ID0gc29mdHdhcmVzeXN0ZW0gIlZpc2l0b3IgUmVhZHkiICJFbnRyeSBsZXZlbCBxdWFsaXR5IHNjaGVtZSIgIkV4dGVybmFsIFN5c3RlbSIKCQl9CgoJCW9wZXJhdG9yIC0+IHNob3J0VGVybUxldHMgIlJlZ2lzdGVycyBhIHNob3J0IHRlcm0gbGV0IiAiIgoJCW9wZXJhdG9yIC0+IG1hbmFnZW1lbnRDb21wYW55ICJIaXJlIHRvIG1hbmFnZSBzaG9ydCB0ZXJtIGxldCIKCQlvcGVyYXRvciAtPiBib29raW5nUGxhdGZvcm0gIkxpc3RzIFNUTCBvbiBwbGF0Zm9ybSIKCQltYW5hZ2VtZW50Q29tcGFueSAtPiBzaG9ydFRlcm1MZXRzICJSZWdpc3RlciBzaG9ydCB0ZXJtIGxldHMgb24gYmVoYWxmIG9mIG9wZXJhdG9yIgoJCW1hbmFnZW1lbnRDb21wYW55IC0+IGJvb2tpbmdQbGF0Zm9ybSAiTGlzdHMgc2hvcnQgdGVybSBsZXQgb24gcGxhdGZvcm0iCgkJYm9va2luZ1BsYXRmb3JtIC0+IHNob3J0VGVybUxldHMgIlZlcmlmeSByZWdpc3RyYXRpb24gb2Ygc2hvcnQgdGVybSBsZXQiCgkJbG9jYWxBdXRob3JpdHlQbGFubmVyIC0+IHNob3J0VGVybUxldHMgIlJldHJpZXZlIGRhdGEgb24gc2hvcnQgdGVybSBsZXRzIgoJCXNob3J0VGVybUxldHMgLT4gdmlzaXRvclJlYWR5ICJPcHRpb25hbGx5IGVucm9sIG9wZXJhdG9ycyIKCQlzaG9ydFRlcm1MZXRzIC0+IHZlRGF0YUxha2UgIlN1cHBseSBkYXRhIG9uIHJlZ2lzdHJhdGlvbiIKCQlwb2xpY3lNYWtlcnMgLT4gc2hvcnRUZXJtTGV0cyAiUmV0cmlldmUgZGF0YSBvbiBzaG9ydCB0ZXJtIGxldHMiCgoJCXNob3J0VGVybUxldHMgLT4gZ292cGF5ICJVc2VyIG1ha2VzIGEgcGF5bWVudCIKCQlzaG9ydFRlcm1MZXRzIC0+IG9uZUxvZ2luICJVc2VyIHNpZ25zIGludG8gc2VydmljZSIKCQlzaG9ydFRlcm1MZXRzIC0+IGdvdk5vdGlmeSAiTm90aWZ5IHVzZXIgb2YgY29tcGxldGVkIGFwcGxpY2F0aW9uIgoKCQlvcGVyYXRvciAtPiBhcHBsaWNhdGlvbiAiUmVnaXN0ZXJzIGEgc2hvcnQgdGVybSBsZXQiICJIVFRQUyIKCQlhZG1pbiAtPiBhcHBsaWNhdGlvbiAiUmVzb2x2ZSBxdWVyaWVzIGFib3V0IHJlZ2lzdHJhdGlvbnMiICJIVFRQUyIKCQlsb2NhbEF1dGhvcml0eU9mZmljZXIgLT4gYXBwbGljYXRpb24gIkZpbmRzIGNvbnRhY3QgZGV0YWlscyBmcm9tIHJlZ2lzdGVyIiAiSFRUUFMiCgkJYXBwbGljYXRpb24gLT4gcmVnaXN0ZXIgIlN0b3JlIHNob3J0IHRlcm0gbGV0IGRhdGEiICJUQ1AvU1FMIgoJCWFwcGxpY2F0aW9uIC0+IGdvdnBheSAiVXNlciBtYWtlcyBhIHBheW1lbnQiICJIVFRQUyIKCQlhcHBsaWNhdGlvbiAtPiBvbmVMb2dpbiAiVXNlciBzaWducyBpbnRvIHNlcnZpY2UiICJIVFRQUyIKCQlhcHBsaWNhdGlvbiAtPiBhdXRoUHJvdmlkZXIgIkFkbWluIHVzZXJzIHNpZ24gaW50byBzZXJ2aWNlIiAiSFRUUFMiCgkJYXBwbGljYXRpb24gLT4gZ292Tm90aWZ5ICJOb3RpZnkgdXNlciBvZiBjb21wbGV0ZWQgYXBwbGljYXRpb24iICJIVFRQUyIKCQlhcHBsaWNhdGlvbiAtPiBzZXNzaW9uU3RvcmUgIlN0b3JlIHByb2dyZXNzIG9mIHVzZXIncyByZWdpc3RyYXRpb24iCgkJYXBwbGljYXRpb24gLT4gZmlsZVN0b3JlICJVcGxvYWQvcmV2aWV3IGNvbXBsaWFuY2UgZG9jdW1lbnRzIiAiSFRUUFMiCgkJYXBwbGljYXRpb24gLT4gb3NQbGFjZXNBcGkgIlJlcXVlc3QgYWRkcmVzc2VzIGF0IHBvc3Rjb2RlIiAiSFRUUFMiCiAgICB9CgogICAgdmlld3MgewogICAgICAgIHByb3BlcnRpZXMgewogICAgICAgICAgICAiYzRwbGFudHVtbC5lbGVtZW50UHJvcGVydGllcyIgInRydWUiCiAgICAgICAgICAgICJzdHJ1Y3R1cml6ci5zdHlsZS5jb2xvcnMucHJpbWFyeSIgIiM0ODVmYzciCiAgICAgICAgICAgICJzdHJ1Y3R1cml6ci5zdHlsZS5jb2xvcnMuc2Vjb25kYXJ5IiAiI2ZmZmZmZiIKICAgICAgICAgICAgInN0cnVjdHVyaXpyLnN0eWxlLmxvZ28ucGF0aCIgInNpdGUvbG9nby5qcGciCiAgICAgICAgfQoKICAgICAgICBzeXN0ZW1Db250ZXh0IHNob3J0VGVybUxldHMgewogICAgICAgICAgICBpbmNsdWRlICoKICAgICAgICAgICAgYXV0b0xheW91dAogICAgICAgIH0KCiAgICAgICAgY29udGFpbmVyIHNob3J0VGVybUxldHMgIkNvbnRhaW5lcnMiIHsKCQkJdGl0bGUgIltDb250YWluZXJdIFNob3J0IFRlcm0gTGV0cyBSZWdpc3RyYXRpb24gLSBUYXJnZXQgQXJjaGl0ZWN0dXJlIgogICAgICAgICAgICBpbmNsdWRlICoKICAgICAgICAgICAgYXV0b0xheW91dAogICAgICAgIH0KCgkJc3lzdGVtbGFuZHNjYXBlICJ3aG9sZVByb2JsZW0iIHsKCQkJdGl0bGUgIlNvbHZpbmcgYSB3aG9sZSBwcm9ibGVtIGZvciB1c2VycyIKCQkJaW5jbHVkZSBvcGVyYXRvciBib29raW5nUGxhdGZvcm0gbG9jYWxBdXRob3JpdHlPZmZpY2VyIGxvY2FsQXV0aG9yaXR5UGxhbm5lciBzaG9ydFRlcm1MZXRzIGdvdnBheSBvbmVMb2dpbgoJCQlhdXRvTGF5b3V0CgkJfQoKCQlkeW5hbWljICogIkJvb2tpbmdQbGF0Zm9ybVZhbGlkYXRpbmdSZWdpc3RyYXRpb24iIHsKCQkJdGl0bGUgIlBvc3NpYmxlIHBhdHRlcm4gZm9yIEJvb2tpbmcgUGxhdGZvcm0gdmFsaWRhdGluZyByZWdpc3RyYXRpb24iCgkJCgkJCW9wZXJhdG9yIC0+IHNob3J0VGVybUxldHMgIlJlZ2lzdGVycyBwcm9wZXJ0eSBhcyBhIHNob3J0IHRlcm0gbGV0IgoJCQlvcGVyYXRvciAtPiBib29raW5nUGxhdGZvcm0gIkxpc3RzIHByb3BlcnR5IG9uIHBsYXRmb3JtIgoJCQlib29raW5nUGxhdGZvcm0gLT4gc2hvcnRUZXJtTGV0cyAiU2VuZHMgcmVnaXN0cmF0aW9uIG51bWJlciBhbmQgcHJvcGVydHkgYWRkcmVzcyIKCQkJc2hvcnRUZXJtTGV0cyAtPiBib29raW5nUGxhdGZvcm0gIkNvbmZpcm1zIHRoZSByZWdpc3RyYXRpb24gbnVtYmVyIGlzIHZhbGlkIgoJCX0KCiAgICAgICAgc3R5bGVzIHsKICAgICAgICAgICAgZWxlbWVudCAiUGVyc29uIiB7CiAgICAgICAgICAgICAgICBjb2xvciAjZmZmZmZmCgkJCQliYWNrZ3JvdW5kICM5OTk5OTkKICAgICAgICAgICAgICAgIGZvbnRTaXplIDIyCiAgICAgICAgICAgICAgICBzaGFwZSBQZXJzb24KICAgICAgICAgICAgfQogICAgICAgICAgICBlbGVtZW50ICJTb2Z0d2FyZSBTeXN0ZW0iIHsKICAgICAgICAgICAgICAgIGJhY2tncm91bmQgIzExNjhiZAogICAgICAgICAgICAgICAgY29sb3IgI2ZmZmZmZgogICAgICAgICAgICB9CiAgICAgICAgICAgIGVsZW1lbnQgIkV4dGVybmFsIFN5c3RlbSIgewogICAgICAgICAgICAgICAgYmFja2dyb3VuZCAjOTk5OTk5CiAgICAgICAgICAgICAgICBjb2xvciAjZmZmZmZmCiAgICAgICAgICAgIH0KICAgICAgICAgICAgZWxlbWVudCAiQ29udGFpbmVyIiB7CiAgICAgICAgICAgICAgICBiYWNrZ3JvdW5kICM0MzhkZDUKICAgICAgICAgICAgICAgIGNvbG9yICNmZmZmZmYKICAgICAgICAgICAgfQogICAgICAgICAgICBlbGVtZW50ICJXZWIgQnJvd3NlciIgewogICAgICAgICAgICAgICAgc2hhcGUgV2ViQnJvd3NlcgogICAgICAgICAgICB9CiAgICAgICAgICAgIGVsZW1lbnQgIk1vYmlsZSBBcHAiIHsKICAgICAgICAgICAgICAgIHNoYXBlIE1vYmlsZURldmljZUxhbmRzY2FwZQogICAgICAgICAgICB9CiAgICAgICAgICAgIGVsZW1lbnQgIkRhdGFiYXNlIiB7CiAgICAgICAgICAgICAgICBzaGFwZSBDeWxpbmRlcgogICAgICAgICAgICB9CiAgICAgICAgICAgIGVsZW1lbnQgIkNvbXBvbmVudCIgewogICAgICAgICAgICAgICAgYmFja2dyb3VuZCAjODViYmYwCiAgICAgICAgICAgICAgICBjb2xvciAjMDAwMDAwCiAgICAgICAgICAgIH0KICAgICAgICAgICAgZWxlbWVudCAiRmFpbG92ZXIiIHsKICAgICAgICAgICAgICAgIG9wYWNpdHkgMjUKICAgICAgICAgICAgfQogICAgICAgIH0KICAgIH0KfQo="
+  },
+  "views" : {
+    "configuration" : {
+      "branding" : { },
+      "properties" : {
+        "structurizr.style.colors.primary" : "#485fc7",
+        "structurizr.style.logo.path" : "site/logo.jpg",
+        "structurizr.style.colors.secondary" : "#ffffff",
+        "c4plantuml.elementProperties" : "true"
+      },
+      "styles" : {
+        "elements" : [ {
+          "background" : "#999999",
+          "color" : "#ffffff",
+          "fontSize" : 22,
+          "shape" : "Person",
+          "tag" : "Person"
+        }, {
+          "background" : "#1168bd",
+          "color" : "#ffffff",
+          "tag" : "Software System"
+        }, {
+          "background" : "#999999",
+          "color" : "#ffffff",
+          "tag" : "External System"
+        }, {
+          "background" : "#438dd5",
+          "color" : "#ffffff",
+          "tag" : "Container"
+        }, {
+          "shape" : "WebBrowser",
+          "tag" : "Web Browser"
+        }, {
+          "shape" : "MobileDeviceLandscape",
+          "tag" : "Mobile App"
+        }, {
+          "shape" : "Cylinder",
+          "tag" : "Database"
+        }, {
+          "background" : "#85bbf0",
+          "color" : "#000000",
+          "tag" : "Component"
+        }, {
+          "opacity" : 25,
+          "tag" : "Failover"
+        } ]
+      },
+      "terminology" : { }
+    },
+    "containerViews" : [ {
+      "automaticLayout" : {
+        "applied" : false,
+        "edgeSeparation" : 0,
+        "implementation" : "Graphviz",
+        "nodeSeparation" : 300,
+        "rankDirection" : "TopBottom",
+        "rankSeparation" : 300,
+        "vertices" : false
+      },
+      "elements" : [ {
+        "id" : "1",
+        "x" : 0,
+        "y" : 0
+      }, {
+        "id" : "2",
+        "x" : 0,
+        "y" : 0
+      }, {
+        "id" : "5",
+        "x" : 0,
+        "y" : 0
+      }, {
+        "id" : "8",
+        "x" : 0,
+        "y" : 0
+      }, {
+        "id" : "9",
+        "x" : 0,
+        "y" : 0
+      }, {
+        "id" : "10",
+        "x" : 0,
+        "y" : 0
+      }, {
+        "id" : "11",
+        "x" : 0,
+        "y" : 0
+      }, {
+        "id" : "12",
+        "x" : 0,
+        "y" : 0
+      }, {
+        "id" : "14",
+        "x" : 0,
+        "y" : 0
+      }, {
+        "id" : "15",
+        "x" : 0,
+        "y" : 0
+      }, {
+        "id" : "16",
+        "x" : 0,
+        "y" : 0
+      }, {
+        "id" : "17",
+        "x" : 0,
+        "y" : 0
+      } ],
+      "externalSoftwareSystemBoundariesVisible" : false,
+      "key" : "Containers",
+      "order" : 2,
+      "relationships" : [ {
+        "id" : "33"
+      }, {
+        "id" : "34"
+      }, {
+        "id" : "36"
+      }, {
+        "id" : "38"
+      }, {
+        "id" : "39"
+      }, {
+        "id" : "40"
+      }, {
+        "id" : "41"
+      }, {
+        "id" : "43"
+      }, {
+        "id" : "44"
+      }, {
+        "id" : "45"
+      }, {
+        "id" : "46"
+      } ],
+      "softwareSystemId" : "13",
+      "title" : "[Container] Short Term Lets Registration - Target Architecture"
+    } ],
+    "dynamicViews" : [ {
+      "elements" : [ {
+        "id" : "2",
+        "x" : 0,
+        "y" : 0
+      }, {
+        "id" : "6",
+        "x" : 0,
+        "y" : 0
+      }, {
+        "id" : "13",
+        "x" : 0,
+        "y" : 0
+      } ],
+      "externalBoundariesVisible" : false,
+      "key" : "BookingPlatformValidatingRegistration",
+      "order" : 4,
+      "relationships" : [ {
+        "description" : "Registers property as a short term let",
+        "id" : "20",
+        "order" : "1",
+        "response" : false
+      }, {
+        "description" : "Lists property on platform",
+        "id" : "22",
+        "order" : "2",
+        "response" : false
+      }, {
+        "description" : "Sends registration number and property address",
+        "id" : "25",
+        "order" : "3",
+        "response" : false
+      }, {
+        "description" : "Confirms the registration number is valid",
+        "id" : "25",
+        "order" : "4",
+        "response" : true
+      } ],
+      "title" : "Possible pattern for Booking Platform validating registration"
+    } ],
+    "systemContextViews" : [ {
+      "automaticLayout" : {
+        "applied" : false,
+        "edgeSeparation" : 0,
+        "implementation" : "Graphviz",
+        "nodeSeparation" : 300,
+        "rankDirection" : "TopBottom",
+        "rankSeparation" : 300,
+        "vertices" : false
+      },
+      "elements" : [ {
+        "id" : "1",
+        "x" : 0,
+        "y" : 0
+      }, {
+        "id" : "2",
+        "x" : 0,
+        "y" : 0
+      }, {
+        "id" : "3",
+        "x" : 0,
+        "y" : 0
+      }, {
+        "id" : "4",
+        "x" : 0,
+        "y" : 0
+      }, {
+        "id" : "5",
+        "x" : 0,
+        "y" : 0
+      }, {
+        "id" : "6",
+        "x" : 0,
+        "y" : 0
+      }, {
+        "id" : "7",
+        "x" : 0,
+        "y" : 0
+      }, {
+        "id" : "8",
+        "x" : 0,
+        "y" : 0
+      }, {
+        "id" : "9",
+        "x" : 0,
+        "y" : 0
+      }, {
+        "id" : "10",
+        "x" : 0,
+        "y" : 0
+      }, {
+        "id" : "11",
+        "x" : 0,
+        "y" : 0
+      }, {
+        "id" : "12",
+        "x" : 0,
+        "y" : 0
+      }, {
+        "id" : "13",
+        "x" : 0,
+        "y" : 0
+      }, {
+        "id" : "18",
+        "x" : 0,
+        "y" : 0
+      }, {
+        "id" : "19",
+        "x" : 0,
+        "y" : 0
+      } ],
+      "enterpriseBoundaryVisible" : true,
+      "generatedKey" : true,
+      "key" : "SystemContext-001",
+      "order" : 1,
+      "relationships" : [ {
+        "id" : "20"
+      }, {
+        "id" : "21"
+      }, {
+        "id" : "22"
+      }, {
+        "id" : "23"
+      }, {
+        "id" : "24"
+      }, {
+        "id" : "25"
+      }, {
+        "id" : "26"
+      }, {
+        "id" : "27"
+      }, {
+        "id" : "28"
+      }, {
+        "id" : "29"
+      }, {
+        "id" : "30"
+      }, {
+        "id" : "31"
+      }, {
+        "id" : "32"
+      }, {
+        "id" : "35"
+      }, {
+        "id" : "37"
+      }, {
+        "id" : "42"
+      }, {
+        "id" : "47"
+      } ],
+      "softwareSystemId" : "13"
+    } ],
+    "systemLandscapeViews" : [ {
+      "automaticLayout" : {
+        "applied" : false,
+        "edgeSeparation" : 0,
+        "implementation" : "Graphviz",
+        "nodeSeparation" : 300,
+        "rankDirection" : "TopBottom",
+        "rankSeparation" : 300,
+        "vertices" : false
+      },
+      "elements" : [ {
+        "id" : "2",
+        "x" : 0,
+        "y" : 0
+      }, {
+        "id" : "4",
+        "x" : 0,
+        "y" : 0
+      }, {
+        "id" : "5",
+        "x" : 0,
+        "y" : 0
+      }, {
+        "id" : "6",
+        "x" : 0,
+        "y" : 0
+      }, {
+        "id" : "8",
+        "x" : 0,
+        "y" : 0
+      }, {
+        "id" : "9",
+        "x" : 0,
+        "y" : 0
+      }, {
+        "id" : "13",
+        "x" : 0,
+        "y" : 0
+      } ],
+      "enterpriseBoundaryVisible" : true,
+      "key" : "wholeProblem",
+      "order" : 3,
+      "relationships" : [ {
+        "id" : "20"
+      }, {
+        "id" : "22"
+      }, {
+        "id" : "25"
+      }, {
+        "id" : "26"
+      }, {
+        "id" : "30"
+      }, {
+        "id" : "31"
+      }, {
+        "id" : "37"
+      } ],
+      "title" : "Solving a whole problem for users"
+    } ]
+  }
+}

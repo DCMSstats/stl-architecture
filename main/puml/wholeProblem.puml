@@ -1,0 +1,35 @@
+@startuml
+set separator none
+title Solving a whole problem for users
+
+top to bottom direction
+
+!include <C4/C4>
+!include <C4/C4_Context>
+
+AddBoundaryTag("Local Authority", $borderColor="#cccccc", $fontColor="#cccccc", $borderStyle="dashed")
+Boundary(group_1, "Local Authority", $tags="Local Authority") {
+  Person(Planner, "Planner", $descr="Plans housing schemes in Local Authority area", $tags="", $link="")
+  Person(Officer, "Officer", $descr="Uses register to solve problems in local area", $tags="", $link="")
+}
+
+AddBoundaryTag("Short Term Lets Service", $borderColor="#cccccc", $fontColor="#cccccc", $borderStyle="dashed")
+Boundary(group_2, "Short Term Lets Service", $tags="Short Term Lets Service") {
+  System(ShortTermLetsRegistration, "Short Term Lets Registration", $descr="Platform for registering, and querying short term lets", $tags="", $link="")
+}
+
+Person(Operator, "Operator", $descr="Owns and runs a short term let", $tags="", $link="")
+System(BookingPlatform, "Booking Platform", $descr="Lists short term lets and facilitates bookings", $tags="", $link="")
+System(GOVUKPay, "GOV.UK Pay", $descr="Allows users to make payments", $tags="", $link="")
+System(OneLogin, "One Login", $descr="Let's users sign in", $tags="", $link="")
+
+Rel(Operator, ShortTermLetsRegistration, "Registers a short term let", $techn="", $tags="", $link="")
+Rel(Operator, BookingPlatform, "Lists STL on platform", $techn="", $tags="", $link="")
+Rel(BookingPlatform, ShortTermLetsRegistration, "Verify registration of short term let", $techn="", $tags="", $link="")
+Rel(Planner, ShortTermLetsRegistration, "Retrieve data on short term lets", $techn="", $tags="", $link="")
+Rel(ShortTermLetsRegistration, GOVUKPay, "User makes a payment", $techn="", $tags="", $link="")
+Rel(ShortTermLetsRegistration, OneLogin, "User signs into service", $techn="", $tags="", $link="")
+Rel(Officer, ShortTermLetsRegistration, "Finds contact details from register", $techn="HTTPS", $tags="", $link="")
+
+SHOW_LEGEND(true)
+@enduml

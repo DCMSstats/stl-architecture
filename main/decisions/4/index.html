@@ -1,0 +1,175 @@
+<!doctype html>
+<html lang="en" data-theme="light" class="has-background-light">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title> Geographically identifying units | Short Term Lets Registration</title>
+    <link href="https://cdn.jsdelivr.net/npm/bulma@1.0.2/css/bulma.min.css" rel="stylesheet">
+    <link href="../../../style.css" rel="stylesheet">
+    <link href="./../../style-branding.css" rel="stylesheet">
+    <script type="text/javascript" src="../../../modal.js"></script>
+    <script type="text/javascript" src="../../../svg-modal.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/svg-pan-zoom@3.6.1/dist/svg-pan-zoom.min.js"></script>
+  </head>
+  <body>
+    <script type="text/javascript" src="../../../header.js"></script>
+    <nav class="navbar" role="navigation" aria-label="main navigation">
+      <div class="navbar-brand has-site-branding"><a href="../../" class="navbar-item"><span class="has-text-weight-semibold has-site-branding">Short Term Lets Registration</span></a></div>
+      <div class="navbar-menu has-site-branding">
+        <div class="navbar-end">
+          <div class="navbar-item"><input class="input is-small is-rounded has-site-branding" id="search" type="search" size="30" maxlength="50" placeholder="Search..." onkeyup="redirect(event, value, '../../search/')"></div>
+          <div class="navbar-item has-dropdown is-hoverable"><a class="navbar-link has-site-branding">main</a>
+            <div class="navbar-dropdown is-right"><a href="../../../main/" class="navbar-item">main</a>
+              <hr class="navbar-divider">
+              <div class="navbar-item has-text-grey-light"><span>v</span><span>0.0.0</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </nav>
+    <div class="site-layout" id="site">
+      <aside class="menu p-3">
+        <p class="menu-label">General</p>
+        <ul class="menu-list has-site-branding">
+          <li><a href="../../" class="">Home</a><a href="../" class="is-active">Decisions</a><a href="../../software-systems/" class="">Software Systems</a><a href="../../data-modelling-of-let-ownership-and-management/" class="">Data modelling of let ownership and management</a><a href="../../solving-a-whole-problem/" class="">Solving a whole problem</a></li>
+        </ul>
+        <p class="menu-label">Software systems</p>
+        <ul class="menu-list has-site-branding">
+          <li><a href="../../authentication-provider/" class="">Authentication Provider</a><a href="../../booking-platform/" class="">Booking Platform</a><a href="../../gov.uk-notify/" class="">GOV.UK Notify</a><a href="../../gov.uk-pay/" class="">GOV.UK Pay</a><a href="../../one-login/" class="">One Login</a><a href="../../os-places-api/" class="">OS Places API</a><a href="../../policy-makers/" class="">Policy Makers</a><a href="../../short-term-lets-registration/" class="">Short Term Lets Registration</a><a href="../../visit-england-data-lake/" class="">Visit England Data Lake</a><a href="../../visitor-ready/" class="">Visitor Ready</a></li>
+        </ul>
+      </aside>
+      <div class="container is-fluid has-background-white">
+        <div class="content p-3">
+          <div><h1>Geographically identifying units</h1>
+<p>Date: 2024-09-11</p>
+<h2>Status</h2>
+<p>In Progress</p>
+<h2>Context</h2>
+<p>One of our riskiest assumptions in this alpha is "We assume that we will be able to technically capture all types of STL (e.g. using unique geographic location)". It is important for us to capture geographic location of short-term lets:</p>
+<ol>
+ <li>To be able to determine the number of short-term lets in an area (all of these options will be combined with an address, so we won't consider this too heavily in this ADR)</li>
+ <li>To help us ensure that short term lets are not double counted and improve data quality (although the registration fee would likely discourage double registration)</li>
+ <li>To determine if a registration number matches a particular short-term let</li>
+</ol>
+<p>Unlike other types of rental property in England, short-term lets do not match uniquely to UPRNs or addresses:</p>
+<ul>
+ <li>Parts of a property let separately (e.g. individual rooms or a basement and an outhouse)</li>
+ <li>Yurts let separately in a single field at one address</li>
+</ul>
+<p>It is also important that whatever method we choose can be used with an offline journey, and without JavaScript in the online journey.</p>
+<p>Short-term lets that occupy all of an address would not be required to supply more detail. Short-term lets that do not occupy all of an address but are the only short-term let on site would probably not be required to supply more detail.</p>
+<h2>Options</h2>
+<p>Options to be evaluated on:</p>
+<ol>
+ <li>How easy it is to use the data to de-duplicate registrations?</li>
+ <li>How easy it is to use the data to find a short-term let?</li>
+ <li>How easy it is to use the data to determine if a registration matches a particular short-term let at an address?</li>
+ <li>How easy it is to for the operator to provide?</li>
+ <li>How easy it is to for the operator to provide without JavaScript?</li>
+ <li>How easy it is to for the operator to provide offline?</li>
+ <li>How easy it is to for the operator to provide for multiple properties?</li>
+</ol>
+<h3>Text description</h3>
+<p>Operators provide a text description of whatever section of an address is part of the short-term let.</p>
+<ol>
+ <li>How easy it is to use the data to de-duplicate registrations? 
+  <ul>
+   <li>Difficult. Depending on the guidance, the description provided might be vague, or change over time (the marketing name of a yurt)</li>
+  </ul></li>
+ <li>How easy it is to use the data to find a short-term let? 
+  <ul>
+   <li>Difficult. Depending on the guidance, the description provided might be vague, or change over time (the marketing name of a yurt)</li>
+  </ul></li>
+ <li>How easy it is to use the data to determine if a registration matches a particular short-term let at an address? 
+  <ul>
+   <li>Difficult. Depending on the guidance, the description provided might be vague, or change over time (the marketing name of a yurt)</li>
+  </ul></li>
+ <li>How easy it is to for the operator to provide? 
+  <ul>
+   <li>Easy.</li>
+  </ul></li>
+ <li>How easy it is to for the operator to provide without JavaScript? 
+  <ul>
+   <li>Easy.</li>
+  </ul></li>
+ <li>How easy it is to for the operator to provide offline? 
+  <ul>
+   <li>Easy.</li>
+  </ul></li>
+ <li>How easy it is to for the operator to provide for multiple properties? 
+  <ul>
+   <li>Easy.</li>
+  </ul></li>
+</ol>
+<h3>GPS coordinates</h3>
+<p>Operators coordinates of the location of the short-term let. Could be Ordnance Survey Eastings and Northings.</p>
+<ol>
+ <li>How easy it is to use the data to de-duplicate registrations? 
+  <ul>
+   <li>Not easy, it would be hard to balance what GPS coordinates are the close enough to be called the same without also de-deduplicating legitimately different lets.</li>
+  </ul></li>
+ <li>How easy it is to use the data to find a short-term let? 
+  <ul>
+   <li>Easy for working across large areas like a field, but difficult/impossible across smaller areas like rooms in a house, particularly where one short-term let is directly above another.</li>
+  </ul></li>
+ <li>How easy it is to use the data to determine if a registration matches a particular short-term let at an address? 
+  <ul>
+   <li>Easy for working across large areas like a field, but difficult/impossible across smaller areas like rooms in a house, particularly where one short-term let is directly above another.</li>
+  </ul></li>
+ <li>How easy it is to for the operator to provide? 
+  <ul>
+   <li>Easy. An operator can pick a location on a map.</li>
+  </ul></li>
+ <li>How easy it is to for the operator to provide without JavaScript? 
+  <ul>
+   <li>Difficult, operator needs to find coordinates to input directly.</li>
+  </ul></li>
+ <li>How easy it is to for the operator to provide offline? 
+  <ul>
+   <li>Difficult, operator needs to find coordinates to input directly.</li>
+  </ul></li>
+ <li>How easy it is to for the operator to provide for multiple properties? 
+  <ul>
+   <li>Not too difficult, but does require knowledge of the individual let.</li>
+  </ul></li>
+</ol>
+<h3>Drawn Sections</h3>
+<p>Operators draw the boundaries of the short-term let on a map. This could be provided digitally online with javascript. Offline or without Javascript, the user would probably have to mark the area on a physical map to be digitised by an administrator.</p>
+<ol>
+ <li>How easy it is to use the data to de-duplicate registrations? 
+  <ul>
+   <li>Not easy, it would be hard to balance what boundaries lines are close enough to be called the same without also de-deduplicating legitimately different lets.</li>
+  </ul></li>
+ <li>How easy it is to use the data to find a short-term let? 
+  <ul>
+   <li>Easy for working across large areas like a field, simple-ish across smaller areas like rooms in a house, doesn't solve where one short-term let is directly above another.</li>
+  </ul></li>
+ <li>How easy it is to use the data to determine if a registration matches a particular short-term let at an address? 
+  <ul>
+   <li>Easy for working across large areas like a field, simple-ish across smaller areas like rooms in a house, doesn't solve where one short-term let is directly above another.</li>
+  </ul></li>
+ <li>How easy it is to for the operator to provide? 
+  <ul>
+   <li>Easy. An operator can mark a location on a map.</li>
+  </ul></li>
+ <li>How easy it is to for the operator to provide without JavaScript? 
+  <ul>
+   <li>Difficult, operator needs print and mark on a map on paper and then scan in. This would then need digitising by an administrator.</li>
+  </ul></li>
+ <li>How easy it is to for the operator to provide offline? 
+  <ul>
+   <li>Difficult, operator needs print and mark on a map on paper. This would then need digitising by an administrator.</li>
+  </ul></li>
+ <li>How easy it is to for the operator to provide for multiple properties? 
+  <ul>
+   <li>Difficult, would require fairly substantial knowledge of the individual let.</li>
+  </ul></li>
+</ol>
+<h2>Recommendation</h2></div>
+        </div>
+      </div>
+    </div>
+    <script type="text/javascript" src="../../../reformat-mermaid.js"></script>
+    <script type="module">import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11.2.0/dist/mermaid.esm.min.mjs';</script>
+  </body>
+</html>

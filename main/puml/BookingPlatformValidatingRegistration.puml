@@ -1,0 +1,23 @@
+@startuml
+set separator none
+title Possible pattern for Booking Platform validating registration
+
+top to bottom direction
+
+!include <C4/C4>
+!include <C4/C4_Context>
+
+AddBoundaryTag("Short Term Lets Service", $borderColor="#cccccc", $fontColor="#cccccc", $borderStyle="dashed")
+Boundary(group_1, "Short Term Lets Service", $tags="Short Term Lets Service") {
+  System(ShortTermLetsRegistration, "Short Term Lets Registration", $descr="Platform for registering, and querying short term lets", $tags="", $link="")
+}
+
+Person(Operator, "Operator", $descr="Owns and runs a short term let", $tags="", $link="")
+System(BookingPlatform, "Booking Platform", $descr="Lists short term lets and facilitates bookings", $tags="", $link="")
+Rel(Operator, ShortTermLetsRegistration, "1. Registers property as a short term let", $techn="", $tags="", $link="")
+Rel(Operator, BookingPlatform, "2. Lists property on platform", $techn="", $tags="", $link="")
+Rel(BookingPlatform, ShortTermLetsRegistration, "3. Sends registration number and property address", $techn="", $tags="", $link="")
+Rel(ShortTermLetsRegistration, BookingPlatform, "4. Confirms the registration number is valid", $techn="", $tags="", $link="")
+
+SHOW_LEGEND(true)
+@enduml

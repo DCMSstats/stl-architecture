@@ -1,0 +1,40 @@
+@startuml
+set separator none
+title [Container] Short Term Lets Registration - Target Architecture
+
+top to bottom direction
+
+!include <C4/C4>
+!include <C4/C4_Context>
+!include <C4/C4_Container>
+
+Person(Administrator, "Administrator", $descr="Manages registrations", $tags="", $link="")
+Person(Operator, "Operator", $descr="Owns and runs a short term let", $tags="", $link="")
+Person(Officer, "Officer", $descr="Uses register to solve problems in local area", $tags="", $link="")
+System(GOVUKPay, "GOV.UK Pay", $descr="Allows users to make payments", $tags="", $link="")
+System(OneLogin, "One Login", $descr="Let's users sign in", $tags="", $link="")
+System(GOVUKNotify, "GOV.UK Notify", $descr="Sends users notifications", $tags="", $link="")
+System(AuthenticationProvider, "Authentication Provider", $descr="Sign in for administrator's users", $tags="", $link="")
+System(OSPlacesAPI, "OS Places API", $descr="Identifies UK Addresses", $tags="", $link="")
+
+System_Boundary("ShortTermLetsRegistration_boundary", "Short Term Lets Registration", $tags="") {
+  Container(ShortTermLetsRegistration.WebApplication, "Web Application", $techn="TBD", $descr="Allows people to register short term lets and provides information", $tags="", $link="")
+  ContainerDb(ShortTermLetsRegistration.STLRegister, "STL Register", $techn="TBD", $descr="Register of short term lets", $tags="", $link="")
+  ContainerDb(ShortTermLetsRegistration.SessionStore, "Session Store", $techn="TBD", $descr="Session store for web application", $tags="", $link="")
+  ContainerDb(ShortTermLetsRegistration.FileStore, "File Store", $techn="TBD", $descr="Storage for compliance documents", $tags="", $link="")
+}
+
+Rel(Operator, ShortTermLetsRegistration.WebApplication, "Registers a short term let", $techn="HTTPS", $tags="", $link="")
+Rel(Administrator, ShortTermLetsRegistration.WebApplication, "Resolve queries about registrations", $techn="HTTPS", $tags="", $link="")
+Rel(Officer, ShortTermLetsRegistration.WebApplication, "Finds contact details from register", $techn="HTTPS", $tags="", $link="")
+Rel(ShortTermLetsRegistration.WebApplication, ShortTermLetsRegistration.STLRegister, "Store short term let data", $techn="TCP/SQL", $tags="", $link="")
+Rel(ShortTermLetsRegistration.WebApplication, GOVUKPay, "User makes a payment", $techn="HTTPS", $tags="", $link="")
+Rel(ShortTermLetsRegistration.WebApplication, OneLogin, "User signs into service", $techn="HTTPS", $tags="", $link="")
+Rel(ShortTermLetsRegistration.WebApplication, AuthenticationProvider, "Admin users sign into service", $techn="HTTPS", $tags="", $link="")
+Rel(ShortTermLetsRegistration.WebApplication, GOVUKNotify, "Notify user of completed application", $techn="HTTPS", $tags="", $link="")
+Rel(ShortTermLetsRegistration.WebApplication, ShortTermLetsRegistration.SessionStore, "Store progress of user's registration", $techn="", $tags="", $link="")
+Rel(ShortTermLetsRegistration.WebApplication, ShortTermLetsRegistration.FileStore, "Upload/review compliance documents", $techn="HTTPS", $tags="", $link="")
+Rel(ShortTermLetsRegistration.WebApplication, OSPlacesAPI, "Request addresses at postcode", $techn="HTTPS", $tags="", $link="")
+
+SHOW_LEGEND(true)
+@enduml
