@@ -1,8 +1,10 @@
 # Short Term Lets Architecture
 
-This repository holds information for the development of the Architecture for the Short Term Lets Registry, including architecture diagrams, architectural decision records and other information.
+This repository holds information for the development of the Architecture for the Short Term Lets Registry, including architecture diagrams, architectural decision records and other information. 
 
-We like to [Visualise Architecture](https://github.com/madetech/architecture-handbook/blob/main/learning_paths/visualising_architecture.md). C4 Model and Structurizr are one way to achieving this.
+The project is currently in an alpha stage so decisions here may change before the service is live, and some of the documents are speculative to discuss with user groups.
+
+View the information at https://dcmsstats.github.io/stl-architecture
 
 ## Local Interactive Server
 
