@@ -9,9 +9,9 @@ top to bottom direction
 !include <C4/C4_Container>
 !include <C4/C4_Component>
 
-Person(Administrator, "Administrator", $descr="Manages registrations", $tags="", $link="")
-Person(Operator, "Operator", $descr="Owns and runs a short term let", $tags="", $link="")
-Person(Officer, "Officer", $descr="Uses register to solve problems in local area", $tags="", $link="")
+Person(ServiceAdministrator, "Service Administrator", $descr="Manages registrations", $tags="", $link="")
+Person(Owner, "Owner", $descr="Owns and runs a short-term let", $tags="", $link="")
+Person(LocalAuthorityOfficer, "Local Authority Officer", $descr="Uses register to solve problems in local area", $tags="", $link="")
 System(GOVUKPay, "GOV.UK Pay", $descr="Allows users to make payments", $tags="", $link="")
 System(OneLogin, "One Login", $descr="Let's users sign in", $tags="", $link="")
 System(GOVUKNotify, "GOV.UK Notify", $descr="Sends users notifications", $tags="", $link="")
@@ -28,9 +28,9 @@ Container_Boundary("ShortTermLetsRegistration.WebApplication_boundary", "Web App
   Component(ShortTermLetsRegistration.WebApplication.RegisterAdapter, "Register Adapter", $techn="", $descr="Wrapper around register database", $tags="", $link="")
 }
 
-Rel(Operator, ShortTermLetsRegistration.WebApplication.OperatorRegistration, "Registers a short term let", $techn="HTTPS", $tags="", $link="")
-Rel(Administrator, ShortTermLetsRegistration.WebApplication.InternalService, "Resolve queries about registrations", $techn="HTTPS", $tags="", $link="")
-Rel(Officer, ShortTermLetsRegistration.WebApplication.RegisterView, "Finds contact details from register", $techn="HTTPS", $tags="", $link="")
+Rel(Owner, ShortTermLetsRegistration.WebApplication.OperatorRegistration, "Registers a short term let", $techn="HTTPS", $tags="", $link="")
+Rel(ServiceAdministrator, ShortTermLetsRegistration.WebApplication.InternalService, "Resolve queries about registrations", $techn="HTTPS", $tags="", $link="")
+Rel(LocalAuthorityOfficer, ShortTermLetsRegistration.WebApplication.RegisterView, "Finds contact details from register", $techn="HTTPS", $tags="", $link="")
 Rel(ShortTermLetsRegistration.WebApplication.RegisterAdapter, ShortTermLetsRegistration.STLRegister, "Store short term let data", $techn="TCP/SQL", $tags="", $link="")
 Rel(ShortTermLetsRegistration.WebApplication.OperatorRegistration, GOVUKPay, "User makes a payment", $techn="HTTPS", $tags="", $link="")
 Rel(ShortTermLetsRegistration.WebApplication.OperatorRegistration, OneLogin, "User signs into service", $techn="HTTPS", $tags="", $link="")

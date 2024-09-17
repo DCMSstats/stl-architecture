@@ -24,11 +24,11 @@
       "status" : "Proposed",
       "title" : " Register Adapter"
     }, {
-      "content" : "# Geographically identifying units\nDate: 2024-09-11\n\n## Status\n\nIn Progress\n\n## Context\n\nOne of our riskiest assumptions in this alpha is \"We assume that we will be able to technically capture all types of STL (e.g. using unique geographic location)\". It is important for us to capture geographic location of short-term lets:\n1. To be able to determine the number of short-term lets in an area (all of these options will be combined with an address, so we won't consider this too heavily in this ADR)\n2. To help us ensure that short term lets are not double counted and improve data quality (although the registration fee would likely discourage double registration)\n3. To determine if a registration number matches a particular short-term let\n\nUnlike other types of rental property in England, short-term lets do not match uniquely to UPRNs or addresses:\n- Parts of a property let separately (e.g. individual rooms or a basement and an outhouse)\n- Yurts let separately in a single field at one address\n\nIt is also important that whatever method we choose can be used with an offline journey, and without JavaScript in the online journey.\n\nShort-term lets that occupy all of an address would not be required to supply more detail. Short-term lets that do not occupy all of an address but are the only short-term let on site would probably not be required to supply more detail. \n\n## Options\n\nOptions to be evaluated on:\n1. How easy it is to use the data to de-duplicate registrations?\n2. How easy it is to use the data to find a short-term let?\n3. How easy it is to use the data to determine if a registration matches a particular short-term let at an address?\n4. How easy it is to for the operator to provide?\n5. How easy it is to for the operator to provide without JavaScript?\n6. How easy it is to for the operator to provide offline?\n7. How easy it is to for the operator to provide for multiple properties?\n\n\n### Text description\n\nOperators provide a text description of whatever section of an address is part of the short-term let.\n\n1. How easy it is to use the data to de-duplicate registrations?\n   - Difficult. Depending on the guidance, the description provided might be vague, or change over time (the marketing name of a yurt) \n2. How easy it is to use the data to find a short-term let?\n   - Difficult. Depending on the guidance, the description provided might be vague, or change over time (the marketing name of a yurt) \n3. How easy it is to use the data to determine if a registration matches a particular short-term let at an address?\n   - Difficult. Depending on the guidance, the description provided might be vague, or change over time (the marketing name of a yurt) \n4. How easy it is to for the operator to provide?\n   - Easy. \n5. How easy it is to for the operator to provide without JavaScript?\n   - Easy. \n6. How easy it is to for the operator to provide offline?\n   - Easy. \n7. How easy it is to for the operator to provide for multiple properties?\n   - Easy. \n\n\n### GPS coordinates\n\nOperators coordinates of the location of the short-term let. Could be Ordnance Survey Eastings and Northings.\n\n1. How easy it is to use the data to de-duplicate registrations?\n   - Not easy, it would be hard to balance what GPS coordinates are the close enough to be called the same without also de-deduplicating legitimately different lets. \n2. How easy it is to use the data to find a short-term let?\n   - Easy for working across large areas like a field, but difficult/impossible across smaller areas like rooms in a house, particularly where one short-term let is directly above another.\n3. How easy it is to use the data to determine if a registration matches a particular short-term let at an address?\n   - Easy for working across large areas like a field, but difficult/impossible across smaller areas like rooms in a house, particularly where one short-term let is directly above another.\n4. How easy it is to for the operator to provide?\n   - Easy. An operator can pick a location on a map.\n5. How easy it is to for the operator to provide without JavaScript?\n   - Difficult, operator needs to find coordinates to input directly.\n6. How easy it is to for the operator to provide offline?\n   - Difficult, operator needs to find coordinates to input directly.\n7. How easy it is to for the operator to provide for multiple properties?\n   - Not too difficult, but does require knowledge of the individual let.\n\n### Drawn Sections\n\nOperators draw the boundaries of the short-term let on a map. This could be provided digitally online with javascript. Offline or without Javascript, the user would probably have to mark the area on a physical map to be digitised by an administrator. \n\n1. How easy it is to use the data to de-duplicate registrations?\n   - Not easy, it would be hard to balance what boundaries lines are close enough to be called the same without also de-deduplicating legitimately different lets. \n2. How easy it is to use the data to find a short-term let?\n   - Easy for working across large areas like a field, simple-ish across smaller areas like rooms in a house, doesn't solve where one short-term let is directly above another.\n3. How easy it is to use the data to determine if a registration matches a particular short-term let at an address?\n   - Easy for working across large areas like a field, simple-ish across smaller areas like rooms in a house, doesn't solve where one short-term let is directly above another.\n4. How easy it is to for the operator to provide?\n   - Easy. An operator can mark a location on a map.\n5. How easy it is to for the operator to provide without JavaScript?\n   - Difficult, operator needs print and mark on a map on paper and then scan in. This would then need digitising by an administrator.\n6. How easy it is to for the operator to provide offline?\n   - Difficult, operator needs print and mark on a map on paper. This would then need digitising by an administrator.\n7. How easy it is to for the operator to provide for multiple properties?\n   - Difficult, would require fairly substantial knowledge of the individual let.\n\n## Recommendation\n\n",
+      "content" : "# Geographically identifying units\nDate: 2024-09-11\n\n## Status\n\nProposed\n\n## Context\n\nOne of our riskiest assumptions in this alpha is \"We assume that we will be able to technically capture all types of STL (e.g. using unique geographic location)\". It is important for us to capture geographic location of short-term lets:\n1. To be able to determine the number of short-term lets in an area (all of these options will be combined with an address, so we won't consider this too heavily in this ADR)\n2. To help us ensure that short term lets are not double counted and improve data quality (although the registration fee would likely discourage double registration)\n3. To determine if a registration number matches a particular short-term let\n\nUnlike other types of rental property in England, short-term lets do not match uniquely to UPRNs or addresses:\n- Parts of a property let separately (e.g. individual rooms or a basement and an outhouse)\n- Yurts let separately in a single field at one address\n\nIt is also important that whatever method we choose can be used with an offline journey, and without JavaScript in the online journey.\n\nShort-term lets that occupy all of an address would not be required to supply more detail. Short-term lets that do not occupy all of an address but are the only short-term let on site would probably not be required to supply more detail. \n\n## Options\n\nOptions to be evaluated on:\n1. How easy it is to use the data to de-duplicate registrations?\n2. How easy it is to use the data to find a short-term let?\n3. How easy it is to use the data to determine if a registration matches a particular short-term let at an address?\n4. How easy it is to for the operator to provide?\n5. How easy it is to for the operator to provide without JavaScript?\n6. How easy it is to for the operator to provide offline?\n7. How easy it is to for the operator to provide for multiple properties?\n\n\n### Text description\n\nOperators provide a text description of whatever section of an address is part of the short-term let.\n\n1. How easy it is to use the data to de-duplicate registrations?\n   - Difficult. Depending on the guidance, the description provided might be vague, or change over time (the marketing name of a yurt) \n2. How easy it is to use the data to find a short-term let?\n   - Difficult. Depending on the guidance, the description provided might be vague, or change over time (the marketing name of a yurt) \n3. How easy it is to use the data to determine if a registration matches a particular short-term let at an address?\n   - Difficult. Depending on the guidance, the description provided might be vague, or change over time (the marketing name of a yurt) \n4. How easy it is to for the operator to provide?\n   - Easy. \n5. How easy it is to for the operator to provide without JavaScript?\n   - Easy. \n6. How easy it is to for the operator to provide offline?\n   - Easy. \n7. How easy it is to for the operator to provide for multiple properties?\n   - Easy. \n\n\n### GPS coordinates\n\nOperators coordinates of the location of the short-term let. Could be Ordnance Survey Eastings and Northings.\n\n1. How easy it is to use the data to de-duplicate registrations?\n   - Not easy, it would be hard to balance what GPS coordinates are the close enough to be called the same without also de-deduplicating legitimately different lets. \n2. How easy it is to use the data to find a short-term let?\n   - Easy for working across large areas like a field, but difficult/impossible across smaller areas like rooms in a house, particularly where one short-term let is directly above another.\n3. How easy it is to use the data to determine if a registration matches a particular short-term let at an address?\n   - Easy for working across large areas like a field, but difficult/impossible across smaller areas like rooms in a house, particularly where one short-term let is directly above another.\n4. How easy it is to for the operator to provide?\n   - Easy. An operator can pick a location on a map.\n5. How easy it is to for the operator to provide without JavaScript?\n   - Difficult, operator needs to find coordinates to input directly.\n6. How easy it is to for the operator to provide offline?\n   - Difficult, operator needs to find coordinates to input directly.\n7. How easy it is to for the operator to provide for multiple properties?\n   - Not too difficult, but does require knowledge of the individual let.\n\n### Drawn Sections\n\nOperators draw the boundaries of the short-term let on a map. This could be provided digitally online with javascript. Offline or without Javascript, the user would probably have to mark the area on a physical map to be digitised by an administrator. \n\n1. How easy it is to use the data to de-duplicate registrations?\n   - Not easy, it would be hard to balance what boundaries lines are close enough to be called the same without also de-deduplicating legitimately different lets. \n2. How easy it is to use the data to find a short-term let?\n   - Easy for working across large areas like a field, simple-ish across smaller areas like rooms in a house, doesn't solve where one short-term let is directly above another.\n3. How easy it is to use the data to determine if a registration matches a particular short-term let at an address?\n   - Easy for working across large areas like a field, simple-ish across smaller areas like rooms in a house, doesn't solve where one short-term let is directly above another.\n4. How easy it is to for the operator to provide?\n   - Easy. An operator can mark a location on a map.\n5. How easy it is to for the operator to provide without JavaScript?\n   - Difficult, operator needs print and mark on a map on paper and then scan in. This would then need digitising by an administrator.\n6. How easy it is to for the operator to provide offline?\n   - Difficult, operator needs print and mark on a map on paper. This would then need digitising by an administrator.\n7. How easy it is to for the operator to provide for multiple properties?\n   - Difficult, would require fairly substantial knowledge of the individual let.\n\n## Recommendation\n\n",
       "date" : "2024-09-11T00:00:00Z",
       "format" : "Markdown",
       "id" : "4",
-      "status" : "In",
+      "status" : "Proposed",
       "title" : " Geographically identifying units"
     } ],
     "sections" : [ {
@@ -63,7 +63,7 @@
       "description" : "Manages registrations",
       "id" : "1",
       "location" : "Unspecified",
-      "name" : "Administrator",
+      "name" : "Service Administrator",
       "properties" : {
         "structurizr.dsl.identifier" : "admin"
       },
@@ -72,7 +72,7 @@
         "destinationId" : "17",
         "id" : "36",
         "properties" : {
-          "structurizr.dsl.identifier" : "7a3e9b6a-ce50-4d65-9161-bd45f4215cbe"
+          "structurizr.dsl.identifier" : "8e5f1644-0b1b-469f-a0d4-b480c8cbcd22"
         },
         "sourceId" : "1",
         "tags" : "Relationship",
@@ -94,10 +94,10 @@
       } ],
       "tags" : "Element,Person"
     }, {
-      "description" : "Owns and runs a short term let",
+      "description" : "Owns and runs a short-term let",
       "id" : "2",
       "location" : "Unspecified",
-      "name" : "Operator",
+      "name" : "Owner",
       "properties" : {
         "structurizr.dsl.identifier" : "operator"
       },
@@ -106,7 +106,7 @@
         "destinationId" : "3",
         "id" : "24",
         "properties" : {
-          "structurizr.dsl.identifier" : "27d354c8-7560-4932-85ec-6810a4b1a000"
+          "structurizr.dsl.identifier" : "14498fcb-581b-4059-86f2-ce25b4c05597"
         },
         "sourceId" : "2",
         "tags" : "Relationship"
@@ -115,7 +115,7 @@
         "destinationId" : "6",
         "id" : "25",
         "properties" : {
-          "structurizr.dsl.identifier" : "6be5c4fd-7fc5-4f50-9d37-6f54146294d8"
+          "structurizr.dsl.identifier" : "5477331d-3df9-48a7-8785-7abf0415611b"
         },
         "sourceId" : "2",
         "tags" : "Relationship"
@@ -124,7 +124,7 @@
         "destinationId" : "15",
         "id" : "33",
         "properties" : {
-          "structurizr.dsl.identifier" : "2057f97b-b2f6-48ef-9969-069c55749b16"
+          "structurizr.dsl.identifier" : "7d59691c-6854-4086-ac73-3fe88c172058"
         },
         "sourceId" : "2",
         "tags" : "Relationship",
@@ -146,9 +146,10 @@
       } ],
       "tags" : "Element,Person"
     }, {
+      "description" : "Runs a short-term let on an owner's behalf",
       "id" : "3",
       "location" : "Unspecified",
-      "name" : "Management Company",
+      "name" : "Agent",
       "properties" : {
         "structurizr.dsl.identifier" : "managementcompany"
       },
@@ -157,7 +158,7 @@
         "destinationId" : "13",
         "id" : "26",
         "properties" : {
-          "structurizr.dsl.identifier" : "d10e3c93-622b-45c5-ba14-1a904ae982ae"
+          "structurizr.dsl.identifier" : "0952211f-ea20-47d9-80b9-4334c9357348"
         },
         "sourceId" : "3",
         "tags" : "Relationship"
@@ -166,7 +167,7 @@
         "destinationId" : "6",
         "id" : "27",
         "properties" : {
-          "structurizr.dsl.identifier" : "9107b3d0-cdf4-44e8-88b1-9d8756b96ec1"
+          "structurizr.dsl.identifier" : "9c345077-ad56-414d-a47f-a231b2eab5f1"
         },
         "sourceId" : "3",
         "tags" : "Relationship"
@@ -177,7 +178,7 @@
       "group" : "Local Authority",
       "id" : "4",
       "location" : "Unspecified",
-      "name" : "Planner",
+      "name" : "Local Authority Planner",
       "properties" : {
         "structurizr.dsl.identifier" : "localauthorityplanner"
       },
@@ -186,7 +187,7 @@
         "destinationId" : "13",
         "id" : "29",
         "properties" : {
-          "structurizr.dsl.identifier" : "8e1cf2d1-7d2d-403c-9f6a-71a0424034cd"
+          "structurizr.dsl.identifier" : "e3eaae83-c3e5-4090-a169-cb966ca2e401"
         },
         "sourceId" : "4",
         "tags" : "Relationship"
@@ -197,7 +198,7 @@
       "group" : "Local Authority",
       "id" : "5",
       "location" : "Unspecified",
-      "name" : "Officer",
+      "name" : "Local Authority Officer",
       "properties" : {
         "structurizr.dsl.identifier" : "localauthorityofficer"
       },
@@ -206,7 +207,7 @@
         "destinationId" : "16",
         "id" : "39",
         "properties" : {
-          "structurizr.dsl.identifier" : "2a440bfb-a573-43da-bbb9-080b8febd2b1"
+          "structurizr.dsl.identifier" : "daaa20d6-548f-48c7-8b17-0226bbfabea5"
         },
         "sourceId" : "5",
         "tags" : "Relationship",
@@ -242,7 +243,7 @@
         "destinationId" : "13",
         "id" : "28",
         "properties" : {
-          "structurizr.dsl.identifier" : "63f9040a-3642-4088-95f3-f920a74c45a8"
+          "structurizr.dsl.identifier" : "3ee4294f-eec1-48cb-98c1-b2beda95d89b"
         },
         "sourceId" : "6",
         "tags" : "Relationship"
@@ -261,7 +262,7 @@
         "destinationId" : "13",
         "id" : "32",
         "properties" : {
-          "structurizr.dsl.identifier" : "762777aa-f6d5-4d91-acec-fd800c9e9368"
+          "structurizr.dsl.identifier" : "c0bdc625-2101-4945-931a-6061d2e69b83"
         },
         "sourceId" : "7",
         "tags" : "Relationship"
@@ -332,7 +333,7 @@
             "destinationId" : "8",
             "id" : "44",
             "properties" : {
-              "structurizr.dsl.identifier" : "1b790779-5b6f-486e-a448-588a38348cdf"
+              "structurizr.dsl.identifier" : "616a08a1-87d4-4499-91f0-68ffae988ffa"
             },
             "sourceId" : "15",
             "tags" : "Relationship",
@@ -342,7 +343,7 @@
             "destinationId" : "9",
             "id" : "47",
             "properties" : {
-              "structurizr.dsl.identifier" : "0f1f7171-0ba5-4e4a-8bbc-9c68b1de8e0a"
+              "structurizr.dsl.identifier" : "ad59102b-b777-4003-86b0-6ccfc6e3637a"
             },
             "sourceId" : "15",
             "tags" : "Relationship",
@@ -352,7 +353,7 @@
             "destinationId" : "10",
             "id" : "54",
             "properties" : {
-              "structurizr.dsl.identifier" : "55a2ce9d-dd4a-4df8-bc4b-d22e89a9decf"
+              "structurizr.dsl.identifier" : "cdc29fdf-ed67-41d9-b449-6e2dc3ce3c98"
             },
             "sourceId" : "15",
             "tags" : "Relationship",
@@ -362,7 +363,7 @@
             "destinationId" : "12",
             "id" : "59",
             "properties" : {
-              "structurizr.dsl.identifier" : "355bace5-6743-4699-a620-7f398da92098"
+              "structurizr.dsl.identifier" : "334dca93-7a50-4ded-acfa-ab4e96884663"
             },
             "sourceId" : "15",
             "tags" : "Relationship",
@@ -372,7 +373,7 @@
             "destinationId" : "19",
             "id" : "62",
             "properties" : {
-              "structurizr.dsl.identifier" : "710b69b0-25a5-4902-a72f-1b107bf24133"
+              "structurizr.dsl.identifier" : "518da750-a221-4e38-8402-6e48cfe99563"
             },
             "sourceId" : "15",
             "tags" : "Relationship"
@@ -391,7 +392,7 @@
             "destinationId" : "9",
             "id" : "50",
             "properties" : {
-              "structurizr.dsl.identifier" : "bcc07a9f-f7cf-4fbf-89dd-3e44e0268bfc"
+              "structurizr.dsl.identifier" : "b1332faa-3bc5-4e6d-8611-c6b4548d55b3"
             },
             "sourceId" : "16",
             "tags" : "Relationship",
@@ -401,7 +402,7 @@
             "destinationId" : "19",
             "id" : "63",
             "properties" : {
-              "structurizr.dsl.identifier" : "c92196c6-6a6c-4ab6-8dce-fb16816f07b5"
+              "structurizr.dsl.identifier" : "a6c3905a-31f0-4458-bdd3-6ec8ae9397fb"
             },
             "sourceId" : "16",
             "tags" : "Relationship"
@@ -420,7 +421,7 @@
             "destinationId" : "11",
             "id" : "51",
             "properties" : {
-              "structurizr.dsl.identifier" : "19b61d88-de68-46cf-8eb4-0bd01fa3f2bd"
+              "structurizr.dsl.identifier" : "1ea3ea9b-4210-4555-a5d0-2855248ddc2e"
             },
             "sourceId" : "17",
             "tags" : "Relationship",
@@ -430,7 +431,7 @@
             "destinationId" : "19",
             "id" : "64",
             "properties" : {
-              "structurizr.dsl.identifier" : "fa50ee14-0be1-4ae5-91a6-74ce61340fbe"
+              "structurizr.dsl.identifier" : "f9953404-3f19-4a4f-a2c2-a2b8058e62e3"
             },
             "sourceId" : "17",
             "tags" : "Relationship"
@@ -449,7 +450,7 @@
             "destinationId" : "19",
             "id" : "65",
             "properties" : {
-              "structurizr.dsl.identifier" : "bdac1b07-ce8e-4d18-b4af-aa24ea8727fb"
+              "structurizr.dsl.identifier" : "049a630c-08b0-4ad0-af49-b7c42eb77380"
             },
             "sourceId" : "18",
             "tags" : "Relationship"
@@ -468,7 +469,7 @@
             "destinationId" : "20",
             "id" : "42",
             "properties" : {
-              "structurizr.dsl.identifier" : "41f6c597-02d0-453b-8327-c6c6e8231ab2"
+              "structurizr.dsl.identifier" : "29c825e8-edf5-42e9-9ec6-b0a5ccf6aa29"
             },
             "sourceId" : "19",
             "tags" : "Relationship",
@@ -478,7 +479,7 @@
             "destinationId" : "21",
             "id" : "57",
             "properties" : {
-              "structurizr.dsl.identifier" : "e3443744-6acd-40df-9ebd-67dcb4f4a131"
+              "structurizr.dsl.identifier" : "83138f59-d24b-48db-9dbb-d040f2a059fe"
             },
             "sourceId" : "19",
             "tags" : "Relationship",
@@ -580,7 +581,7 @@
         "destinationId" : "23",
         "id" : "30",
         "properties" : {
-          "structurizr.dsl.identifier" : "0b302527-1889-4d2d-8dc4-bf610ac9999d"
+          "structurizr.dsl.identifier" : "177b48a7-1198-4a51-834f-5c9c75ee5542"
         },
         "sourceId" : "13",
         "tags" : "Relationship"
@@ -589,7 +590,7 @@
         "destinationId" : "22",
         "id" : "31",
         "properties" : {
-          "structurizr.dsl.identifier" : "7110d18f-5fc7-4635-a706-e5e35c175729"
+          "structurizr.dsl.identifier" : "364982fd-535f-4907-8344-bd1a763a44da"
         },
         "sourceId" : "13",
         "tags" : "Relationship"
@@ -655,7 +656,7 @@
   },
   "name" : "Short Term Lets Registration",
   "properties" : {
-    "structurizr.dsl" : "CndvcmtzcGFjZSAiU2hvcnQgVGVybSBMZXRzIFJlZ2lzdHJhdGlvbiIgewogICAgIWRvY3Mgd29ya3NwYWNlLWRvY3MKICAgICFhZHJzIHdvcmtzcGFjZS1hZHJzCgogICAgbW9kZWwgewogICAgICAgIGFkbWluID0gcGVyc29uICJBZG1pbmlzdHJhdG9yIiAiTWFuYWdlcyByZWdpc3RyYXRpb25zIgogICAgICAgIG9wZXJhdG9yID0gcGVyc29uICJPcGVyYXRvciIgIk93bnMgYW5kIHJ1bnMgYSBzaG9ydCB0ZXJtIGxldCIKICAgICAgICBtYW5hZ2VtZW50Q29tcGFueSA9IHBlcnNvbiAiTWFuYWdlbWVudCBDb21wYW55IiAiIgoKCQlncm91cCAiTG9jYWwgQXV0aG9yaXR5IiB7CgkJCWxvY2FsQXV0aG9yaXR5UGxhbm5lciA9IHBlcnNvbiAiUGxhbm5lciIgIlBsYW5zIGhvdXNpbmcgc2NoZW1lcyBpbiBMb2NhbCBBdXRob3JpdHkgYXJlYSIKCQkJbG9jYWxBdXRob3JpdHlPZmZpY2VyID0gcGVyc29uICJPZmZpY2VyIiAiVXNlcyByZWdpc3RlciB0byBzb2x2ZSBwcm9ibGVtcyBpbiBsb2NhbCBhcmVhIgoJCX0KCgkJYm9va2luZ1BsYXRmb3JtID0gc29mdHdhcmVzeXN0ZW0gIkJvb2tpbmcgUGxhdGZvcm0iICJMaXN0cyBzaG9ydCB0ZXJtIGxldHMgYW5kIGZhY2lsaXRhdGVzIGJvb2tpbmdzIiAiRXh0ZXJuYWwgU3lzdGVtIgogICAgICAgIHBvbGljeU1ha2VycyA9IHNvZnR3YXJlc3lzdGVtICJQb2xpY3kgTWFrZXJzIiAiIiAiRXh0ZXJuYWwgU3lzdGVtIgoKICAgICAgICBnb3ZwYXkgPSBzb2Z0d2FyZXN5c3RlbSAiR09WLlVLIFBheSIgIkFsbG93cyB1c2VycyB0byBtYWtlIHBheW1lbnRzIiAiRXh0ZXJuYWwgU3lzdGVtIgogICAgICAgIG9uZUxvZ2luID0gc29mdHdhcmVzeXN0ZW0gIk9uZSBMb2dpbiIgIkxldCdzIHVzZXJzIHNpZ24gaW4iICJFeHRlcm5hbCBTeXN0ZW0iCiAgICAgICAgZ292Tm90aWZ5ID0gc29mdHdhcmVzeXN0ZW0gIkdPVi5VSyBOb3RpZnkiICJTZW5kcyB1c2VycyBub3RpZmljYXRpb25zIiAiRXh0ZXJuYWwgU3lzdGVtIgogICAgICAgIGF1dGhQcm92aWRlciA9IHNvZnR3YXJlc3lzdGVtICJBdXRoZW50aWNhdGlvbiBQcm92aWRlciIgIlNpZ24gaW4gZm9yIGFkbWluaXN0cmF0b3IncyB1c2VycyIgIkV4dGVybmFsIFN5c3RlbSIKICAgICAgICBvc1BsYWNlc0FwaSA9IHNvZnR3YXJlc3lzdGVtICJPUyBQbGFjZXMgQVBJIiAiSWRlbnRpZmllcyBVSyBBZGRyZXNzZXMiICJFeHRlcm5hbCBTeXN0ZW0iCgogICAgICAgIGdyb3VwICJTaG9ydCBUZXJtIExldHMgU2VydmljZSIgewogICAgICAgICAgICBzaG9ydFRlcm1MZXRzID0gc29mdHdhcmVzeXN0ZW0gIlNob3J0IFRlcm0gTGV0cyBSZWdpc3RyYXRpb24iICJQbGF0Zm9ybSBmb3IgcmVnaXN0ZXJpbmcsIGFuZCBxdWVyeWluZyBzaG9ydCB0ZXJtIGxldHMiICJTb2Z0d2FyZSBTeXN0ZW0iIHsKCQkJCWFwcGxpY2F0aW9uID0gY29udGFpbmVyICJXZWIgQXBwbGljYXRpb24iICJBbGxvd3MgcGVvcGxlIHRvIHJlZ2lzdGVyIHNob3J0IHRlcm0gbGV0cyBhbmQgcHJvdmlkZXMgaW5mb3JtYXRpb24iICJDbG91ZCBSdW4gUHl0aG9uL0ZsYXNrIiB7CgkJCQkJcmVnaXN0cmF0aW9uRmxvdyA9IGNvbXBvbmVudCAiT3BlcmF0b3IgUmVnaXN0cmF0aW9uIiAiRmxvdyBmb3IgcmVnaXN0ZXJpbmcgYW5kIHJlbmV3aW5nIHJlZ2lzdHJhdGlvbiBvZiBzaG9ydC10ZXJtIGxldCIKCQkJCQlyZWdpc3RlclZpZXcgPSBjb21wb25lbnQgIlJlZ2lzdGVyIFZpZXciICJWaWV3IG9mIHJlZ2lzdGVyIGZvciBhcHByb3ZlZCBncm91cHMiCgkJCQkJaW50ZXJuYWxTZXJ2aWNlID0gY29tcG9uZW50ICJJbnRlcm5hbCBTZXJ2aWNlIiAiU2VydmljZSB0byBwcm92aWRlIGFkbWluaXN0cmF0b3IgYWNjZXNzIHRvIGNvbXBsZXRlIHJlZ2lzdHJhdGlvbiB0YXNrcy4iCgkJCQkJYWdncmVnYXRlZERhdGEgPSBjb21wb25lbnQgIkRhdGEgdmlldyIgIkFnZ3JlZ2F0ZWQgZGF0YSBmcm9tIHJlZ2lzdGVyIgoJCQkJCXJlZ2lzdGVyQWRhcHRlciA9IGNvbXBvbmVudCAiUmVnaXN0ZXIgQWRhcHRlciIgIldyYXBwZXIgYXJvdW5kIHJlZ2lzdGVyIGRhdGFiYXNlIgoJCQkJfQoJCQkJcmVnaXN0ZXIgPSBjb250YWluZXIgIlNUTCBSZWdpc3RlciIgIlJlZ2lzdGVyIG9mIHNob3J0IHRlcm0gbGV0cyIgIlBvc3RncmVzIiAiRGF0YWJhc2UiCgkJCQlmaWxlU3RvcmUgPSBjb250YWluZXIgIkZpbGUgU3RvcmUiICJTdG9yYWdlIGZvciBjb21wbGlhbmNlIGRvY3VtZW50cyIgIkNsb3VkIFN0b3JhZ2UiICJEYXRhYmFzZSIKCQkJfQogICAgICAgIH0KCgkJZ3JvdXAgIlZpc2l0RW5nbGFuZCIgewoJCQl2ZURhdGFMYWtlID0gc29mdHdhcmVzeXN0ZW0gIlZpc2l0IEVuZ2xhbmQgRGF0YSBMYWtlIiAiIiAiRXh0ZXJuYWwgU3lzdGVtIgoJCQl2aXNpdG9yUmVhZHkgPSBzb2Z0d2FyZXN5c3RlbSAiVmlzaXRvciBSZWFkeSIgIkVudHJ5IGxldmVsIHF1YWxpdHkgc2NoZW1lIiAiRXh0ZXJuYWwgU3lzdGVtIgoJCX0KCgkJb3BlcmF0b3IgLT4gbWFuYWdlbWVudENvbXBhbnkgIkhpcmUgdG8gbWFuYWdlIHNob3J0IHRlcm0gbGV0IgoJCW9wZXJhdG9yIC0+IGJvb2tpbmdQbGF0Zm9ybSAiTGlzdHMgU1RMIG9uIHBsYXRmb3JtIgoJCW1hbmFnZW1lbnRDb21wYW55IC0+IHNob3J0VGVybUxldHMgIlJlZ2lzdGVyIHNob3J0IHRlcm0gbGV0cyBvbiBiZWhhbGYgb2Ygb3BlcmF0b3IiCgkJbWFuYWdlbWVudENvbXBhbnkgLT4gYm9va2luZ1BsYXRmb3JtICJMaXN0cyBzaG9ydCB0ZXJtIGxldCBvbiBwbGF0Zm9ybSIKCQlib29raW5nUGxhdGZvcm0gLT4gc2hvcnRUZXJtTGV0cyAiVmVyaWZ5IHJlZ2lzdHJhdGlvbiBvZiBzaG9ydCB0ZXJtIGxldCIKCQlsb2NhbEF1dGhvcml0eVBsYW5uZXIgLT4gc2hvcnRUZXJtTGV0cyAiUmV0cmlldmUgZGF0YSBvbiBzaG9ydCB0ZXJtIGxldHMiCgkJc2hvcnRUZXJtTGV0cyAtPiB2aXNpdG9yUmVhZHkgIk9wdGlvbmFsbHkgZW5yb2wgb3BlcmF0b3JzIgoJCXNob3J0VGVybUxldHMgLT4gdmVEYXRhTGFrZSAiU3VwcGx5IGRhdGEgb24gcmVnaXN0cmF0aW9uIgoJCXBvbGljeU1ha2VycyAtPiBzaG9ydFRlcm1MZXRzICJSZXRyaWV2ZSBkYXRhIG9uIHNob3J0IHRlcm0gbGV0cyIKCgkJb3BlcmF0b3IgLT4gcmVnaXN0cmF0aW9uRmxvdyAiUmVnaXN0ZXJzIGEgc2hvcnQgdGVybSBsZXQiICJIVFRQUyIKCQlhZG1pbiAtPiBpbnRlcm5hbFNlcnZpY2UgIlJlc29sdmUgcXVlcmllcyBhYm91dCByZWdpc3RyYXRpb25zIiAiSFRUUFMiCgkJbG9jYWxBdXRob3JpdHlPZmZpY2VyIC0+IHJlZ2lzdGVyVmlldyAiRmluZHMgY29udGFjdCBkZXRhaWxzIGZyb20gcmVnaXN0ZXIiICJIVFRQUyIKCQlyZWdpc3RlckFkYXB0ZXIgLT4gcmVnaXN0ZXIgIlN0b3JlIHNob3J0IHRlcm0gbGV0IGRhdGEiICJUQ1AvU1FMIgoJCXJlZ2lzdHJhdGlvbkZsb3cgLT4gZ292cGF5ICJVc2VyIG1ha2VzIGEgcGF5bWVudCIgIkhUVFBTIgoJCXJlZ2lzdHJhdGlvbkZsb3cgLT4gb25lTG9naW4gIlVzZXIgc2lnbnMgaW50byBzZXJ2aWNlIiAiSFRUUFMiCgkJcmVnaXN0ZXJWaWV3IC0+IG9uZUxvZ2luICJVc2VyIHNpZ25zIGludG8gc2VydmljZSIgIkhUVFBTIgoJCWludGVybmFsU2VydmljZSAtPiBhdXRoUHJvdmlkZXIgIkFkbWluIHVzZXJzIHNpZ24gaW50byBzZXJ2aWNlIiAiSFRUUFMiCgkJcmVnaXN0cmF0aW9uRmxvdyAtPiBnb3ZOb3RpZnkgIk5vdGlmeSB1c2VyIG9mIGNvbXBsZXRlZCBhcHBsaWNhdGlvbiIgIkhUVFBTIgoJCXJlZ2lzdGVyQWRhcHRlciAtPiBmaWxlU3RvcmUgIlVwbG9hZC9yZXZpZXcgY29tcGxpYW5jZSBkb2N1bWVudHMiICJIVFRQUyIKCQlyZWdpc3RyYXRpb25GbG93IC0+IG9zUGxhY2VzQXBpICJSZXF1ZXN0IGFkZHJlc3NlcyBhdCBwb3N0Y29kZSIgIkhUVFBTIgoKCQlyZWdpc3RyYXRpb25GbG93IC0+IHJlZ2lzdGVyQWRhcHRlciAiQWRkIG9yIHVwZGF0ZSByZWdpc3RyYXRpb24iCgkJcmVnaXN0ZXJWaWV3IC0+IHJlZ2lzdGVyQWRhcHRlciAiUmV0cmlldmUgaW5mb3JtYXRpb24gYWJvdXQgcmVnaXN0cmF0aW9uIgoJCWludGVybmFsU2VydmljZSAtPiByZWdpc3RlckFkYXB0ZXIgIk1hbmFnZSByZWdpc3RyYXRpb24iCgkJYWdncmVnYXRlZERhdGEgLT4gcmVnaXN0ZXJBZGFwdGVyICJSZXRyaWV2ZSBkYXRhIGFib3V0IHJlZ2lzdHJhdGlvbnMiCgogICAgfQoKICAgIHZpZXdzIHsKICAgICAgICBwcm9wZXJ0aWVzIHsKICAgICAgICAgICAgImM0cGxhbnR1bWwuZWxlbWVudFByb3BlcnRpZXMiICJ0cnVlIgogICAgICAgICAgICAic3RydWN0dXJpenIuc3R5bGUuY29sb3JzLnByaW1hcnkiICIjNDg1ZmM3IgogICAgICAgICAgICAic3RydWN0dXJpenIuc3R5bGUuY29sb3JzLnNlY29uZGFyeSIgIiNmZmZmZmYiCiAgICAgICAgICAgICJzdHJ1Y3R1cml6ci5zdHlsZS5sb2dvLnBhdGgiICJzaXRlL2xvZ28uanBnIgogICAgICAgIH0KCiAgICAgICAgc3lzdGVtQ29udGV4dCBzaG9ydFRlcm1MZXRzIHsKICAgICAgICAgICAgaW5jbHVkZSAqCiAgICAgICAgICAgIGF1dG9MYXlvdXQKICAgICAgICB9CgogICAgICAgIGNvbnRhaW5lciBzaG9ydFRlcm1MZXRzICJDb250YWluZXJzIiB7CiAgICAgICAgICAgIGluY2x1ZGUgKgogICAgICAgICAgICBhdXRvTGF5b3V0CiAgICAgICAgfQoKCQljb21wb25lbnQgYXBwbGljYXRpb24gIkNvbXBvbmVudHMiIHsKICAgICAgICAgICAgaW5jbHVkZSAqCiAgICAgICAgICAgIGF1dG9MYXlvdXQKICAgICAgICB9CgoJCXN5c3RlbWxhbmRzY2FwZSAid2hvbGVQcm9ibGVtIiB7CgkJCXRpdGxlICJTb2x2aW5nIGEgd2hvbGUgcHJvYmxlbSBmb3IgdXNlcnMiCgkJCWluY2x1ZGUgb3BlcmF0b3IgYm9va2luZ1BsYXRmb3JtIGxvY2FsQXV0aG9yaXR5T2ZmaWNlciBsb2NhbEF1dGhvcml0eVBsYW5uZXIgc2hvcnRUZXJtTGV0cyBnb3ZwYXkgb25lTG9naW4KCQkJYXV0b0xheW91dAoJCX0KCgkJZHluYW1pYyAqICJCb29raW5nUGxhdGZvcm1WYWxpZGF0aW5nUmVnaXN0cmF0aW9uIiB7CgkJCXRpdGxlICJQb3NzaWJsZSBwYXR0ZXJuIGZvciBCb29raW5nIFBsYXRmb3JtIHZhbGlkYXRpbmcgcmVnaXN0cmF0aW9uIgoJCQoJCQlvcGVyYXRvciAtPiBzaG9ydFRlcm1MZXRzICJSZWdpc3RlcnMgcHJvcGVydHkgYXMgYSBzaG9ydCB0ZXJtIGxldCIKCQkJb3BlcmF0b3IgLT4gYm9va2luZ1BsYXRmb3JtICJMaXN0cyBwcm9wZXJ0eSBvbiBwbGF0Zm9ybSIKCQkJYm9va2luZ1BsYXRmb3JtIC0+IHNob3J0VGVybUxldHMgIlNlbmRzIHJlZ2lzdHJhdGlvbiBudW1iZXIgYW5kIHByb3BlcnR5IGFkZHJlc3MiCgkJCXNob3J0VGVybUxldHMgLT4gYm9va2luZ1BsYXRmb3JtICJDb25maXJtcyB0aGUgcmVnaXN0cmF0aW9uIG51bWJlciBpcyB2YWxpZCIKCQl9CgogICAgICAgIHN0eWxlcyB7CiAgICAgICAgICAgIGVsZW1lbnQgIlBlcnNvbiIgewogICAgICAgICAgICAgICAgY29sb3IgI2ZmZmZmZgoJCQkJYmFja2dyb3VuZCAjOTk5OTk5CiAgICAgICAgICAgICAgICBmb250U2l6ZSAyMgogICAgICAgICAgICAgICAgc2hhcGUgUGVyc29uCiAgICAgICAgICAgIH0KICAgICAgICAgICAgZWxlbWVudCAiU29mdHdhcmUgU3lzdGVtIiB7CiAgICAgICAgICAgICAgICBiYWNrZ3JvdW5kICMxMTY4YmQKICAgICAgICAgICAgICAgIGNvbG9yICNmZmZmZmYKICAgICAgICAgICAgfQogICAgICAgICAgICBlbGVtZW50ICJFeHRlcm5hbCBTeXN0ZW0iIHsKICAgICAgICAgICAgICAgIGJhY2tncm91bmQgIzk5OTk5OQogICAgICAgICAgICAgICAgY29sb3IgI2ZmZmZmZgogICAgICAgICAgICB9CiAgICAgICAgICAgIGVsZW1lbnQgIkNvbnRhaW5lciIgewogICAgICAgICAgICAgICAgYmFja2dyb3VuZCAjNDM4ZGQ1CiAgICAgICAgICAgICAgICBjb2xvciAjZmZmZmZmCiAgICAgICAgICAgIH0KICAgICAgICAgICAgZWxlbWVudCAiV2ViIEJyb3dzZXIiIHsKICAgICAgICAgICAgICAgIHNoYXBlIFdlYkJyb3dzZXIKICAgICAgICAgICAgfQogICAgICAgICAgICBlbGVtZW50ICJNb2JpbGUgQXBwIiB7CiAgICAgICAgICAgICAgICBzaGFwZSBNb2JpbGVEZXZpY2VMYW5kc2NhcGUKICAgICAgICAgICAgfQogICAgICAgICAgICBlbGVtZW50ICJEYXRhYmFzZSIgewogICAgICAgICAgICAgICAgc2hhcGUgQ3lsaW5kZXIKICAgICAgICAgICAgfQogICAgICAgICAgICBlbGVtZW50ICJDb21wb25lbnQiIHsKICAgICAgICAgICAgICAgIGJhY2tncm91bmQgIzg1YmJmMAogICAgICAgICAgICAgICAgY29sb3IgIzAwMDAwMAogICAgICAgICAgICB9CiAgICAgICAgICAgIGVsZW1lbnQgIkZhaWxvdmVyIiB7CiAgICAgICAgICAgICAgICBvcGFjaXR5IDI1CiAgICAgICAgICAgIH0KICAgICAgICB9CiAgICB9Cn0K"
+    "structurizr.dsl" : "CndvcmtzcGFjZSAiU2hvcnQgVGVybSBMZXRzIFJlZ2lzdHJhdGlvbiIgewogICAgIWRvY3Mgd29ya3NwYWNlLWRvY3MKICAgICFhZHJzIHdvcmtzcGFjZS1hZHJzCgogICAgbW9kZWwgewogICAgICAgIGFkbWluID0gcGVyc29uICJTZXJ2aWNlIEFkbWluaXN0cmF0b3IiICJNYW5hZ2VzIHJlZ2lzdHJhdGlvbnMiCiAgICAgICAgb3BlcmF0b3IgPSBwZXJzb24gIk93bmVyIiAiT3ducyBhbmQgcnVucyBhIHNob3J0LXRlcm0gbGV0IgogICAgICAgIG1hbmFnZW1lbnRDb21wYW55ID0gcGVyc29uICJBZ2VudCIgIlJ1bnMgYSBzaG9ydC10ZXJtIGxldCBvbiBhbiBvd25lcidzIGJlaGFsZiIKCgkJZ3JvdXAgIkxvY2FsIEF1dGhvcml0eSIgewoJCQlsb2NhbEF1dGhvcml0eVBsYW5uZXIgPSBwZXJzb24gIkxvY2FsIEF1dGhvcml0eSBQbGFubmVyIiAiUGxhbnMgaG91c2luZyBzY2hlbWVzIGluIExvY2FsIEF1dGhvcml0eSBhcmVhIgoJCQlsb2NhbEF1dGhvcml0eU9mZmljZXIgPSBwZXJzb24gIkxvY2FsIEF1dGhvcml0eSBPZmZpY2VyIiAiVXNlcyByZWdpc3RlciB0byBzb2x2ZSBwcm9ibGVtcyBpbiBsb2NhbCBhcmVhIgoJCX0KCgkJYm9va2luZ1BsYXRmb3JtID0gc29mdHdhcmVzeXN0ZW0gIkJvb2tpbmcgUGxhdGZvcm0iICJMaXN0cyBzaG9ydCB0ZXJtIGxldHMgYW5kIGZhY2lsaXRhdGVzIGJvb2tpbmdzIiAiRXh0ZXJuYWwgU3lzdGVtIgogICAgICAgIHBvbGljeU1ha2VycyA9IHNvZnR3YXJlc3lzdGVtICJQb2xpY3kgTWFrZXJzIiAiIiAiRXh0ZXJuYWwgU3lzdGVtIgoKICAgICAgICBnb3ZwYXkgPSBzb2Z0d2FyZXN5c3RlbSAiR09WLlVLIFBheSIgIkFsbG93cyB1c2VycyB0byBtYWtlIHBheW1lbnRzIiAiRXh0ZXJuYWwgU3lzdGVtIgogICAgICAgIG9uZUxvZ2luID0gc29mdHdhcmVzeXN0ZW0gIk9uZSBMb2dpbiIgIkxldCdzIHVzZXJzIHNpZ24gaW4iICJFeHRlcm5hbCBTeXN0ZW0iCiAgICAgICAgZ292Tm90aWZ5ID0gc29mdHdhcmVzeXN0ZW0gIkdPVi5VSyBOb3RpZnkiICJTZW5kcyB1c2VycyBub3RpZmljYXRpb25zIiAiRXh0ZXJuYWwgU3lzdGVtIgogICAgICAgIGF1dGhQcm92aWRlciA9IHNvZnR3YXJlc3lzdGVtICJBdXRoZW50aWNhdGlvbiBQcm92aWRlciIgIlNpZ24gaW4gZm9yIGFkbWluaXN0cmF0b3IncyB1c2VycyIgIkV4dGVybmFsIFN5c3RlbSIKICAgICAgICBvc1BsYWNlc0FwaSA9IHNvZnR3YXJlc3lzdGVtICJPUyBQbGFjZXMgQVBJIiAiSWRlbnRpZmllcyBVSyBBZGRyZXNzZXMiICJFeHRlcm5hbCBTeXN0ZW0iCgogICAgICAgIGdyb3VwICJTaG9ydCBUZXJtIExldHMgU2VydmljZSIgewogICAgICAgICAgICBzaG9ydFRlcm1MZXRzID0gc29mdHdhcmVzeXN0ZW0gIlNob3J0IFRlcm0gTGV0cyBSZWdpc3RyYXRpb24iICJQbGF0Zm9ybSBmb3IgcmVnaXN0ZXJpbmcsIGFuZCBxdWVyeWluZyBzaG9ydCB0ZXJtIGxldHMiICJTb2Z0d2FyZSBTeXN0ZW0iIHsKCQkJCWFwcGxpY2F0aW9uID0gY29udGFpbmVyICJXZWIgQXBwbGljYXRpb24iICJBbGxvd3MgcGVvcGxlIHRvIHJlZ2lzdGVyIHNob3J0IHRlcm0gbGV0cyBhbmQgcHJvdmlkZXMgaW5mb3JtYXRpb24iICJDbG91ZCBSdW4gUHl0aG9uL0ZsYXNrIiB7CgkJCQkJcmVnaXN0cmF0aW9uRmxvdyA9IGNvbXBvbmVudCAiT3BlcmF0b3IgUmVnaXN0cmF0aW9uIiAiRmxvdyBmb3IgcmVnaXN0ZXJpbmcgYW5kIHJlbmV3aW5nIHJlZ2lzdHJhdGlvbiBvZiBzaG9ydC10ZXJtIGxldCIKCQkJCQlyZWdpc3RlclZpZXcgPSBjb21wb25lbnQgIlJlZ2lzdGVyIFZpZXciICJWaWV3IG9mIHJlZ2lzdGVyIGZvciBhcHByb3ZlZCBncm91cHMiCgkJCQkJaW50ZXJuYWxTZXJ2aWNlID0gY29tcG9uZW50ICJJbnRlcm5hbCBTZXJ2aWNlIiAiU2VydmljZSB0byBwcm92aWRlIGFkbWluaXN0cmF0b3IgYWNjZXNzIHRvIGNvbXBsZXRlIHJlZ2lzdHJhdGlvbiB0YXNrcy4iCgkJCQkJYWdncmVnYXRlZERhdGEgPSBjb21wb25lbnQgIkRhdGEgdmlldyIgIkFnZ3JlZ2F0ZWQgZGF0YSBmcm9tIHJlZ2lzdGVyIgoJCQkJCXJlZ2lzdGVyQWRhcHRlciA9IGNvbXBvbmVudCAiUmVnaXN0ZXIgQWRhcHRlciIgIldyYXBwZXIgYXJvdW5kIHJlZ2lzdGVyIGRhdGFiYXNlIgoJCQkJfQoJCQkJcmVnaXN0ZXIgPSBjb250YWluZXIgIlNUTCBSZWdpc3RlciIgIlJlZ2lzdGVyIG9mIHNob3J0IHRlcm0gbGV0cyIgIlBvc3RncmVzIiAiRGF0YWJhc2UiCgkJCQlmaWxlU3RvcmUgPSBjb250YWluZXIgIkZpbGUgU3RvcmUiICJTdG9yYWdlIGZvciBjb21wbGlhbmNlIGRvY3VtZW50cyIgIkNsb3VkIFN0b3JhZ2UiICJEYXRhYmFzZSIKCQkJfQogICAgICAgIH0KCgkJZ3JvdXAgIlZpc2l0RW5nbGFuZCIgewoJCQl2ZURhdGFMYWtlID0gc29mdHdhcmVzeXN0ZW0gIlZpc2l0IEVuZ2xhbmQgRGF0YSBMYWtlIiAiIiAiRXh0ZXJuYWwgU3lzdGVtIgoJCQl2aXNpdG9yUmVhZHkgPSBzb2Z0d2FyZXN5c3RlbSAiVmlzaXRvciBSZWFkeSIgIkVudHJ5IGxldmVsIHF1YWxpdHkgc2NoZW1lIiAiRXh0ZXJuYWwgU3lzdGVtIgoJCX0KCgkJb3BlcmF0b3IgLT4gbWFuYWdlbWVudENvbXBhbnkgIkhpcmUgdG8gbWFuYWdlIHNob3J0IHRlcm0gbGV0IgoJCW9wZXJhdG9yIC0+IGJvb2tpbmdQbGF0Zm9ybSAiTGlzdHMgU1RMIG9uIHBsYXRmb3JtIgoJCW1hbmFnZW1lbnRDb21wYW55IC0+IHNob3J0VGVybUxldHMgIlJlZ2lzdGVyIHNob3J0IHRlcm0gbGV0cyBvbiBiZWhhbGYgb2Ygb3BlcmF0b3IiCgkJbWFuYWdlbWVudENvbXBhbnkgLT4gYm9va2luZ1BsYXRmb3JtICJMaXN0cyBzaG9ydCB0ZXJtIGxldCBvbiBwbGF0Zm9ybSIKCQlib29raW5nUGxhdGZvcm0gLT4gc2hvcnRUZXJtTGV0cyAiVmVyaWZ5IHJlZ2lzdHJhdGlvbiBvZiBzaG9ydCB0ZXJtIGxldCIKCQlsb2NhbEF1dGhvcml0eVBsYW5uZXIgLT4gc2hvcnRUZXJtTGV0cyAiUmV0cmlldmUgZGF0YSBvbiBzaG9ydCB0ZXJtIGxldHMiCgkJc2hvcnRUZXJtTGV0cyAtPiB2aXNpdG9yUmVhZHkgIk9wdGlvbmFsbHkgZW5yb2wgb3BlcmF0b3JzIgoJCXNob3J0VGVybUxldHMgLT4gdmVEYXRhTGFrZSAiU3VwcGx5IGRhdGEgb24gcmVnaXN0cmF0aW9uIgoJCXBvbGljeU1ha2VycyAtPiBzaG9ydFRlcm1MZXRzICJSZXRyaWV2ZSBkYXRhIG9uIHNob3J0IHRlcm0gbGV0cyIKCgkJb3BlcmF0b3IgLT4gcmVnaXN0cmF0aW9uRmxvdyAiUmVnaXN0ZXJzIGEgc2hvcnQgdGVybSBsZXQiICJIVFRQUyIKCQlhZG1pbiAtPiBpbnRlcm5hbFNlcnZpY2UgIlJlc29sdmUgcXVlcmllcyBhYm91dCByZWdpc3RyYXRpb25zIiAiSFRUUFMiCgkJbG9jYWxBdXRob3JpdHlPZmZpY2VyIC0+IHJlZ2lzdGVyVmlldyAiRmluZHMgY29udGFjdCBkZXRhaWxzIGZyb20gcmVnaXN0ZXIiICJIVFRQUyIKCQlyZWdpc3RlckFkYXB0ZXIgLT4gcmVnaXN0ZXIgIlN0b3JlIHNob3J0IHRlcm0gbGV0IGRhdGEiICJUQ1AvU1FMIgoJCXJlZ2lzdHJhdGlvbkZsb3cgLT4gZ292cGF5ICJVc2VyIG1ha2VzIGEgcGF5bWVudCIgIkhUVFBTIgoJCXJlZ2lzdHJhdGlvbkZsb3cgLT4gb25lTG9naW4gIlVzZXIgc2lnbnMgaW50byBzZXJ2aWNlIiAiSFRUUFMiCgkJcmVnaXN0ZXJWaWV3IC0+IG9uZUxvZ2luICJVc2VyIHNpZ25zIGludG8gc2VydmljZSIgIkhUVFBTIgoJCWludGVybmFsU2VydmljZSAtPiBhdXRoUHJvdmlkZXIgIkFkbWluIHVzZXJzIHNpZ24gaW50byBzZXJ2aWNlIiAiSFRUUFMiCgkJcmVnaXN0cmF0aW9uRmxvdyAtPiBnb3ZOb3RpZnkgIk5vdGlmeSB1c2VyIG9mIGNvbXBsZXRlZCBhcHBsaWNhdGlvbiIgIkhUVFBTIgoJCXJlZ2lzdGVyQWRhcHRlciAtPiBmaWxlU3RvcmUgIlVwbG9hZC9yZXZpZXcgY29tcGxpYW5jZSBkb2N1bWVudHMiICJIVFRQUyIKCQlyZWdpc3RyYXRpb25GbG93IC0+IG9zUGxhY2VzQXBpICJSZXF1ZXN0IGFkZHJlc3NlcyBhdCBwb3N0Y29kZSIgIkhUVFBTIgoKCQlyZWdpc3RyYXRpb25GbG93IC0+IHJlZ2lzdGVyQWRhcHRlciAiQWRkIG9yIHVwZGF0ZSByZWdpc3RyYXRpb24iCgkJcmVnaXN0ZXJWaWV3IC0+IHJlZ2lzdGVyQWRhcHRlciAiUmV0cmlldmUgaW5mb3JtYXRpb24gYWJvdXQgcmVnaXN0cmF0aW9uIgoJCWludGVybmFsU2VydmljZSAtPiByZWdpc3RlckFkYXB0ZXIgIk1hbmFnZSByZWdpc3RyYXRpb24iCgkJYWdncmVnYXRlZERhdGEgLT4gcmVnaXN0ZXJBZGFwdGVyICJSZXRyaWV2ZSBkYXRhIGFib3V0IHJlZ2lzdHJhdGlvbnMiCgogICAgfQoKICAgIHZpZXdzIHsKICAgICAgICBwcm9wZXJ0aWVzIHsKICAgICAgICAgICAgImM0cGxhbnR1bWwuZWxlbWVudFByb3BlcnRpZXMiICJ0cnVlIgogICAgICAgICAgICAic3RydWN0dXJpenIuc3R5bGUuY29sb3JzLnByaW1hcnkiICIjNDg1ZmM3IgogICAgICAgICAgICAic3RydWN0dXJpenIuc3R5bGUuY29sb3JzLnNlY29uZGFyeSIgIiNmZmZmZmYiCiAgICAgICAgICAgICJzdHJ1Y3R1cml6ci5zdHlsZS5sb2dvLnBhdGgiICJzaXRlL2xvZ28uanBnIgogICAgICAgIH0KCiAgICAgICAgc3lzdGVtQ29udGV4dCBzaG9ydFRlcm1MZXRzIHsKICAgICAgICAgICAgaW5jbHVkZSAqCiAgICAgICAgICAgIGF1dG9MYXlvdXQKICAgICAgICB9CgogICAgICAgIGNvbnRhaW5lciBzaG9ydFRlcm1MZXRzICJDb250YWluZXJzIiB7CiAgICAgICAgICAgIGluY2x1ZGUgKgogICAgICAgICAgICBhdXRvTGF5b3V0CiAgICAgICAgfQoKCQljb21wb25lbnQgYXBwbGljYXRpb24gIkNvbXBvbmVudHMiIHsKICAgICAgICAgICAgaW5jbHVkZSAqCiAgICAgICAgICAgIGF1dG9MYXlvdXQKICAgICAgICB9CgoJCXN5c3RlbWxhbmRzY2FwZSAid2hvbGVQcm9ibGVtIiB7CgkJCXRpdGxlICJTb2x2aW5nIGEgd2hvbGUgcHJvYmxlbSBmb3IgdXNlcnMiCgkJCWluY2x1ZGUgb3BlcmF0b3IgYm9va2luZ1BsYXRmb3JtIGxvY2FsQXV0aG9yaXR5T2ZmaWNlciBsb2NhbEF1dGhvcml0eVBsYW5uZXIgc2hvcnRUZXJtTGV0cyBnb3ZwYXkgb25lTG9naW4KCQkJYXV0b0xheW91dAoJCX0KCgkJZHluYW1pYyAqICJCb29raW5nUGxhdGZvcm1WYWxpZGF0aW5nUmVnaXN0cmF0aW9uIiB7CgkJCXRpdGxlICJQb3NzaWJsZSBwYXR0ZXJuIGZvciBCb29raW5nIFBsYXRmb3JtIHZhbGlkYXRpbmcgcmVnaXN0cmF0aW9uIgoJCQoJCQlvcGVyYXRvciAtPiBzaG9ydFRlcm1MZXRzICJSZWdpc3RlcnMgcHJvcGVydHkgYXMgYSBzaG9ydCB0ZXJtIGxldCIKCQkJb3BlcmF0b3IgLT4gYm9va2luZ1BsYXRmb3JtICJMaXN0cyBwcm9wZXJ0eSBvbiBwbGF0Zm9ybSIKCQkJYm9va2luZ1BsYXRmb3JtIC0+IHNob3J0VGVybUxldHMgIlNlbmRzIHJlZ2lzdHJhdGlvbiBudW1iZXIgYW5kIHByb3BlcnR5IGFkZHJlc3MiCgkJCXNob3J0VGVybUxldHMgLT4gYm9va2luZ1BsYXRmb3JtICJDb25maXJtcyB0aGUgcmVnaXN0cmF0aW9uIG51bWJlciBpcyB2YWxpZCIKCQl9CgogICAgICAgIHN0eWxlcyB7CiAgICAgICAgICAgIGVsZW1lbnQgIlBlcnNvbiIgewogICAgICAgICAgICAgICAgY29sb3IgI2ZmZmZmZgoJCQkJYmFja2dyb3VuZCAjOTk5OTk5CiAgICAgICAgICAgICAgICBmb250U2l6ZSAyMgogICAgICAgICAgICAgICAgc2hhcGUgUGVyc29uCiAgICAgICAgICAgIH0KICAgICAgICAgICAgZWxlbWVudCAiU29mdHdhcmUgU3lzdGVtIiB7CiAgICAgICAgICAgICAgICBiYWNrZ3JvdW5kICMxMTY4YmQKICAgICAgICAgICAgICAgIGNvbG9yICNmZmZmZmYKICAgICAgICAgICAgfQogICAgICAgICAgICBlbGVtZW50ICJFeHRlcm5hbCBTeXN0ZW0iIHsKICAgICAgICAgICAgICAgIGJhY2tncm91bmQgIzk5OTk5OQogICAgICAgICAgICAgICAgY29sb3IgI2ZmZmZmZgogICAgICAgICAgICB9CiAgICAgICAgICAgIGVsZW1lbnQgIkNvbnRhaW5lciIgewogICAgICAgICAgICAgICAgYmFja2dyb3VuZCAjNDM4ZGQ1CiAgICAgICAgICAgICAgICBjb2xvciAjZmZmZmZmCiAgICAgICAgICAgIH0KICAgICAgICAgICAgZWxlbWVudCAiV2ViIEJyb3dzZXIiIHsKICAgICAgICAgICAgICAgIHNoYXBlIFdlYkJyb3dzZXIKICAgICAgICAgICAgfQogICAgICAgICAgICBlbGVtZW50ICJNb2JpbGUgQXBwIiB7CiAgICAgICAgICAgICAgICBzaGFwZSBNb2JpbGVEZXZpY2VMYW5kc2NhcGUKICAgICAgICAgICAgfQogICAgICAgICAgICBlbGVtZW50ICJEYXRhYmFzZSIgewogICAgICAgICAgICAgICAgc2hhcGUgQ3lsaW5kZXIKICAgICAgICAgICAgfQogICAgICAgICAgICBlbGVtZW50ICJDb21wb25lbnQiIHsKICAgICAgICAgICAgICAgIGJhY2tncm91bmQgIzg1YmJmMAogICAgICAgICAgICAgICAgY29sb3IgIzAwMDAwMAogICAgICAgICAgICB9CiAgICAgICAgICAgIGVsZW1lbnQgIkZhaWxvdmVyIiB7CiAgICAgICAgICAgICAgICBvcGFjaXR5IDI1CiAgICAgICAgICAgIH0KICAgICAgICB9CiAgICB9Cn0K"
   },
   "views" : {
     "componentViews" : [ {
