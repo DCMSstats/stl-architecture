@@ -4,13 +4,13 @@ workspace "Short Term Lets Registration" {
     !adrs workspace-adrs
 
     model {
-        admin = person "Administrator" "Manages registrations"
-        operator = person "Operator" "Owns and runs a short term let"
-        managementCompany = person "Management Company" ""
+        admin = person "Service Administrator" "Manages registrations"
+        operator = person "Owner" "Owns and runs a short-term let"
+        managementCompany = person "Agent" "Runs a short-term let on an owner's behalf"
 
 		group "Local Authority" {
-			localAuthorityPlanner = person "Planner" "Plans housing schemes in Local Authority area"
-			localAuthorityOfficer = person "Officer" "Uses register to solve problems in local area"
+			localAuthorityPlanner = person "Local Authority Planner" "Plans housing schemes in Local Authority area"
+			localAuthorityOfficer = person "Local Authority Officer" "Uses register to solve problems in local area"
 		}
 
 		bookingPlatform = softwaresystem "Booking Platform" "Lists short term lets and facilitates bookings" "External System"
