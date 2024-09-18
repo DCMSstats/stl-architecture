@@ -18,12 +18,6 @@ Boundary(group_2, "Short Term Lets Service", $tags="Short Term Lets Service") {
   System(ShortTermLetsRegistration, "Short Term Lets Registration", $descr="Platform for registering, and querying short term lets", $tags="", $link="")
 }
 
-AddBoundaryTag("VisitEngland", $borderColor="#cccccc", $fontColor="#cccccc", $borderStyle="dashed")
-Boundary(group_3, "VisitEngland", $tags="VisitEngland") {
-  System(VisitEnglandDataLake, "Visit England Data Lake", $descr="", $tags="", $link="")
-  System(VisitorReady, "Visitor Ready", $descr="Entry level quality scheme", $tags="", $link="")
-}
-
 Person(ServiceAdministrator, "Service Administrator", $descr="Manages registrations", $tags="", $link="")
 System(GOVUKNotify, "GOV.UK Notify", $descr="Sends users notifications", $tags="", $link="")
 System(AuthenticationProvider, "Authentication Provider", $descr="Sign in for administrator's users", $tags="", $link="")
@@ -41,8 +35,6 @@ Rel(Agent, ShortTermLetsRegistration, "Register short term lets on behalf of ope
 Rel(Agent, BookingPlatform, "Lists short term let on platform", $techn="", $tags="", $link="")
 Rel(BookingPlatform, ShortTermLetsRegistration, "Verify registration of short term let", $techn="", $tags="", $link="")
 Rel(LocalAuthorityPlanner, ShortTermLetsRegistration, "Retrieve data on short term lets", $techn="", $tags="", $link="")
-Rel(ShortTermLetsRegistration, VisitorReady, "Optionally enrol operators", $techn="", $tags="", $link="")
-Rel(ShortTermLetsRegistration, VisitEnglandDataLake, "Supply data on registration", $techn="", $tags="", $link="")
 Rel(PolicyMakers, ShortTermLetsRegistration, "Retrieve data on short term lets", $techn="", $tags="", $link="")
 Rel(Owner, ShortTermLetsRegistration, "Registers a short term let", $techn="HTTPS", $tags="", $link="")
 Rel(ServiceAdministrator, ShortTermLetsRegistration, "Resolve queries about registrations", $techn="HTTPS", $tags="", $link="")
