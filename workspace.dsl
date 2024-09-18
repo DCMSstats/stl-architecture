@@ -36,19 +36,12 @@ workspace "Short Term Lets Registration" {
 			}
         }
 
-		group "VisitEngland" {
-			veDataLake = softwaresystem "Visit England Data Lake" "" "External System"
-			visitorReady = softwaresystem "Visitor Ready" "Entry level quality scheme" "External System"
-		}
-
 		operator -> managementCompany "Hire to manage short term let"
 		operator -> bookingPlatform "Lists STL on platform"
 		managementCompany -> shortTermLets "Register short term lets on behalf of operator"
 		managementCompany -> bookingPlatform "Lists short term let on platform"
 		bookingPlatform -> shortTermLets "Verify registration of short term let"
 		localAuthorityPlanner -> shortTermLets "Retrieve data on short term lets"
-		shortTermLets -> visitorReady "Optionally enrol operators"
-		shortTermLets -> veDataLake "Supply data on registration"
 		policyMakers -> shortTermLets "Retrieve data on short term lets"
 
 		operator -> registrationFlow "Registers a short term let" "HTTPS"
