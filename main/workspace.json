@@ -24,7 +24,7 @@
       "status" : "Proposed",
       "title" : " Register Adapter"
     }, {
-      "content" : "# Geographically identifying units\nDate: 2024-09-11\n\n## Status\n\nProposed\n\n## Context\n\nOne of our riskiest assumptions in this alpha is \"We assume that we will be able to technically capture all types of STL (e.g. using unique geographic location)\". It is important for us to capture geographic location of short-term lets:\n1. To be able to determine the number of short-term lets in an area (all of these options will be combined with an address, so we won't consider this too heavily in this ADR)\n2. To help us ensure that short term lets are not double counted and improve data quality (although the registration fee would likely discourage double registration)\n3. To determine if a registration number matches a particular short-term let\n\nUnlike other types of rental property in England, short-term lets do not match uniquely to UPRNs or addresses:\n- Parts of a property let separately (e.g. individual rooms or a basement and an outhouse)\n- Yurts let separately in a single field at one address\n\nIt is also important that whatever method we choose can be used with an offline journey, and without JavaScript in the online journey.\n\nShort-term lets that occupy all of an address would not be required to supply more detail. Short-term lets that do not occupy all of an address but are the only short-term let on site would probably not be required to supply more detail. \n\n## Options\n\nOptions to be evaluated on:\n1. How easy it is to use the data to de-duplicate registrations?\n2. How easy it is to use the data to find a short-term let?\n3. How easy it is to use the data to determine if a registration matches a particular short-term let at an address?\n4. How easy it is to for the operator to provide?\n5. How easy it is to for the operator to provide without JavaScript?\n6. How easy it is to for the operator to provide offline?\n7. How easy it is to for the operator to provide for multiple properties?\n\n\n### Text description\n\nOperators provide a text description of whatever section of an address is part of the short-term let.\n\n1. How easy it is to use the data to de-duplicate registrations?\n   - Difficult. Depending on the guidance, the description provided might be vague, or change over time (the marketing name of a yurt) \n2. How easy it is to use the data to find a short-term let?\n   - Difficult. Depending on the guidance, the description provided might be vague, or change over time (the marketing name of a yurt) \n3. How easy it is to use the data to determine if a registration matches a particular short-term let at an address?\n   - Difficult. Depending on the guidance, the description provided might be vague, or change over time (the marketing name of a yurt) \n4. How easy it is to for the operator to provide?\n   - Easy. \n5. How easy it is to for the operator to provide without JavaScript?\n   - Easy. \n6. How easy it is to for the operator to provide offline?\n   - Easy. \n7. How easy it is to for the operator to provide for multiple properties?\n   - Easy. \n\n\n### GPS coordinates\n\nOperators coordinates of the location of the short-term let. Could be Ordnance Survey Eastings and Northings.\n\n1. How easy it is to use the data to de-duplicate registrations?\n   - Not easy, it would be hard to balance what GPS coordinates are the close enough to be called the same without also de-deduplicating legitimately different lets. \n2. How easy it is to use the data to find a short-term let?\n   - Easy for working across large areas like a field, but difficult/impossible across smaller areas like rooms in a house, particularly where one short-term let is directly above another.\n3. How easy it is to use the data to determine if a registration matches a particular short-term let at an address?\n   - Easy for working across large areas like a field, but difficult/impossible across smaller areas like rooms in a house, particularly where one short-term let is directly above another.\n4. How easy it is to for the operator to provide?\n   - Easy. An operator can pick a location on a map.\n5. How easy it is to for the operator to provide without JavaScript?\n   - Difficult, operator needs to find coordinates to input directly.\n6. How easy it is to for the operator to provide offline?\n   - Difficult, operator needs to find coordinates to input directly.\n7. How easy it is to for the operator to provide for multiple properties?\n   - Not too difficult, but does require knowledge of the individual let.\n\n### Drawn Sections\n\nOperators draw the boundaries of the short-term let on a map. This could be provided digitally online with javascript. Offline or without Javascript, the user would probably have to mark the area on a physical map to be digitised by an administrator. \n\n1. How easy it is to use the data to de-duplicate registrations?\n   - Not easy, it would be hard to balance what boundaries lines are close enough to be called the same without also de-deduplicating legitimately different lets. \n2. How easy it is to use the data to find a short-term let?\n   - Easy for working across large areas like a field, simple-ish across smaller areas like rooms in a house, doesn't solve where one short-term let is directly above another.\n3. How easy it is to use the data to determine if a registration matches a particular short-term let at an address?\n   - Easy for working across large areas like a field, simple-ish across smaller areas like rooms in a house, doesn't solve where one short-term let is directly above another.\n4. How easy it is to for the operator to provide?\n   - Easy. An operator can mark a location on a map.\n5. How easy it is to for the operator to provide without JavaScript?\n   - Difficult, operator needs print and mark on a map on paper and then scan in. This would then need digitising by an administrator.\n6. How easy it is to for the operator to provide offline?\n   - Difficult, operator needs print and mark on a map on paper. This would then need digitising by an administrator.\n7. How easy it is to for the operator to provide for multiple properties?\n   - Difficult, would require fairly substantial knowledge of the individual let.\n\n## Recommendation\n\n",
+      "content" : "# Geographically identifying units\nDate: 2024-09-11\n\n## Status\n\nProposed\n\n## Context\n\nOne of our riskiest assumptions in this alpha is \"We assume that we will be able to technically capture all types of STL (e.g. using unique geographic location)\". It is important for us to capture geographic location of short-term lets:\n1. To be able to determine the number of short-term lets in an area (all of these options will be combined with an address, so we won't consider this too heavily in this ADR)\n2. To help us ensure that short term lets are not double counted and improve data quality (although the registration fee would likely discourage double registration)\n3. To determine if a registration number matches a particular short-term let\n\nUnlike other types of rental property in England, short-term lets do not match uniquely to UPRNs or addresses:\n- Parts of a property let separately (e.g. individual rooms or a basement and an outhouse)\n- Yurts let separately in a single field at one address\n\nIt is also important that whatever method we choose can be used with an offline journey, and without JavaScript in the online journey.\n\nShort-term lets that occupy all of an address would not be required to supply more detail. Short-term lets that do not occupy all of an address but are the only short-term let on site would probably not be required to supply more detail. \n\n## Options\n\nOptions to be evaluated on:\n1. How easy it is to use the data to de-duplicate registrations?\n2. How easy it is to use the data to find a short-term let?\n3. How easy it is to use the data to determine if a registration matches a particular short-term let at an address?\n4. How easy it is to for the operator to provide?\n5. How easy it is to for the operator to provide without JavaScript?\n6. How easy it is to for the operator to provide offline?\n7. How easy it is to for the operator to provide for multiple properties?\n\n\n### Text description\n\nOperators provide a text description of whatever section of an address is part of the short-term let.\n\n1. How easy it is to use the data to de-duplicate registrations?\n   - Difficult. Depending on the guidance, the description provided might be vague, or change over time (the marketing name of a yurt) \n2. How easy it is to use the data to find a short-term let?\n   - Difficult. Depending on the guidance, the description provided might be vague, or change over time (the marketing name of a yurt) \n3. How easy it is to use the data to determine if a registration matches a particular short-term let at an address?\n   - Difficult. Depending on the guidance, the description provided might be vague, or change over time (the marketing name of a yurt) \n4. How easy it is to for the operator to provide?\n   - Easy. \n5. How easy it is to for the operator to provide without JavaScript?\n   - Easy. \n6. How easy it is to for the operator to provide offline?\n   - Easy. \n7. How easy it is to for the operator to provide for multiple properties?\n   - Easy. \n\n\n### GPS coordinates\n\nOperators coordinates of the location of the short-term let. Could be Ordnance Survey Eastings and Northings.\n\n1. How easy it is to use the data to de-duplicate registrations?\n   - Not easy, it would be hard to balance what GPS coordinates are the close enough to be called the same without also de-deduplicating legitimately different lets. \n2. How easy it is to use the data to find a short-term let?\n   - Easy for working across large areas like a field, but difficult/impossible across smaller areas like rooms in a house, particularly where one short-term let is directly above another.\n3. How easy it is to use the data to determine if a registration matches a particular short-term let at an address?\n   - Easy for working across large areas like a field, but difficult/impossible across smaller areas like rooms in a house, particularly where one short-term let is directly above another.\n4. How easy it is to for the operator to provide?\n   - Easy. An operator can pick a location on a map.\n5. How easy it is to for the operator to provide without JavaScript?\n   - Difficult, operator needs to find coordinates to input directly.\n6. How easy it is to for the operator to provide offline?\n   - Difficult, operator needs to find coordinates to input directly.\n7. How easy it is to for the operator to provide for multiple properties?\n   - Not too difficult, but does require knowledge of the individual let.\n\n### Drawn Sections\n\nOperators draw the boundaries of the short-term let on a map. This could be provided digitally online with javascript. Offline or without Javascript, the user would probably have to mark the area on a physical map to be digitised by an administrator. \n\n1. How easy it is to use the data to de-duplicate registrations?\n   - Not easy, it would be hard to balance what boundaries lines are close enough to be called the same without also de-deduplicating legitimately different lets. \n2. How easy it is to use the data to find a short-term let?\n   - Easy for working across large areas like a field, simple-ish across smaller areas like rooms in a house, doesn't solve where one short-term let is directly above another.\n3. How easy it is to use the data to determine if a registration matches a particular short-term let at an address?\n   - Easy for working across large areas like a field, simple-ish across smaller areas like rooms in a house, doesn't solve where one short-term let is directly above another.\n4. How easy it is to for the operator to provide?\n   - Easy. An operator can mark a location on a map.\n5. How easy it is to for the operator to provide without JavaScript?\n   - Difficult, operator needs print and mark on a map on paper and then scan in. This would then need digitising by an administrator.\n6. How easy it is to for the operator to provide offline?\n   - Difficult, operator needs print and mark on a map on paper. This would then need digitising by an administrator.\n7. How easy it is to for the operator to provide for multiple properties?\n   - Difficult, would require fairly substantial knowledge of the individual let.\n\n## Recommendation\n\nOur current first choice is text description with an optional site plan to help. We would need to provide guidance to help make the service as useful as possible. This idea will need some additional testing.\n",
       "date" : "2024-09-11T00:00:00Z",
       "format" : "Markdown",
       "id" : "4",
@@ -72,7 +72,7 @@
         "destinationId" : "17",
         "id" : "32",
         "properties" : {
-          "structurizr.dsl.identifier" : "a176cad6-34b4-44e6-b3ba-b620fe3b9e91"
+          "structurizr.dsl.identifier" : "4eaab457-60ec-4de3-9fd3-68316c45c4f5"
         },
         "sourceId" : "1",
         "tags" : "Relationship",
@@ -106,7 +106,7 @@
         "destinationId" : "3",
         "id" : "22",
         "properties" : {
-          "structurizr.dsl.identifier" : "672af43f-54f1-41e3-bc09-32ad3b03c749"
+          "structurizr.dsl.identifier" : "09dcbb00-0527-4ea0-8bfb-83e1a595c752"
         },
         "sourceId" : "2",
         "tags" : "Relationship"
@@ -115,7 +115,7 @@
         "destinationId" : "6",
         "id" : "23",
         "properties" : {
-          "structurizr.dsl.identifier" : "f205a4ec-6db5-4894-8a4e-cbdcc5b82c99"
+          "structurizr.dsl.identifier" : "f29d1cf2-fcb8-48dd-bbde-e01f63f5afbd"
         },
         "sourceId" : "2",
         "tags" : "Relationship"
@@ -124,7 +124,7 @@
         "destinationId" : "15",
         "id" : "29",
         "properties" : {
-          "structurizr.dsl.identifier" : "9acee21a-5d11-4027-8067-b4b55a8bf8f2"
+          "structurizr.dsl.identifier" : "d032470c-8a3b-4b19-b47f-f738decb0cfc"
         },
         "sourceId" : "2",
         "tags" : "Relationship",
@@ -158,7 +158,7 @@
         "destinationId" : "13",
         "id" : "24",
         "properties" : {
-          "structurizr.dsl.identifier" : "49795ce8-0778-43ae-8807-cff809f7933a"
+          "structurizr.dsl.identifier" : "065b158f-1462-40ea-a02c-bb7ef5bfd486"
         },
         "sourceId" : "3",
         "tags" : "Relationship"
@@ -167,7 +167,7 @@
         "destinationId" : "6",
         "id" : "25",
         "properties" : {
-          "structurizr.dsl.identifier" : "09849c01-5aef-43b3-917c-c572ef15fbc4"
+          "structurizr.dsl.identifier" : "2015ef21-f626-4d46-b072-c2f554f4ebad"
         },
         "sourceId" : "3",
         "tags" : "Relationship"
@@ -187,7 +187,7 @@
         "destinationId" : "13",
         "id" : "27",
         "properties" : {
-          "structurizr.dsl.identifier" : "b083a84e-37f3-418f-8c47-08f81afdc087"
+          "structurizr.dsl.identifier" : "4706b20d-1111-49e3-9d31-b3b0d7f22391"
         },
         "sourceId" : "4",
         "tags" : "Relationship"
@@ -207,7 +207,7 @@
         "destinationId" : "16",
         "id" : "35",
         "properties" : {
-          "structurizr.dsl.identifier" : "7057df16-13d2-4c26-8b42-b5a37df342af"
+          "structurizr.dsl.identifier" : "c4c03af7-d772-43a1-9bc9-c73e834d002d"
         },
         "sourceId" : "5",
         "tags" : "Relationship",
@@ -243,7 +243,7 @@
         "destinationId" : "13",
         "id" : "26",
         "properties" : {
-          "structurizr.dsl.identifier" : "79b5de9b-23e4-48ca-a02f-61f300a9f3ac"
+          "structurizr.dsl.identifier" : "582766ca-d0e3-4e2a-8752-61c868131552"
         },
         "sourceId" : "6",
         "tags" : "Relationship"
@@ -262,7 +262,7 @@
         "destinationId" : "13",
         "id" : "28",
         "properties" : {
-          "structurizr.dsl.identifier" : "0e0a8319-b214-438c-80bc-26c229001aac"
+          "structurizr.dsl.identifier" : "70b250fd-48ac-421c-9825-f9c314ac9d5b"
         },
         "sourceId" : "7",
         "tags" : "Relationship"
@@ -333,7 +333,7 @@
             "destinationId" : "8",
             "id" : "40",
             "properties" : {
-              "structurizr.dsl.identifier" : "7628779d-861b-4561-a978-d855da663f70"
+              "structurizr.dsl.identifier" : "39b987a9-5902-41ea-8f86-e31310cd3a0c"
             },
             "sourceId" : "15",
             "tags" : "Relationship",
@@ -343,7 +343,7 @@
             "destinationId" : "9",
             "id" : "43",
             "properties" : {
-              "structurizr.dsl.identifier" : "d34454a0-7c85-4ba1-90aa-f05e609d3c52"
+              "structurizr.dsl.identifier" : "dda19194-f744-49e4-854d-455e8af3d02b"
             },
             "sourceId" : "15",
             "tags" : "Relationship",
@@ -353,7 +353,7 @@
             "destinationId" : "10",
             "id" : "50",
             "properties" : {
-              "structurizr.dsl.identifier" : "0322c14f-00e0-4428-8a05-ee61b0ca7d8d"
+              "structurizr.dsl.identifier" : "d4444e7d-9365-40e1-b590-f91c42abc4d3"
             },
             "sourceId" : "15",
             "tags" : "Relationship",
@@ -363,7 +363,7 @@
             "destinationId" : "12",
             "id" : "55",
             "properties" : {
-              "structurizr.dsl.identifier" : "5f5896e2-2228-441b-851b-bff2dc34fc9b"
+              "structurizr.dsl.identifier" : "81366acd-3fee-4a59-af3f-5297a438de34"
             },
             "sourceId" : "15",
             "tags" : "Relationship",
@@ -373,7 +373,7 @@
             "destinationId" : "19",
             "id" : "58",
             "properties" : {
-              "structurizr.dsl.identifier" : "ab2bf591-01d7-4d1f-bfe5-ecd4d09d86b3"
+              "structurizr.dsl.identifier" : "be9c058c-de14-406f-b254-bbc2affc414f"
             },
             "sourceId" : "15",
             "tags" : "Relationship"
@@ -392,7 +392,7 @@
             "destinationId" : "9",
             "id" : "46",
             "properties" : {
-              "structurizr.dsl.identifier" : "e101551f-da47-422d-b044-a836f8c6d610"
+              "structurizr.dsl.identifier" : "388e31ae-c662-4206-9fa9-a7e42ba11e73"
             },
             "sourceId" : "16",
             "tags" : "Relationship",
@@ -402,7 +402,7 @@
             "destinationId" : "19",
             "id" : "59",
             "properties" : {
-              "structurizr.dsl.identifier" : "2d20921d-dc1f-48f3-a570-d66331164b9c"
+              "structurizr.dsl.identifier" : "767449be-4ab7-47df-a190-3678110fdb54"
             },
             "sourceId" : "16",
             "tags" : "Relationship"
@@ -421,7 +421,7 @@
             "destinationId" : "11",
             "id" : "47",
             "properties" : {
-              "structurizr.dsl.identifier" : "7f08a538-1b82-492a-a30b-5554c69e7c89"
+              "structurizr.dsl.identifier" : "822874af-fafc-4e05-ae57-c1e710e54cda"
             },
             "sourceId" : "17",
             "tags" : "Relationship",
@@ -431,7 +431,7 @@
             "destinationId" : "19",
             "id" : "60",
             "properties" : {
-              "structurizr.dsl.identifier" : "2771e504-c88a-4fda-8b72-10f855e43823"
+              "structurizr.dsl.identifier" : "1d057b27-8922-4288-89e0-2c4a570826e3"
             },
             "sourceId" : "17",
             "tags" : "Relationship"
@@ -450,7 +450,7 @@
             "destinationId" : "19",
             "id" : "61",
             "properties" : {
-              "structurizr.dsl.identifier" : "7cc07244-d798-4672-8b9f-5ffd5170ca71"
+              "structurizr.dsl.identifier" : "57e2e9ae-ec32-4ec2-ae8a-1fc2d32872c8"
             },
             "sourceId" : "18",
             "tags" : "Relationship"
@@ -469,7 +469,7 @@
             "destinationId" : "20",
             "id" : "38",
             "properties" : {
-              "structurizr.dsl.identifier" : "19219900-0e55-4188-a56b-816895549729"
+              "structurizr.dsl.identifier" : "cb2312fe-baf5-49ae-86cc-d1c23b317447"
             },
             "sourceId" : "19",
             "tags" : "Relationship",
@@ -479,7 +479,7 @@
             "destinationId" : "21",
             "id" : "53",
             "properties" : {
-              "structurizr.dsl.identifier" : "56fa80d2-9f80-46a8-a6f9-5e57edc10d6f"
+              "structurizr.dsl.identifier" : "d1bc293a-06f9-4d3c-bc29-979f3b3d3ff6"
             },
             "sourceId" : "19",
             "tags" : "Relationship",
