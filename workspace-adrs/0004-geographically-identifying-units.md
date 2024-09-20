@@ -92,3 +92,4 @@ Operators draw the boundaries of the short-term let on a map. This could be prov
 
 ## Recommendation
 
+Our current first choice is text description with an optional site plan to help. We would need to provide guidance to help make the service as useful as possible. This idea will need some additional testing.
