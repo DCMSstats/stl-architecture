@@ -17,7 +17,7 @@ workspace "Short Term Lets Registration" {
         policyMakers = softwaresystem "Policy Makers" "" "External System"
 
         govpay = softwaresystem "GOV.UK Pay" "Allows users to make payments" "External System"
-        oneLogin = softwaresystem "One Login" "Let's users sign in" "External System"
+        oneLogin = softwaresystem "One Login" "Sign in for external and Local Authority users" "External System"
         govNotify = softwaresystem "GOV.UK Notify" "Sends users notifications" "External System"
         authProvider = softwaresystem "Authentication Provider" "Sign in for administrator's users" "External System"
         osPlacesApi = softwaresystem "OS Places API" "Identifies UK Addresses" "External System"
