@@ -27,7 +27,7 @@ Person(Agent, "Agent", $descr="Runs a short-term let on an owner's behalf", $tag
 System(BookingPlatform, "Booking Platform", $descr="Lists short term lets and facilitates bookings", $tags="", $link="")
 System(PolicyMakers, "Policy Makers", $descr="", $tags="", $link="")
 System(GOVUKPay, "GOV.UK Pay", $descr="Allows users to make payments", $tags="", $link="")
-System(OneLogin, "One Login", $descr="Let's users sign in", $tags="", $link="")
+System(OneLogin, "One Login", $descr="Sign in for external and Local Authority users", $tags="", $link="")
 
 Rel(Owner, Agent, "Hire to manage short term let", $techn="", $tags="", $link="")
 Rel(Owner, BookingPlatform, "Lists STL on platform", $techn="", $tags="", $link="")

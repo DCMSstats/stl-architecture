@@ -21,7 +21,7 @@ Boundary(group_2, "Short Term Lets Service", $tags="Short Term Lets Service") {
 Person(Owner, "Owner", $descr="Owns and runs a short-term let", $tags="", $link="")
 System(BookingPlatform, "Booking Platform", $descr="Lists short term lets and facilitates bookings", $tags="", $link="")
 System(GOVUKPay, "GOV.UK Pay", $descr="Allows users to make payments", $tags="", $link="")
-System(OneLogin, "One Login", $descr="Let's users sign in", $tags="", $link="")
+System(OneLogin, "One Login", $descr="Sign in for external and Local Authority users", $tags="", $link="")
 
 Rel(Owner, BookingPlatform, "Lists STL on platform", $techn="", $tags="", $link="")
 Rel(BookingPlatform, ShortTermLetsRegistration, "Verify registration of short term let", $techn="", $tags="", $link="")

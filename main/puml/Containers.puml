@@ -12,7 +12,7 @@ Person(ServiceAdministrator, "Service Administrator", $descr="Manages registrati
 Person(Owner, "Owner", $descr="Owns and runs a short-term let", $tags="", $link="")
 Person(LocalAuthorityOfficer, "Local Authority Officer", $descr="Uses register to solve problems in local area", $tags="", $link="")
 System(GOVUKPay, "GOV.UK Pay", $descr="Allows users to make payments", $tags="", $link="")
-System(OneLogin, "One Login", $descr="Let's users sign in", $tags="", $link="")
+System(OneLogin, "One Login", $descr="Sign in for external and Local Authority users", $tags="", $link="")
 System(GOVUKNotify, "GOV.UK Notify", $descr="Sends users notifications", $tags="", $link="")
 System(AuthenticationProvider, "Authentication Provider", $descr="Sign in for administrator's users", $tags="", $link="")
 System(OSPlacesAPI, "OS Places API", $descr="Identifies UK Addresses", $tags="", $link="")
