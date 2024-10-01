@@ -30,6 +30,13 @@
       "id" : "4",
       "status" : "Proposed",
       "title" : " Geographically identifying units"
+    }, {
+      "content" : "# 5. Use Cloud Run and Containers for compute\n\nDate: 2024-09-30\n\n## Status\n\nAccepted\n\n## Context\n\nIt is probable that the service will need to change cloud provider at some point in its live, possibly relatively soon. The service will also experience large fluctuations in load. \n\n## Decision\n\nBuild the service in containers, using Docker. This will allow us to move the service more easily to a different cloud provider when required and minimise the complexity of the service. \n\nUse Cloud Run to run the containers. This will allow us to build a service that scales with demand and is a simpler service to manage than Google Kubernetes Engine.\n\n## Consequences\n\n",
+      "date" : "2024-09-30T00:00:00Z",
+      "format" : "Markdown",
+      "id" : "5",
+      "status" : "Accepted",
+      "title" : "Use Cloud Run and Containers for compute"
     } ],
     "sections" : [ {
       "content" : "## Short Term Lets architecture\n\nDocumentation of architecture decisions made over the course of the Short Term Lets Registration Alpha project. \n\nThe project is currently in an alpha stage so decisions here may change before the service is live, and some of the documents are speculative to discuss with user groups.\n",
@@ -72,7 +79,7 @@
         "destinationId" : "17",
         "id" : "32",
         "properties" : {
-          "structurizr.dsl.identifier" : "3e29adce-5d2b-4bb5-aa3e-81e95dd3246d"
+          "structurizr.dsl.identifier" : "088afd6c-7440-4681-bd07-78af6f979b59"
         },
         "sourceId" : "1",
         "tags" : "Relationship",
@@ -106,7 +113,7 @@
         "destinationId" : "3",
         "id" : "22",
         "properties" : {
-          "structurizr.dsl.identifier" : "ddd0b9e9-ae2f-470e-a03b-64db9bfed5b2"
+          "structurizr.dsl.identifier" : "f1a34c43-906f-408b-a369-e069c57fe666"
         },
         "sourceId" : "2",
         "tags" : "Relationship"
@@ -115,7 +122,7 @@
         "destinationId" : "6",
         "id" : "23",
         "properties" : {
-          "structurizr.dsl.identifier" : "3e82f259-e841-417d-aec2-8aeb8a8f928b"
+          "structurizr.dsl.identifier" : "6c340e2b-b346-41e2-b64c-f8f15cd170b9"
         },
         "sourceId" : "2",
         "tags" : "Relationship"
@@ -124,7 +131,7 @@
         "destinationId" : "15",
         "id" : "29",
         "properties" : {
-          "structurizr.dsl.identifier" : "5131de41-b7af-4daa-a57b-9b878fbc9c4a"
+          "structurizr.dsl.identifier" : "02220023-7d00-4378-bdb0-84d90b60d08e"
         },
         "sourceId" : "2",
         "tags" : "Relationship",
@@ -158,7 +165,7 @@
         "destinationId" : "13",
         "id" : "24",
         "properties" : {
-          "structurizr.dsl.identifier" : "9a7a3aa6-48c2-4b8a-895b-a05560fb547f"
+          "structurizr.dsl.identifier" : "d30da3c1-5506-4deb-958f-ef6aa4ebee02"
         },
         "sourceId" : "3",
         "tags" : "Relationship"
@@ -167,7 +174,7 @@
         "destinationId" : "6",
         "id" : "25",
         "properties" : {
-          "structurizr.dsl.identifier" : "0b11fd9a-4d9e-49c0-bd79-61d0b59324b3"
+          "structurizr.dsl.identifier" : "7f023d7a-ecaa-4aca-a7b3-467c5a65a04a"
         },
         "sourceId" : "3",
         "tags" : "Relationship"
@@ -187,7 +194,7 @@
         "destinationId" : "13",
         "id" : "27",
         "properties" : {
-          "structurizr.dsl.identifier" : "f312e987-ad5e-4cb4-9db3-4b5375cabf65"
+          "structurizr.dsl.identifier" : "e39021ad-7848-4595-920d-1cc83d7053ad"
         },
         "sourceId" : "4",
         "tags" : "Relationship"
@@ -207,7 +214,7 @@
         "destinationId" : "16",
         "id" : "35",
         "properties" : {
-          "structurizr.dsl.identifier" : "1921a41a-308d-4715-8688-a73e9e8f093e"
+          "structurizr.dsl.identifier" : "e5a21bb4-886d-4911-b5df-b6238727820e"
         },
         "sourceId" : "5",
         "tags" : "Relationship",
@@ -243,7 +250,7 @@
         "destinationId" : "13",
         "id" : "26",
         "properties" : {
-          "structurizr.dsl.identifier" : "9cc61849-3fa6-4463-a357-0255b2c491de"
+          "structurizr.dsl.identifier" : "354857cb-7c45-40a7-b2e1-9cc9b70ae714"
         },
         "sourceId" : "6",
         "tags" : "Relationship"
@@ -262,7 +269,7 @@
         "destinationId" : "13",
         "id" : "28",
         "properties" : {
-          "structurizr.dsl.identifier" : "005f6fe8-ed6c-4937-bd77-a8741482de6c"
+          "structurizr.dsl.identifier" : "eb907749-d9f3-4c51-b422-e988c989fef9"
         },
         "sourceId" : "7",
         "tags" : "Relationship"
@@ -333,7 +340,7 @@
             "destinationId" : "8",
             "id" : "40",
             "properties" : {
-              "structurizr.dsl.identifier" : "8d8dea71-8dd4-4951-bf95-a5e35a0e0ee8"
+              "structurizr.dsl.identifier" : "d2faf1df-181d-4421-9c32-228958fbf74c"
             },
             "sourceId" : "15",
             "tags" : "Relationship",
@@ -343,7 +350,7 @@
             "destinationId" : "9",
             "id" : "43",
             "properties" : {
-              "structurizr.dsl.identifier" : "8986e2ea-ec7a-4223-b57d-897eb2302c83"
+              "structurizr.dsl.identifier" : "0fa6d9b2-2528-4b97-8c60-350e223e2f84"
             },
             "sourceId" : "15",
             "tags" : "Relationship",
@@ -353,7 +360,7 @@
             "destinationId" : "10",
             "id" : "50",
             "properties" : {
-              "structurizr.dsl.identifier" : "52b9e6bd-5613-4eed-96aa-12ef3e76987c"
+              "structurizr.dsl.identifier" : "2a72d130-4873-4ede-857b-853125110467"
             },
             "sourceId" : "15",
             "tags" : "Relationship",
@@ -363,7 +370,7 @@
             "destinationId" : "12",
             "id" : "55",
             "properties" : {
-              "structurizr.dsl.identifier" : "81c0dded-56a5-4fa5-8fef-64880a39deba"
+              "structurizr.dsl.identifier" : "e5369cef-3af2-4036-af82-064d5eed914d"
             },
             "sourceId" : "15",
             "tags" : "Relationship",
@@ -373,7 +380,7 @@
             "destinationId" : "19",
             "id" : "58",
             "properties" : {
-              "structurizr.dsl.identifier" : "73bdb216-394d-42cc-a02d-844b851a273a"
+              "structurizr.dsl.identifier" : "cb471e23-3b80-4972-8fc8-ee6334847cb6"
             },
             "sourceId" : "15",
             "tags" : "Relationship"
@@ -392,7 +399,7 @@
             "destinationId" : "9",
             "id" : "46",
             "properties" : {
-              "structurizr.dsl.identifier" : "e374c469-949f-4ae8-8577-f79bf92ab145"
+              "structurizr.dsl.identifier" : "19adc895-25c1-4675-bdbd-ee7081ba129f"
             },
             "sourceId" : "16",
             "tags" : "Relationship",
@@ -402,7 +409,7 @@
             "destinationId" : "19",
             "id" : "59",
             "properties" : {
-              "structurizr.dsl.identifier" : "f1becb2a-ad8a-4e1f-9a22-22c338d1a533"
+              "structurizr.dsl.identifier" : "67e22cf1-6b6e-4fa4-8bf7-a8cc1007cd34"
             },
             "sourceId" : "16",
             "tags" : "Relationship"
@@ -421,7 +428,7 @@
             "destinationId" : "11",
             "id" : "47",
             "properties" : {
-              "structurizr.dsl.identifier" : "6454783c-f56e-4a5e-aef3-0324db9d9ee4"
+              "structurizr.dsl.identifier" : "d0e2957d-c66d-44ee-aa3b-4a515f341e59"
             },
             "sourceId" : "17",
             "tags" : "Relationship",
@@ -431,7 +438,7 @@
             "destinationId" : "19",
             "id" : "60",
             "properties" : {
-              "structurizr.dsl.identifier" : "20616882-badd-40c2-aa23-0376a15f1457"
+              "structurizr.dsl.identifier" : "89f50e28-528b-47cb-9e7e-3ac5e7153be8"
             },
             "sourceId" : "17",
             "tags" : "Relationship"
@@ -450,7 +457,7 @@
             "destinationId" : "19",
             "id" : "61",
             "properties" : {
-              "structurizr.dsl.identifier" : "39e8c8f4-ac88-4024-86c5-dcde41f13016"
+              "structurizr.dsl.identifier" : "dfcbd628-74f0-46cd-8753-4be270ba971b"
             },
             "sourceId" : "18",
             "tags" : "Relationship"
@@ -469,7 +476,7 @@
             "destinationId" : "20",
             "id" : "38",
             "properties" : {
-              "structurizr.dsl.identifier" : "d2f0bb24-2ed7-4760-9c24-e6cde9d8632c"
+              "structurizr.dsl.identifier" : "a46d11b0-e6e6-42ab-842b-d1f36b28c8d2"
             },
             "sourceId" : "19",
             "tags" : "Relationship",
@@ -479,7 +486,7 @@
             "destinationId" : "21",
             "id" : "53",
             "properties" : {
-              "structurizr.dsl.identifier" : "3933eaa2-bdac-45dc-8a37-c0201d369e35"
+              "structurizr.dsl.identifier" : "78278b35-65ff-4b0a-994c-47a6f542552f"
             },
             "sourceId" : "19",
             "tags" : "Relationship",
