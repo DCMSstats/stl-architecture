@@ -73,7 +73,7 @@ Operators coordinates of the location of the short-term let. Could be Ordnance S
 
 ### Drawn Sections
 
-Operators draw the boundaries of the short-term let on a map. This could be provided digitally online with javascript. Offline or without Javascript, the user would probably have to mark the area on a physical map to be digitised by an administrator. 
+Operators draw the boundaries of the short-term let on a map. This could be provided digitally online with javascript. Offline or without Javascript, the user would probably have to mark the area on a physical map to be digitised by an administrator. This would be very similar to the data that is being kept in [planning.data.gov.uk](https://www.planning.data.gov.uk/map/).
 
 1. How easy it is to use the data to de-duplicate registrations?
    - Not easy, it would be hard to balance what boundaries lines are close enough to be called the same without also de-deduplicating legitimately different lets. 
