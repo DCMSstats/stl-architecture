@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="en" data-theme="light" class="has-background-light">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Register history | Short Term Lets Registration</title>
+    <link href="https://cdn.jsdelivr.net/npm/bulma@1.0.2/css/bulma.min.css" rel="stylesheet">
+    <link href="../../../style.css" rel="stylesheet">
+    <link href="./../../style-branding.css" rel="stylesheet">
+    <script type="text/javascript" src="../../../modal.js"></script>
+    <script type="text/javascript" src="../../../svg-modal.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/svg-pan-zoom@3.6.1/dist/svg-pan-zoom.min.js"></script>
+  </head>
+  <body>
+    <script type="text/javascript" src="../../../header.js"></script>
+    <nav class="navbar" role="navigation" aria-label="main navigation">
+      <div class="navbar-brand has-site-branding"><a href="../../" class="navbar-item"><span class="has-text-weight-semibold has-site-branding">Short Term Lets Registration</span></a></div>
+      <div class="navbar-menu has-site-branding">
+        <div class="navbar-end">
+          <div class="navbar-item"><input class="input is-small is-rounded has-site-branding" id="search" type="search" size="30" maxlength="50" placeholder="Search..." onkeyup="redirect(event, value, '../../search/')"></div>
+          <div class="navbar-item has-dropdown is-hoverable"><a class="navbar-link has-site-branding">main</a>
+            <div class="navbar-dropdown is-right"><a href="../../../main/" class="navbar-item">main</a>
+              <hr class="navbar-divider">
+              <div class="navbar-item has-text-grey-light"><span>v</span><span>0.0.0</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </nav>
+    <div class="site-layout" id="site">
+      <aside class="menu p-3">
+        <p class="menu-label">General</p>
+        <ul class="menu-list has-site-branding">
+          <li><a href="../../" class="">Home</a><a href="../" class="is-active">Decisions</a><a href="../../software-systems/" class="">Software Systems</a><a href="../../data-modelling-of-let-ownership-and-management/" class="">Data modelling of let ownership and management</a><a href="../../solving-a-whole-problem/" class="">Solving a whole problem</a><a href="../../proposed-architecture/" class="">Proposed Architecture</a></li>
+        </ul>
+        <p class="menu-label">Software systems</p>
+        <ul class="menu-list has-site-branding">
+          <li><a href="../../authentication-provider/" class="">Authentication Provider</a><a href="../../booking-platform/" class="">Booking Platform</a><a href="../../gov.uk-notify/" class="">GOV.UK Notify</a><a href="../../gov.uk-pay/" class="">GOV.UK Pay</a><a href="../../one-login/" class="">One Login</a><a href="../../os-places-api/" class="">OS Places API</a><a href="../../policy-makers/" class="">Policy Makers</a><a href="../../short-term-lets-registration/" class="">Short Term Lets Registration</a></li>
+        </ul>
+      </aside>
+      <div class="container is-fluid has-background-white">
+        <div class="content p-3">
+          <div><h1>6. Register history</h1>
+<p>Date: 2024-10-07</p>
+<h2>Status</h2>
+<p>Draft</p>
+<h2>Context</h2>
+<p>We have identified some use cases for being able to know historic values of data.</p>
+<ul>
+ <li>Protection from tampering</li>
+ <li>Able to review historical data (e.g. previous names)</li>
+ <li>Assurance</li>
+ <li>Reducing fraud</li>
+</ul>
+<h2>Options</h2>
+<h3>Don't do anything</h3>
+<p>We're not currently looking for this data to be used as evidence, so we could accept the risk. If the remit of the service changed, we would miss out on any historical data from the beginning of the scheme.</p>
+<h3>Store all changes as an audit log</h3>
+<p>This would quickly lead to a very large amount of data, with millions of datapoints after a year. Data changed at renewal would contain many different updates to store. This would create an unwieldy dataset.</p>
+<h4>Store audit log changes on a separate platform</h4>
+<p>By storing the audit log on a separate platform, we can "lock down" access to the audit log, making easier to prevent deletions and tampering, and use a platform that's more appropriate for searching the volume of data.</p>
+<ul>
+ <li>PII</li>
+ <li>Can't make single transaction</li>
+</ul>
+<h3>Store historical logs for particular fields</h3>
+<p>There are probably a limited number of fields in which we are interested in historical data (e.g. name), as such we should minimise the data we store by only storing history on required fields. This would mean we store less data and make that data more usable (e.g. making it easier to serve a previous names component).</p>
+<h3>Use an append only database</h3>
+<p>Briefly summarising <a href="https://gds.blog.gov.uk/2015/07/24/building-on-the-steel-thread/#a-system-of-record:~:text=the%20bridge%20itself.-,A%20system%20of%20record,-Licence%3A%20Creative"><em>Building on the steel thread</em> from the Digital Service Platforms team in 2015</a>, don't just keep a database, store a system of record, storing the data as it changes and updates. A single record will have multiple entries, recording the new value as time passes. Any view shows the most recent entry, but can also show a history.</p>
+<p><img src="https://gds.blog.gov.uk/wp-content/uploads/sites/60/2015/10/22052011555_a491f29854_z.jpg" alt="Two post-it notes. The first one is labeled &quot;A register&quot; and shows a list of enteies with ID numbers. Two of the entries have the same ID number and are marked V1 and V2. This post-it is labeled &quot;Tamper proof sequence of immutable entries&quot;. The second post-it is labelled &quot;A record&quot; and shows the information for the entries with ID number 1234, and the history containing V1 and V2. The second post-it is labeled &quot;Sequence of entries sharing an identifier&quot;"></p>
+<p>The entries in the database are completely immutable with updates to the data being made through adding additional entries with new version numbers. The integrity of the database is preserved with cryptographic hashes. One example of this would be using <a href="https://en.wikipedia.org/wiki/Merkle_tree">Merkle Trees</a> as used by the GDS registers project. The aim of this is to increase confidence in the register from the public, that data has not been tampered with. It does not ensure that the data itself is entered correctly.</p>
+<p>This would be a substantial time investment, but would provide a strong level of confidence in the register.</p>
+<h2>Decision</h2>
+<h2>Consequences</h2>
+<p>If we store history, we will need to define a sensible retention policy.</p></div>
+        </div>
+      </div>
+    </div>
+    <script type="text/javascript" src="../../../reformat-mermaid.js"></script>
+    <script type="module">import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11.2.0/dist/mermaid.esm.min.mjs';</script>
+  </body>
+</html>

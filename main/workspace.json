@@ -37,6 +37,13 @@
       "id" : "5",
       "status" : "Accepted",
       "title" : "Use Cloud Run and Containers for compute"
+    }, {
+      "content" : "# 6. Register history\n\nDate: 2024-10-07\n\n## Status\n\nDraft\n\n## Context\n\nWe have identified some use cases for being able to know historic values of data. \n- Protection from tampering\n- Able to review historical data (e.g. previous names)\n- Assurance\n- Reducing fraud\n\n## Options \n\n### Don't do anything\n\nWe're not currently looking for this data to be used as evidence, so we could accept the risk. If the remit of the service changed, we would miss out on any historical data from the beginning of the scheme.\n\n### Store all changes as an audit log\n\nThis would quickly lead to a very large amount of data, with millions of datapoints after a year. Data changed at renewal would contain many different updates to store. This would create an unwieldy dataset. \n\n#### Store audit log changes on a separate platform\n\nBy storing the audit log on a separate platform, we can \"lock down\" access to the audit log, making easier to prevent deletions and tampering, and use a platform that's more appropriate for searching the volume of data. \n\n- PII\n- Can't make single transaction\n\n### Store historical logs for particular fields\n\nThere are probably a limited number of fields in which we are interested in historical data (e.g. name), as such we should minimise the data we store by only storing history on required fields. This would mean we store less data and make that data more usable (e.g. making it easier to serve a previous names component). \n\n### Use an append only database\n\nBriefly summarising [_Building on the steel thread_ from the Digital Service Platforms team in 2015](https://gds.blog.gov.uk/2015/07/24/building-on-the-steel-thread/#a-system-of-record:~:text=the%20bridge%20itself.-,A%20system%20of%20record,-Licence%3A%20Creative), don't just keep a database, store a system of record, storing the data as it changes and updates. A single record will have multiple entries, recording the new value as time passes. Any view shows the most recent entry, but can also show a history.\n\n![Two post-it notes. The first one is labeled \"A register\" and shows a list of enteies with ID numbers. Two of the entries have the same ID number and are marked V1 and V2. This post-it is labeled \"Tamper proof sequence of immutable entries\". The second post-it is labelled \"A record\" and shows the information for the entries with ID number 1234, and the history containing V1 and V2. The second post-it is labeled \"Sequence of entries sharing an identifier\"](https://gds.blog.gov.uk/wp-content/uploads/sites/60/2015/10/22052011555_a491f29854_z.jpg)\n\nThe entries in the database are completely immutable with updates to the data being made through adding additional entries with new version numbers. The integrity of the database is preserved with cryptographic hashes. One example of this would be using [Merkle Trees](https://en.wikipedia.org/wiki/Merkle_tree) as used by the GDS registers project. The aim of this is to increase confidence in the register from the public, that data has not been tampered with. It does not ensure that the data itself is entered correctly. \n\nThis would be a substantial time investment, but would provide a strong level of confidence in the register. \n\n## Decision\n\n## Consequences\n\nIf we store history, we will need to define a sensible retention policy.\n",
+      "date" : "2024-10-07T00:00:00Z",
+      "format" : "Markdown",
+      "id" : "6",
+      "status" : "Draft",
+      "title" : "Register history"
     } ],
     "sections" : [ {
       "content" : "## Short Term Lets architecture\n\nDocumentation of architecture decisions made over the course of the Short Term Lets Registration Alpha project. \n\nThe project is currently in an alpha stage so decisions here may change before the service is live, and some of the documents are speculative to discuss with user groups.\n",
@@ -79,7 +86,7 @@
         "destinationId" : "17",
         "id" : "32",
         "properties" : {
-          "structurizr.dsl.identifier" : "24ecf0e8-40aa-4458-b6f2-8d41f99a492e"
+          "structurizr.dsl.identifier" : "4a4f31c9-3afb-4dac-93d7-f831c618c7f4"
         },
         "sourceId" : "1",
         "tags" : "Relationship",
@@ -113,7 +120,7 @@
         "destinationId" : "3",
         "id" : "22",
         "properties" : {
-          "structurizr.dsl.identifier" : "f573d9e6-ce60-4b07-ba66-c27313a71872"
+          "structurizr.dsl.identifier" : "817b346d-f216-4f68-80b9-fb4858616d0d"
         },
         "sourceId" : "2",
         "tags" : "Relationship"
@@ -122,7 +129,7 @@
         "destinationId" : "6",
         "id" : "23",
         "properties" : {
-          "structurizr.dsl.identifier" : "d425cb2b-eaee-496a-8767-2573ef298cd0"
+          "structurizr.dsl.identifier" : "492a2eca-e333-4b25-bdf4-98ba754974a6"
         },
         "sourceId" : "2",
         "tags" : "Relationship"
@@ -131,7 +138,7 @@
         "destinationId" : "15",
         "id" : "29",
         "properties" : {
-          "structurizr.dsl.identifier" : "b1fdcf04-a46a-4616-a812-56bc04df732c"
+          "structurizr.dsl.identifier" : "2317d758-1038-49dc-a8be-8461791479f1"
         },
         "sourceId" : "2",
         "tags" : "Relationship",
@@ -165,7 +172,7 @@
         "destinationId" : "13",
         "id" : "24",
         "properties" : {
-          "structurizr.dsl.identifier" : "a846fe91-e8be-4e94-baa1-107e5f07ce1d"
+          "structurizr.dsl.identifier" : "cf277ab3-85ff-4643-ade1-d346f98443a2"
         },
         "sourceId" : "3",
         "tags" : "Relationship"
@@ -174,7 +181,7 @@
         "destinationId" : "6",
         "id" : "25",
         "properties" : {
-          "structurizr.dsl.identifier" : "9277bf54-34be-4220-a43e-861e60d1a040"
+          "structurizr.dsl.identifier" : "29987b19-b796-4cb3-8930-1aef4557ccac"
         },
         "sourceId" : "3",
         "tags" : "Relationship"
@@ -194,7 +201,7 @@
         "destinationId" : "13",
         "id" : "27",
         "properties" : {
-          "structurizr.dsl.identifier" : "49afa399-6fea-46f4-918f-670857dda88e"
+          "structurizr.dsl.identifier" : "fd1b2b22-cbd9-4d55-b37f-307a8cd19040"
         },
         "sourceId" : "4",
         "tags" : "Relationship"
@@ -214,7 +221,7 @@
         "destinationId" : "16",
         "id" : "35",
         "properties" : {
-          "structurizr.dsl.identifier" : "b593c315-6fb5-4cab-ae46-b0402ef38b32"
+          "structurizr.dsl.identifier" : "6ed2e348-b6df-4850-8314-ed7a8f3e04bd"
         },
         "sourceId" : "5",
         "tags" : "Relationship",
@@ -250,7 +257,7 @@
         "destinationId" : "13",
         "id" : "26",
         "properties" : {
-          "structurizr.dsl.identifier" : "7b3276fc-a3a1-48b6-a958-33be670240ab"
+          "structurizr.dsl.identifier" : "da3ab176-e9bb-4d09-a8c6-c8fd5e695b1d"
         },
         "sourceId" : "6",
         "tags" : "Relationship"
@@ -269,7 +276,7 @@
         "destinationId" : "13",
         "id" : "28",
         "properties" : {
-          "structurizr.dsl.identifier" : "270f3534-eeef-4b62-860d-955314f65a5e"
+          "structurizr.dsl.identifier" : "e0e69c28-95fd-4374-8467-e270d2c26fac"
         },
         "sourceId" : "7",
         "tags" : "Relationship"
@@ -340,7 +347,7 @@
             "destinationId" : "8",
             "id" : "40",
             "properties" : {
-              "structurizr.dsl.identifier" : "8fe046f5-5bdd-4583-af42-cec3b311542a"
+              "structurizr.dsl.identifier" : "cbafa2e2-9fc8-4006-9d60-ecf97f672482"
             },
             "sourceId" : "15",
             "tags" : "Relationship",
@@ -350,7 +357,7 @@
             "destinationId" : "9",
             "id" : "43",
             "properties" : {
-              "structurizr.dsl.identifier" : "d6a26fc2-3e90-4a4c-a6a1-87b755317900"
+              "structurizr.dsl.identifier" : "2e89a112-920d-404a-a79e-53755e69716f"
             },
             "sourceId" : "15",
             "tags" : "Relationship",
@@ -360,7 +367,7 @@
             "destinationId" : "10",
             "id" : "50",
             "properties" : {
-              "structurizr.dsl.identifier" : "49607412-0145-4a94-97e7-b0eb38596ac1"
+              "structurizr.dsl.identifier" : "d69e8d80-95a8-41d5-8c6a-6096a4898859"
             },
             "sourceId" : "15",
             "tags" : "Relationship",
@@ -370,7 +377,7 @@
             "destinationId" : "12",
             "id" : "55",
             "properties" : {
-              "structurizr.dsl.identifier" : "9370366e-e967-4a24-a474-4f1beaf49650"
+              "structurizr.dsl.identifier" : "1f6589a9-dbcd-465c-999c-dbcb323a0609"
             },
             "sourceId" : "15",
             "tags" : "Relationship",
@@ -380,7 +387,7 @@
             "destinationId" : "19",
             "id" : "58",
             "properties" : {
-              "structurizr.dsl.identifier" : "a122b0fa-3221-4a7c-9341-8c60f5a4abb5"
+              "structurizr.dsl.identifier" : "6da4bf77-3f95-4939-909b-fe152b7a451c"
             },
             "sourceId" : "15",
             "tags" : "Relationship"
@@ -399,7 +406,7 @@
             "destinationId" : "9",
             "id" : "46",
             "properties" : {
-              "structurizr.dsl.identifier" : "ae803e3f-6fbd-4df5-b694-1102301f33ab"
+              "structurizr.dsl.identifier" : "e130088f-794c-4c19-b87f-9d5398abacb4"
             },
             "sourceId" : "16",
             "tags" : "Relationship",
@@ -409,7 +416,7 @@
             "destinationId" : "19",
             "id" : "59",
             "properties" : {
-              "structurizr.dsl.identifier" : "72ebf217-e0c0-49f2-b52b-b9cc6742f740"
+              "structurizr.dsl.identifier" : "d200c841-e80e-46c9-89fa-00b8948560a8"
             },
             "sourceId" : "16",
             "tags" : "Relationship"
@@ -428,7 +435,7 @@
             "destinationId" : "11",
             "id" : "47",
             "properties" : {
-              "structurizr.dsl.identifier" : "fc019ae5-a6fc-4cb7-9289-847d2c9c12fa"
+              "structurizr.dsl.identifier" : "eebb5ca0-a89a-406e-91d6-4099930d822e"
             },
             "sourceId" : "17",
             "tags" : "Relationship",
@@ -438,7 +445,7 @@
             "destinationId" : "19",
             "id" : "60",
             "properties" : {
-              "structurizr.dsl.identifier" : "7ec3a686-d47c-41f1-94a4-2290bdfa379a"
+              "structurizr.dsl.identifier" : "ea725286-1809-45ee-b411-82987326f876"
             },
             "sourceId" : "17",
             "tags" : "Relationship"
@@ -457,7 +464,7 @@
             "destinationId" : "19",
             "id" : "61",
             "properties" : {
-              "structurizr.dsl.identifier" : "8c9f45b8-9360-4107-9ffd-88a7f3093150"
+              "structurizr.dsl.identifier" : "d3340205-615e-404d-a56a-c3db53a0273e"
             },
             "sourceId" : "18",
             "tags" : "Relationship"
@@ -476,7 +483,7 @@
             "destinationId" : "20",
             "id" : "38",
             "properties" : {
-              "structurizr.dsl.identifier" : "e432f988-bb85-4628-8d7f-0bfc2f222046"
+              "structurizr.dsl.identifier" : "3141ca12-f801-4a62-90ee-1e1662e8e987"
             },
             "sourceId" : "19",
             "tags" : "Relationship",
@@ -486,7 +493,7 @@
             "destinationId" : "21",
             "id" : "53",
             "properties" : {
-              "structurizr.dsl.identifier" : "2ee5464c-47a7-4550-96a2-05b7369a4e26"
+              "structurizr.dsl.identifier" : "97ec451c-f94c-4a9b-9073-63a63f510f16"
             },
             "sourceId" : "19",
             "tags" : "Relationship",
