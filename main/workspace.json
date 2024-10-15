@@ -69,6 +69,12 @@
       "format" : "Markdown",
       "order" : 4,
       "title" : ""
+    }, {
+      "content" : "## Development practices\n\nThese are suggestions for general development best practices for creating the service.\n\n### Deployment and Releases\n\nThe service should be deployed by a CI/CD pipeline. Deployments should not involve manual steps. This pipeline should not be in the cloud platform, as this would be a tie to a particular cloud platform that may change later, for a small amount of benefit.\n\nThe development team may want to practise Continuous Integration, with each developer merging their code into the main codebase at least once a day. The team should also ideally practise Continuous Deployment, with ready code automatically deployed to the production systems. These practices greatly help with the speed that software can be delivered. Delays that are introduced by asynchronous checks before deployment can be substantial.\n\nTo support these practices, you need robust testing to build confidence that any changes are safe, monitoring to be aware of any problems as early as possible, and feature flags (a technique that allows changes to be made to a codebase without those changes being shown to the user).\n\n### Infrastructure\n\nInfrastructure should be simple as possible and provisioned using an “Infrastructure as Code” tool. These tools make you record the infrastructure that the service is built on in code. This code is read by the tool which then creates the infrastructure. This makes it easier to rebuild the service (from scratch if required) and increases certainty about configuration of systems.\n\nFor Google Cloud Platform, the default is Terraform. Terraform is also a good choice as it supports the case that we need to move the service between cloud providers. Terraform is not tied to a single cloud provider.\n\n### Environments\n\nWe will have a “production” environment that holds the infrastructure for the real service that users visit. We may also want separate environments for:\n\n- Staging: A complete recreation of the production environment in a separate cloud account, where we can try features before enabling them in production.  \n- Build and Deploy: A separate environment that runs the CI/CD pipeline and the infrastructure as code tool. These tools need a lot of access, and by having them in a separate account you can reduce the “blast radius” of any incidents.\n\n### Monitoring and Alerting\n\nThe service should log important events and store those logs, to help with debugging problems in the service.\n\nThe service should record metrics to ensure that the service is operating correctly. These should include metrics about the infrastructure (e.g. how full is the database, how long does the database take to deal with requests), but also metrics about the operation of the service (e.g. how many registrations have been completed).\n\nWe should create alerts for any metrics that would indicate a problem in the system (e.g. no users are completing their journey). We should also alert on anything that looks like an attack (e.g. Denial of Service or Port Scanning).\n\n### Backup and Restore\n\nAny data should be backed up regularly. These backups should be tested regularly. Within our system this will primarily be backups of the database. A decision needs to be made about what frequency of backups should be made and kept.\n\n### Storing Secrets\n\nCredentials for the APIs and other systems that our service uses should be stored outside of source control, in a dedicated service like GCP Secret Manager.\n\n### Dependencies\n\nThe software that we write, will be dependent on 3rd party packages that other bodies provide. The number of dependencies should be minimised as each dependency adds additional security considerations. Before a dependency is added to the project it should be reviewed to ensure it is being actively maintained and is trustworthy.\n\nThese dependencies should be automatically reviewed for vulnerabilities using a tool such as Dependabot. This could be configured to automatically suggest package upgrades where they are available.\n",
+      "filename" : "05-development-practices.md",
+      "format" : "Markdown",
+      "order" : 5,
+      "title" : ""
     } ]
   },
   "id" : 0,
@@ -86,7 +92,7 @@
         "destinationId" : "17",
         "id" : "32",
         "properties" : {
-          "structurizr.dsl.identifier" : "4a4f31c9-3afb-4dac-93d7-f831c618c7f4"
+          "structurizr.dsl.identifier" : "9b8d99e6-45d0-409d-829b-e40a75d947a9"
         },
         "sourceId" : "1",
         "tags" : "Relationship",
@@ -120,7 +126,7 @@
         "destinationId" : "3",
         "id" : "22",
         "properties" : {
-          "structurizr.dsl.identifier" : "817b346d-f216-4f68-80b9-fb4858616d0d"
+          "structurizr.dsl.identifier" : "7cca7380-6181-44c6-ad77-b36db3dd2d46"
         },
         "sourceId" : "2",
         "tags" : "Relationship"
@@ -129,7 +135,7 @@
         "destinationId" : "6",
         "id" : "23",
         "properties" : {
-          "structurizr.dsl.identifier" : "492a2eca-e333-4b25-bdf4-98ba754974a6"
+          "structurizr.dsl.identifier" : "8995d4c2-375c-49c7-956b-5cce2bf3f7d2"
         },
         "sourceId" : "2",
         "tags" : "Relationship"
@@ -138,7 +144,7 @@
         "destinationId" : "15",
         "id" : "29",
         "properties" : {
-          "structurizr.dsl.identifier" : "2317d758-1038-49dc-a8be-8461791479f1"
+          "structurizr.dsl.identifier" : "d1e1f419-ec50-437a-86d8-d6775d17c524"
         },
         "sourceId" : "2",
         "tags" : "Relationship",
@@ -172,7 +178,7 @@
         "destinationId" : "13",
         "id" : "24",
         "properties" : {
-          "structurizr.dsl.identifier" : "cf277ab3-85ff-4643-ade1-d346f98443a2"
+          "structurizr.dsl.identifier" : "b6592089-2508-4f73-be29-4fb1f4799ac6"
         },
         "sourceId" : "3",
         "tags" : "Relationship"
@@ -181,7 +187,7 @@
         "destinationId" : "6",
         "id" : "25",
         "properties" : {
-          "structurizr.dsl.identifier" : "29987b19-b796-4cb3-8930-1aef4557ccac"
+          "structurizr.dsl.identifier" : "285e9b51-6e74-46c2-ad40-e160c5e390a7"
         },
         "sourceId" : "3",
         "tags" : "Relationship"
@@ -201,7 +207,7 @@
         "destinationId" : "13",
         "id" : "27",
         "properties" : {
-          "structurizr.dsl.identifier" : "fd1b2b22-cbd9-4d55-b37f-307a8cd19040"
+          "structurizr.dsl.identifier" : "7cdca0a1-175f-4002-b39e-f856b92eb4a5"
         },
         "sourceId" : "4",
         "tags" : "Relationship"
@@ -221,7 +227,7 @@
         "destinationId" : "16",
         "id" : "35",
         "properties" : {
-          "structurizr.dsl.identifier" : "6ed2e348-b6df-4850-8314-ed7a8f3e04bd"
+          "structurizr.dsl.identifier" : "4ff436ea-4cbc-4b76-8416-4084499b04ef"
         },
         "sourceId" : "5",
         "tags" : "Relationship",
@@ -257,7 +263,7 @@
         "destinationId" : "13",
         "id" : "26",
         "properties" : {
-          "structurizr.dsl.identifier" : "da3ab176-e9bb-4d09-a8c6-c8fd5e695b1d"
+          "structurizr.dsl.identifier" : "83d89e21-b57b-48d8-a0ea-d9fac9a0a937"
         },
         "sourceId" : "6",
         "tags" : "Relationship"
@@ -276,7 +282,7 @@
         "destinationId" : "13",
         "id" : "28",
         "properties" : {
-          "structurizr.dsl.identifier" : "e0e69c28-95fd-4374-8467-e270d2c26fac"
+          "structurizr.dsl.identifier" : "749b1051-aada-4195-8ace-de9029df4293"
         },
         "sourceId" : "7",
         "tags" : "Relationship"
@@ -347,7 +353,7 @@
             "destinationId" : "8",
             "id" : "40",
             "properties" : {
-              "structurizr.dsl.identifier" : "cbafa2e2-9fc8-4006-9d60-ecf97f672482"
+              "structurizr.dsl.identifier" : "9e1dc154-22cd-48f6-afdb-977d1541682b"
             },
             "sourceId" : "15",
             "tags" : "Relationship",
@@ -357,7 +363,7 @@
             "destinationId" : "9",
             "id" : "43",
             "properties" : {
-              "structurizr.dsl.identifier" : "2e89a112-920d-404a-a79e-53755e69716f"
+              "structurizr.dsl.identifier" : "f7d595a8-2432-4d26-bc1a-142074221068"
             },
             "sourceId" : "15",
             "tags" : "Relationship",
@@ -367,7 +373,7 @@
             "destinationId" : "10",
             "id" : "50",
             "properties" : {
-              "structurizr.dsl.identifier" : "d69e8d80-95a8-41d5-8c6a-6096a4898859"
+              "structurizr.dsl.identifier" : "9998df67-d4bf-4209-b602-d41a156e2aad"
             },
             "sourceId" : "15",
             "tags" : "Relationship",
@@ -377,7 +383,7 @@
             "destinationId" : "12",
             "id" : "55",
             "properties" : {
-              "structurizr.dsl.identifier" : "1f6589a9-dbcd-465c-999c-dbcb323a0609"
+              "structurizr.dsl.identifier" : "facefa8f-1c5f-4253-b930-00459715be76"
             },
             "sourceId" : "15",
             "tags" : "Relationship",
@@ -387,7 +393,7 @@
             "destinationId" : "19",
             "id" : "58",
             "properties" : {
-              "structurizr.dsl.identifier" : "6da4bf77-3f95-4939-909b-fe152b7a451c"
+              "structurizr.dsl.identifier" : "a9464e26-422b-48eb-a2e5-7cee7aee13ad"
             },
             "sourceId" : "15",
             "tags" : "Relationship"
@@ -406,7 +412,7 @@
             "destinationId" : "9",
             "id" : "46",
             "properties" : {
-              "structurizr.dsl.identifier" : "e130088f-794c-4c19-b87f-9d5398abacb4"
+              "structurizr.dsl.identifier" : "89c40886-9daf-4c08-928e-85c175fc393f"
             },
             "sourceId" : "16",
             "tags" : "Relationship",
@@ -416,7 +422,7 @@
             "destinationId" : "19",
             "id" : "59",
             "properties" : {
-              "structurizr.dsl.identifier" : "d200c841-e80e-46c9-89fa-00b8948560a8"
+              "structurizr.dsl.identifier" : "7a89a784-e519-47eb-938d-b7c680914f41"
             },
             "sourceId" : "16",
             "tags" : "Relationship"
@@ -435,7 +441,7 @@
             "destinationId" : "11",
             "id" : "47",
             "properties" : {
-              "structurizr.dsl.identifier" : "eebb5ca0-a89a-406e-91d6-4099930d822e"
+              "structurizr.dsl.identifier" : "c552f685-675b-48a6-8999-58b14a9d6bac"
             },
             "sourceId" : "17",
             "tags" : "Relationship",
@@ -445,7 +451,7 @@
             "destinationId" : "19",
             "id" : "60",
             "properties" : {
-              "structurizr.dsl.identifier" : "ea725286-1809-45ee-b411-82987326f876"
+              "structurizr.dsl.identifier" : "42cb5bb7-22f7-46ce-bd70-f825b693d707"
             },
             "sourceId" : "17",
             "tags" : "Relationship"
@@ -464,7 +470,7 @@
             "destinationId" : "19",
             "id" : "61",
             "properties" : {
-              "structurizr.dsl.identifier" : "d3340205-615e-404d-a56a-c3db53a0273e"
+              "structurizr.dsl.identifier" : "407b1519-e69c-460e-a6f4-74e28c87f4ab"
             },
             "sourceId" : "18",
             "tags" : "Relationship"
@@ -483,7 +489,7 @@
             "destinationId" : "20",
             "id" : "38",
             "properties" : {
-              "structurizr.dsl.identifier" : "3141ca12-f801-4a62-90ee-1e1662e8e987"
+              "structurizr.dsl.identifier" : "dd0ae9b6-f403-45c9-9412-1bf36935954d"
             },
             "sourceId" : "19",
             "tags" : "Relationship",
@@ -493,7 +499,7 @@
             "destinationId" : "21",
             "id" : "53",
             "properties" : {
-              "structurizr.dsl.identifier" : "97ec451c-f94c-4a9b-9073-63a63f510f16"
+              "structurizr.dsl.identifier" : "0eca7c46-9ae2-4d58-8ac3-8357813d090d"
             },
             "sourceId" : "19",
             "tags" : "Relationship",

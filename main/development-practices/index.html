@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="en" data-theme="light" class="has-background-light">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Development practices | Short Term Lets Registration</title>
+    <link href="https://cdn.jsdelivr.net/npm/bulma@1.0.2/css/bulma.min.css" rel="stylesheet">
+    <link href="../../style.css" rel="stylesheet">
+    <link href="./../style-branding.css" rel="stylesheet">
+    <script type="text/javascript" src="../../modal.js"></script>
+    <script type="text/javascript" src="../../svg-modal.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/svg-pan-zoom@3.6.1/dist/svg-pan-zoom.min.js"></script>
+  </head>
+  <body>
+    <script type="text/javascript" src="../../header.js"></script>
+    <nav class="navbar" role="navigation" aria-label="main navigation">
+      <div class="navbar-brand has-site-branding"><a href="../" class="navbar-item"><span class="has-text-weight-semibold has-site-branding">Short Term Lets Registration</span></a></div>
+      <div class="navbar-menu has-site-branding">
+        <div class="navbar-end">
+          <div class="navbar-item"><input class="input is-small is-rounded has-site-branding" id="search" type="search" size="30" maxlength="50" placeholder="Search..." onkeyup="redirect(event, value, '../search/')"></div>
+          <div class="navbar-item has-dropdown is-hoverable"><a class="navbar-link has-site-branding">main</a>
+            <div class="navbar-dropdown is-right"><a href="../../main/" class="navbar-item">main</a>
+              <hr class="navbar-divider">
+              <div class="navbar-item has-text-grey-light"><span>v</span><span>0.0.0</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </nav>
+    <div class="site-layout" id="site">
+      <aside class="menu p-3">
+        <p class="menu-label">General</p>
+        <ul class="menu-list has-site-branding">
+          <li><a href="../" class="">Home</a><a href="../decisions/" class="">Decisions</a><a href="../software-systems/" class="">Software Systems</a><a href="../data-modelling-of-let-ownership-and-management/" class="">Data modelling of let ownership and management</a><a href="../solving-a-whole-problem/" class="">Solving a whole problem</a><a href="../proposed-architecture/" class="">Proposed Architecture</a><a href="./" class="is-active">Development practices</a></li>
+        </ul>
+        <p class="menu-label">Software systems</p>
+        <ul class="menu-list has-site-branding">
+          <li><a href="../authentication-provider/" class="">Authentication Provider</a><a href="../booking-platform/" class="">Booking Platform</a><a href="../gov.uk-notify/" class="">GOV.UK Notify</a><a href="../gov.uk-pay/" class="">GOV.UK Pay</a><a href="../one-login/" class="">One Login</a><a href="../os-places-api/" class="">OS Places API</a><a href="../policy-makers/" class="">Policy Makers</a><a href="../short-term-lets-registration/" class="">Short Term Lets Registration</a></li>
+        </ul>
+      </aside>
+      <div class="container is-fluid has-background-white">
+        <div class="content p-3">
+          <div><h2>Development practices</h2>
+<p>These are suggestions for general development best practices for creating the service.</p>
+<h3>Deployment and Releases</h3>
+<p>The service should be deployed by a CI/CD pipeline. Deployments should not involve manual steps. This pipeline should not be in the cloud platform, as this would be a tie to a particular cloud platform that may change later, for a small amount of benefit.</p>
+<p>The development team may want to practise Continuous Integration, with each developer merging their code into the main codebase at least once a day. The team should also ideally practise Continuous Deployment, with ready code automatically deployed to the production systems. These practices greatly help with the speed that software can be delivered. Delays that are introduced by asynchronous checks before deployment can be substantial.</p>
+<p>To support these practices, you need robust testing to build confidence that any changes are safe, monitoring to be aware of any problems as early as possible, and feature flags (a technique that allows changes to be made to a codebase without those changes being shown to the user).</p>
+<h3>Infrastructure</h3>
+<p>Infrastructure should be simple as possible and provisioned using an “Infrastructure as Code” tool. These tools make you record the infrastructure that the service is built on in code. This code is read by the tool which then creates the infrastructure. This makes it easier to rebuild the service (from scratch if required) and increases certainty about configuration of systems.</p>
+<p>For Google Cloud Platform, the default is Terraform. Terraform is also a good choice as it supports the case that we need to move the service between cloud providers. Terraform is not tied to a single cloud provider.</p>
+<h3>Environments</h3>
+<p>We will have a “production” environment that holds the infrastructure for the real service that users visit. We may also want separate environments for:</p>
+<ul>
+ <li>Staging: A complete recreation of the production environment in a separate cloud account, where we can try features before enabling them in production.</li>
+ <li>Build and Deploy: A separate environment that runs the CI/CD pipeline and the infrastructure as code tool. These tools need a lot of access, and by having them in a separate account you can reduce the “blast radius” of any incidents.</li>
+</ul>
+<h3>Monitoring and Alerting</h3>
+<p>The service should log important events and store those logs, to help with debugging problems in the service.</p>
+<p>The service should record metrics to ensure that the service is operating correctly. These should include metrics about the infrastructure (e.g. how full is the database, how long does the database take to deal with requests), but also metrics about the operation of the service (e.g. how many registrations have been completed).</p>
+<p>We should create alerts for any metrics that would indicate a problem in the system (e.g. no users are completing their journey). We should also alert on anything that looks like an attack (e.g. Denial of Service or Port Scanning).</p>
+<h3>Backup and Restore</h3>
+<p>Any data should be backed up regularly. These backups should be tested regularly. Within our system this will primarily be backups of the database. A decision needs to be made about what frequency of backups should be made and kept.</p>
+<h3>Storing Secrets</h3>
+<p>Credentials for the APIs and other systems that our service uses should be stored outside of source control, in a dedicated service like GCP Secret Manager.</p>
+<h3>Dependencies</h3>
+<p>The software that we write, will be dependent on 3rd party packages that other bodies provide. The number of dependencies should be minimised as each dependency adds additional security considerations. Before a dependency is added to the project it should be reviewed to ensure it is being actively maintained and is trustworthy.</p>
+<p>These dependencies should be automatically reviewed for vulnerabilities using a tool such as Dependabot. This could be configured to automatically suggest package upgrades where they are available.</p></div>
+        </div>
+      </div>
+    </div>
+    <script type="text/javascript" src="../../reformat-mermaid.js"></script>
+    <script type="module">import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11.2.0/dist/mermaid.esm.min.mjs';</script>
+  </body>
+</html>
