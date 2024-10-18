@@ -10,7 +10,7 @@
       "status" : "Accepted",
       "title" : "Record architecture decisions"
     }, {
-      "content" : "# 2. Hosting Alpha Prototype\n\nDate: 2024-07-16\n\n## Status\n\nAccepted\n\n## Context\n\nOver the course of this project, we will require a prototype for user research. Participants will need to access the prototype over the internet. The prototype requires some backend compute so cannot be hosted as a static site. \n\nIn an ideal world, we would host this on existing DCMS infrastructure, such as using Cloud Run in GCP. This is not an option.\n\n## Options\n\n### Supplier Prototyping AWS Account\n\nThe supplier uses one of their existing AWS accounts to host the prototype. This muddies the water on ownership of the prototype after the end of the project, but does have the benefit of existing controls on the account. \n\n### New Heroku Account\n\nWe create a new Heroku account and team for the prototype, that exists for the duration of the project. The main drawback is that we create an IT asset owned by DCMS without many controls.\n\n## Decision\n\nWe're going to use Heroku as this leaves the most control in the hands of DCMS and the risk level of this asset is very low. \n\n## Consequences\n\nAt the end of the alpha stage, DCMS will need to find a new hosting solution if they still with the prototype to be hosted.\n",
+      "content" : "# 2. Hosting Alpha Prototype\n\nDate: 2024-07-16\n\n## Status\n\nAccepted\n\n## Context\n\nOver the course of this project, we will require a prototype for user research. Participants will need to access the prototype over the internet. The prototype requires some backend compute so cannot be hosted as a static site. \n\nIn an ideal world, we would host this on existing DCMS infrastructure, such as using Cloud Run in GCP. This is not an option.\n\n## Options\n\n### Supplier Prototyping AWS Account\n\nThe supplier uses one of their existing AWS accounts to host the prototype. This muddies the water on ownership of the prototype after the end of the project, but does have the benefit of existing controls on the account. \n\n### New Heroku Account\n\nWe create a new Heroku account and team for the prototype, that exists for the duration of the project. The main drawback is that we create an IT asset owned by DCMS without many controls.\n\n## Decision\n\nWe're going to use Heroku as this leaves the most control in the hands of DCMS and the risk level of this asset is very low. \n\n## Consequences\n\nAt the end of the alpha stage, DCMS will need to find a new hosting solution if they still want the prototype to be hosted.\n",
       "date" : "2024-07-16T00:00:00Z",
       "format" : "Markdown",
       "id" : "2",
@@ -92,7 +92,7 @@
         "destinationId" : "17",
         "id" : "32",
         "properties" : {
-          "structurizr.dsl.identifier" : "9b8d99e6-45d0-409d-829b-e40a75d947a9"
+          "structurizr.dsl.identifier" : "961edf9e-b275-4f57-b4bc-6de7b85eed5b"
         },
         "sourceId" : "1",
         "tags" : "Relationship",
@@ -126,7 +126,7 @@
         "destinationId" : "3",
         "id" : "22",
         "properties" : {
-          "structurizr.dsl.identifier" : "7cca7380-6181-44c6-ad77-b36db3dd2d46"
+          "structurizr.dsl.identifier" : "cf246370-3b7d-4b02-ad58-0f39316edd5d"
         },
         "sourceId" : "2",
         "tags" : "Relationship"
@@ -135,7 +135,7 @@
         "destinationId" : "6",
         "id" : "23",
         "properties" : {
-          "structurizr.dsl.identifier" : "8995d4c2-375c-49c7-956b-5cce2bf3f7d2"
+          "structurizr.dsl.identifier" : "1f8e7a37-dec5-43ca-b006-f85ee63b41f9"
         },
         "sourceId" : "2",
         "tags" : "Relationship"
@@ -144,7 +144,7 @@
         "destinationId" : "15",
         "id" : "29",
         "properties" : {
-          "structurizr.dsl.identifier" : "d1e1f419-ec50-437a-86d8-d6775d17c524"
+          "structurizr.dsl.identifier" : "364fe925-ebeb-40d7-bd38-74744bddacb8"
         },
         "sourceId" : "2",
         "tags" : "Relationship",
@@ -178,7 +178,7 @@
         "destinationId" : "13",
         "id" : "24",
         "properties" : {
-          "structurizr.dsl.identifier" : "b6592089-2508-4f73-be29-4fb1f4799ac6"
+          "structurizr.dsl.identifier" : "0235205e-8480-4f74-81fc-5db531ebe663"
         },
         "sourceId" : "3",
         "tags" : "Relationship"
@@ -187,7 +187,7 @@
         "destinationId" : "6",
         "id" : "25",
         "properties" : {
-          "structurizr.dsl.identifier" : "285e9b51-6e74-46c2-ad40-e160c5e390a7"
+          "structurizr.dsl.identifier" : "d23b3f58-330c-4518-80ca-02a86ae1b1f3"
         },
         "sourceId" : "3",
         "tags" : "Relationship"
@@ -207,7 +207,7 @@
         "destinationId" : "13",
         "id" : "27",
         "properties" : {
-          "structurizr.dsl.identifier" : "7cdca0a1-175f-4002-b39e-f856b92eb4a5"
+          "structurizr.dsl.identifier" : "f3c46cb9-3a9d-41d0-a3e8-7dcc723d65c3"
         },
         "sourceId" : "4",
         "tags" : "Relationship"
@@ -227,7 +227,7 @@
         "destinationId" : "16",
         "id" : "35",
         "properties" : {
-          "structurizr.dsl.identifier" : "4ff436ea-4cbc-4b76-8416-4084499b04ef"
+          "structurizr.dsl.identifier" : "c18946eb-8eb2-46ce-bd50-c98265afb9e8"
         },
         "sourceId" : "5",
         "tags" : "Relationship",
@@ -263,7 +263,7 @@
         "destinationId" : "13",
         "id" : "26",
         "properties" : {
-          "structurizr.dsl.identifier" : "83d89e21-b57b-48d8-a0ea-d9fac9a0a937"
+          "structurizr.dsl.identifier" : "d0e6d67a-5557-4538-b82c-cc2a2d242fda"
         },
         "sourceId" : "6",
         "tags" : "Relationship"
@@ -282,7 +282,7 @@
         "destinationId" : "13",
         "id" : "28",
         "properties" : {
-          "structurizr.dsl.identifier" : "749b1051-aada-4195-8ace-de9029df4293"
+          "structurizr.dsl.identifier" : "e80eb6ca-1cd0-453b-a69f-0373cccab826"
         },
         "sourceId" : "7",
         "tags" : "Relationship"
@@ -353,7 +353,7 @@
             "destinationId" : "8",
             "id" : "40",
             "properties" : {
-              "structurizr.dsl.identifier" : "9e1dc154-22cd-48f6-afdb-977d1541682b"
+              "structurizr.dsl.identifier" : "18d7807c-b455-4e51-af6b-8124e6ec62cd"
             },
             "sourceId" : "15",
             "tags" : "Relationship",
@@ -363,7 +363,7 @@
             "destinationId" : "9",
             "id" : "43",
             "properties" : {
-              "structurizr.dsl.identifier" : "f7d595a8-2432-4d26-bc1a-142074221068"
+              "structurizr.dsl.identifier" : "a4980b4a-32bb-44e4-94b1-dcd9cb4f0fa7"
             },
             "sourceId" : "15",
             "tags" : "Relationship",
@@ -373,7 +373,7 @@
             "destinationId" : "10",
             "id" : "50",
             "properties" : {
-              "structurizr.dsl.identifier" : "9998df67-d4bf-4209-b602-d41a156e2aad"
+              "structurizr.dsl.identifier" : "1cd05254-20c6-42cd-b97e-ba91dba5b324"
             },
             "sourceId" : "15",
             "tags" : "Relationship",
@@ -383,7 +383,7 @@
             "destinationId" : "12",
             "id" : "55",
             "properties" : {
-              "structurizr.dsl.identifier" : "facefa8f-1c5f-4253-b930-00459715be76"
+              "structurizr.dsl.identifier" : "d88de05c-db2a-4936-b754-f95af176f3a5"
             },
             "sourceId" : "15",
             "tags" : "Relationship",
@@ -393,7 +393,7 @@
             "destinationId" : "19",
             "id" : "58",
             "properties" : {
-              "structurizr.dsl.identifier" : "a9464e26-422b-48eb-a2e5-7cee7aee13ad"
+              "structurizr.dsl.identifier" : "888aca2f-4857-4ce8-a499-961006dc185f"
             },
             "sourceId" : "15",
             "tags" : "Relationship"
@@ -412,7 +412,7 @@
             "destinationId" : "9",
             "id" : "46",
             "properties" : {
-              "structurizr.dsl.identifier" : "89c40886-9daf-4c08-928e-85c175fc393f"
+              "structurizr.dsl.identifier" : "63cbe0a1-2849-4941-8455-4506751aac88"
             },
             "sourceId" : "16",
             "tags" : "Relationship",
@@ -422,7 +422,7 @@
             "destinationId" : "19",
             "id" : "59",
             "properties" : {
-              "structurizr.dsl.identifier" : "7a89a784-e519-47eb-938d-b7c680914f41"
+              "structurizr.dsl.identifier" : "5f7c5849-420f-4c91-a440-b7fa8a47695f"
             },
             "sourceId" : "16",
             "tags" : "Relationship"
@@ -441,7 +441,7 @@
             "destinationId" : "11",
             "id" : "47",
             "properties" : {
-              "structurizr.dsl.identifier" : "c552f685-675b-48a6-8999-58b14a9d6bac"
+              "structurizr.dsl.identifier" : "7bb01ece-5912-410e-8467-66918dbc6304"
             },
             "sourceId" : "17",
             "tags" : "Relationship",
@@ -451,7 +451,7 @@
             "destinationId" : "19",
             "id" : "60",
             "properties" : {
-              "structurizr.dsl.identifier" : "42cb5bb7-22f7-46ce-bd70-f825b693d707"
+              "structurizr.dsl.identifier" : "b22f5863-2b15-4ba4-bf4c-c45d5781872b"
             },
             "sourceId" : "17",
             "tags" : "Relationship"
@@ -470,7 +470,7 @@
             "destinationId" : "19",
             "id" : "61",
             "properties" : {
-              "structurizr.dsl.identifier" : "407b1519-e69c-460e-a6f4-74e28c87f4ab"
+              "structurizr.dsl.identifier" : "f5a4ee59-0d81-4ad9-896e-cbc27d56f459"
             },
             "sourceId" : "18",
             "tags" : "Relationship"
@@ -489,7 +489,7 @@
             "destinationId" : "20",
             "id" : "38",
             "properties" : {
-              "structurizr.dsl.identifier" : "dd0ae9b6-f403-45c9-9412-1bf36935954d"
+              "structurizr.dsl.identifier" : "15429020-ef51-4565-9986-d60fc251449c"
             },
             "sourceId" : "19",
             "tags" : "Relationship",
@@ -499,7 +499,7 @@
             "destinationId" : "21",
             "id" : "53",
             "properties" : {
-              "structurizr.dsl.identifier" : "0eca7c46-9ae2-4d58-8ac3-8357813d090d"
+              "structurizr.dsl.identifier" : "41fd5727-6aed-4034-8351-d0be4abee7f4"
             },
             "sourceId" : "19",
             "tags" : "Relationship",
